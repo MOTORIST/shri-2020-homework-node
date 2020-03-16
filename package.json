@@ -11,6 +11,9 @@
     "commit": "git-cz",
     "eslint": "eslint -c .eslintrc.js 'src/**/*.js'"
   },
+  "engines" : { 
+    "node" : ">=v12.4.0"
+  },
   "config": {
     "commitizen": {
       "path": "node_modules/cz-customizable"
