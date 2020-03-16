@@ -21,11 +21,11 @@
 ## 🧐 About <a name = "about"></a>
 ![School CI server](screenshots/screenshot-01.png)
 
-## 🏁 Getting Started <a name = "getting_started"></a>
-
 Описание api сделал через swagger http://localhost:3000/api-docs#/
 
 Не все успел реализовать из того, что хотел (см. TODO)
+
+## 🏁 Getting Started <a name = "getting_started"></a>
 
 ### Installing
 
