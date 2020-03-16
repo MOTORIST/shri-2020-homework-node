@@ -34,7 +34,7 @@ git clone git@github.com:MOTORIST/shri-2020-homework-node.git
 cd shri-2020-homework-node
 yarn install
 ```
-
+Rename from .env.example to .env and change app settings.
 ### Run
 
 ```
