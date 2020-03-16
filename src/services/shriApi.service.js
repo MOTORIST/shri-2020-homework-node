@@ -89,10 +89,28 @@ async function getBuild(buildId) {
   }
 }
 
+async function buildRequest(buildData) {
+  try {
+    const { status } = await httpApi.post('/build/request', buildData);
+
+    if (status !== 200) {
+      return false;
+    }
+
+    return true;
+  } catch (err) {
+    const messageErr = 'Failed to create build (SHRI API: POST /build/request)';
+    shriApiLogger.log('error', messageErr, err);
+
+    throw new Error(err);
+  }
+}
+
 module.exports = {
   getConfig,
   addConfig,
   deleteConfig,
   getBuildList,
   getBuild,
+  buildRequest,
 };

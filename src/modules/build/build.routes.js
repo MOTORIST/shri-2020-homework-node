@@ -39,3 +39,14 @@ router
    *  @returns {Build.model} 200
    */
   .get(validate(validationRules.getBuild), controller.get);
+
+router
+  .route('/:commitHash')
+  /**
+   *  Return build data
+   *  @route POST /builds/{commitHash}
+   *  @group Build
+   *  @param {string} commitHash.path.required - commit hash
+   *  @returns {Build.model} 200
+   */
+  .post(validate(validationRules.addBuild), controller.add);

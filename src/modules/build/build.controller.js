@@ -29,7 +29,24 @@ async function get(req, res, next) {
   }
 }
 
+async function add(req, res, next) {
+  const mockData = {
+    commitMessage: 'string',
+    commitHash: req.params.commitHash,
+    branchName: 'string',
+    authorName: 'string',
+  };
+
+  try {
+    await shriApi.buildRequest(mockData);
+    res.json({ data: mockData });
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   list,
   get,
+  add,
 };

@@ -3,7 +3,16 @@ const { Joi } = require('express-validation');
 module.exports = {
   getBuild: {
     params: Joi.object({
-      buildId: Joi.string().required(),
+      buildId: Joi.string()
+        .guid()
+        .required(),
+    }),
+  },
+  addBuild: {
+    params: Joi.object({
+      commitHash: Joi.string()
+        .token()
+        .required(),
     }),
   },
 };
