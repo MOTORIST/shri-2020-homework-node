@@ -2,6 +2,7 @@ const path = require('path');
 
 const appDir = path.resolve();
 const storageDir = path.join(appDir, process.env.STORAGE_DIR_NAME);
+const repositoriesDir = path.join(storageDir, process.env.REPOSITORIES_DIR_NAME);
 const logsDir = path.join(storageDir, 'logs');
 
 module.exports = {
@@ -13,6 +14,7 @@ module.exports = {
   SHRI_API_AUTH_TOKEN: process.env.SHRI_API_AUTH_TOKEN,
   APP_DIR: appDir,
   STORAGE_DIR: storageDir,
+  REPOSITORIES_DIR_NAME: repositoriesDir,
   LOGS_DIR: logsDir,
   SWAGGER_PORT: process.env.SWAGGER_PORT,
 };

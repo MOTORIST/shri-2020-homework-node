@@ -1,5 +1,6 @@
 const httpStatus = require('http-status');
 const shriApi = require('../../services/shriApi.service');
+const git = require('../../services/gitCommands.service');
 
 async function get(_, res, next) {
   try {
@@ -12,7 +13,11 @@ async function get(_, res, next) {
 
 async function add(req, res, next) {
   try {
-    await shriApi.addConfig(req.body);
+    const repoData = req.body;
+    await shriApi.addConfig(repoData);
+    // TODO check exists repo in github;
+    git.clone(repoData.repoName);
+
     res.json(req.body);
   } catch (err) {
     next(err);

@@ -16,6 +16,19 @@ const shriApiLogger = createLogger({
   ],
 });
 
+const gitLogger = createLogger({
+  level: 'error',
+  format: combine(errors({ stack: true }), json()),
+  defaultMeta: { service: 'shri-api-service' },
+  transports: [
+    new transports.File({
+      filename: path.join(LOGS_DIR, 'git-errors.log'),
+      level: 'error',
+    }),
+  ],
+});
+
 module.exports = {
   shriApiLogger,
+  gitLogger,
 };
