@@ -1,10 +1,8 @@
 require('dotenv').config();
-const express = require('express');
+const app = require('./config/express');
 const { PORT, ENV } = require('./config');
 
-const app = express();
-
-app.get('/', (_, res) => res.send('Hello World!'));
+app.get('/', (_, res) => res.send('Im fine!'));
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT} - env (${ENV})`);
