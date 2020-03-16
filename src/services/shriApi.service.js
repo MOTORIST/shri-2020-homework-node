@@ -64,8 +64,21 @@ async function deleteConfig() {
   }
 }
 
+async function getBuildList() {
+  try {
+    const { data } = await httpApi.get('build/list');
+    return data;
+  } catch (err) {
+    const messageErr = 'Failed to get build list (SHRI API: GET /build/list))';
+    shriApiLogger.log('error', messageErr, err);
+
+    throw new Error(err);
+  }
+}
+
 module.exports = {
   getConfig,
   addConfig,
   deleteConfig,
+  getBuildList,
 };
