@@ -1,5 +1,7 @@
 const express = require('express');
+const { validate } = require('express-validation');
 const controller = require('./build.controller');
+const validationRules = require('./build.validation');
 
 const router = express.Router();
 
@@ -26,3 +28,14 @@ router
    *  @returns {Array.<Build>} 200
    */
   .get(controller.list);
+
+router
+  .route('/:buildId')
+  /**
+   *  Return build data
+   *  @route GET /builds/{buildId}
+   *  @group Build
+   *  @param {string} buildId.path.required - build id
+   *  @returns {Build.model} 200
+   */
+  .get(validate(validationRules.getBuild), controller.get);

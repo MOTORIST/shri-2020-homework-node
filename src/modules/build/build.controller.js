@@ -1,5 +1,5 @@
 const shriApi = require('../../services/shriApi.service');
-const { pickFromArray } = require('../../helpers');
+const { pickFromArray, pick } = require('../../helpers');
 
 // TODO: вынести в модель
 const buildFields = [
@@ -20,6 +20,16 @@ async function list(_, res, next) {
   }
 }
 
+async function get(req, res, next) {
+  try {
+    const buildData = await shriApi.getBuild(req.params.buildId);
+    res.json({ data: pick(buildData.data, buildFields) });
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   list,
+  get,
 };

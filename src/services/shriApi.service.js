@@ -69,7 +69,20 @@ async function getBuildList() {
     const { data } = await httpApi.get('build/list');
     return data;
   } catch (err) {
-    const messageErr = 'Failed to get build list (SHRI API: GET /build/list))';
+    const messageErr = 'Failed to get build list (SHRI API: GET /build/list)';
+    shriApiLogger.log('error', messageErr, err);
+
+    throw new Error(err);
+  }
+}
+
+async function getBuild(buildId) {
+  try {
+    const { data } = await httpApi.get('/build/details', { params: { buildId } });
+
+    return data;
+  } catch (err) {
+    const messageErr = 'Failed to get build data (SHRI API: GET /build/details)';
     shriApiLogger.log('error', messageErr, err);
 
     throw new Error(err);
@@ -81,4 +94,5 @@ module.exports = {
   addConfig,
   deleteConfig,
   getBuildList,
+  getBuild,
 };
