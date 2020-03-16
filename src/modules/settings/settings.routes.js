@@ -1,5 +1,7 @@
 const express = require('express');
+const { validate } = require('express-validation');
 const controller = require('./settings.controller');
+const validationRules = require('./settings.validation');
 
 const router = express.Router();
 
@@ -21,6 +23,14 @@ router
    * @group Settings - Repository settings
    * @returns {Settings.model} 200 - Success
    */
-  .get(controller.get);
+  .get(controller.get)
+  /**
+   * Create repository settings
+   * @route POST /settings
+   * @group Settings
+   * @param {Settings.model} data.body.required - settings data
+   * @returns {Settings.model} 200 - Success
+   */
+  .post(validate(validationRules.addSettings), controller.add);
 
 module.exports = router;

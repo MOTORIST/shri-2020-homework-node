@@ -30,6 +30,24 @@ async function getConfig() {
   }
 }
 
+async function addConfig(data) {
+  try {
+    const { status } = await httpApi.post('conf', data);
+
+    if (status !== 200) {
+      return false;
+    }
+
+    return true;
+  } catch (err) {
+    const messageErr = 'Failed to add repository configuration (SHRI API: POST /conf)';
+    shriApiLogger.log('error', messageErr, err);
+
+    throw new Error(err);
+  }
+}
+
 module.exports = {
   getConfig,
+  addConfig,
 };

@@ -9,6 +9,16 @@ async function get(_, res, next) {
   }
 }
 
+async function add(req, res, next) {
+  try {
+    await shriApi.addConfig(req.body);
+    res.json(req.body);
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   get,
+  add,
 };
