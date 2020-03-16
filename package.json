@@ -4,5 +4,42 @@
   "description": "SHRI 2020, node",
   "main": "index.js",
   "author": "Gerasin Ivan <webartmotor@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "commit": "git-cz",
+    "eslint": "eslint -c .eslintrc.js 'src/**/*.js'"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "./commitizen.js"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g './commitlint.js'"
+    }
+  },
+
+	"lint-staged": {
+		"src/**/*.{ts,tsx}": [
+			"eslint -c .eslintrc.js 'src/**/*.js'",
+			"prettier --write",
+			"git add"
+		]
+	},
+  "devDependencies": {
+    "commitizen": "^4.0.3",
+    "cz-customizable": "^6.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "prettier": "^1.19.1"
+  }
 }
