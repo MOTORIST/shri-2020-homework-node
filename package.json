@@ -1,0 +1,8 @@
+{
+  "name": "shri-2020-homework-ci-node",
+  "version": "1.0.0",
+  "description": "SHRI 2020, node",
+  "main": "index.js",
+  "author": "Gerasin Ivan <webartmotor@gmail.com>",
+  "license": "MIT"
+}
