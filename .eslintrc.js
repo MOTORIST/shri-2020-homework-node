@@ -14,5 +14,6 @@ module.exports = {
   },
   rules: {
     'arrow-parens': ['error', 'as-needed'],
+    'object-curly-newline': 0,
   },
 };
