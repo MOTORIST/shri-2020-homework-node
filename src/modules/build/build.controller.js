@@ -45,8 +45,18 @@ async function add(req, res, next) {
   }
 }
 
+async function getBuildLogs(req, res, next) {
+  try {
+    const logsData = await shriApi.getBuildLogs(req.params.buildId);
+    res.json(logsData);
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   list,
   get,
   add,
+  getBuildLogs,
 };

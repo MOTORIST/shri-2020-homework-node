@@ -50,3 +50,14 @@ router
    *  @returns {Build.model} 200
    */
   .post(validate(validationRules.addBuild), controller.add);
+
+router
+  .route('/:buildId/logs')
+  /**
+   *  Return build data
+   *  @route GET /builds/{buildId}/logs
+   *  @group Build
+   *  @param {string} buildId.path.required - build id
+   *  @returns {string} 200
+   */
+  .get(validate(validationRules.getBuildLogs), controller.getBuildLogs);

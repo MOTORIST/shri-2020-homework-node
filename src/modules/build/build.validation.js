@@ -15,4 +15,11 @@ module.exports = {
         .required(),
     }),
   },
+  getBuildLogs: {
+    params: Joi.object({
+      buildId: Joi.string()
+        .guid()
+        .required(),
+    }),
+  },
 };

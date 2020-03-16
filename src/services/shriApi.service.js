@@ -106,6 +106,19 @@ async function buildRequest(buildData) {
   }
 }
 
+async function getBuildLogs(buildId) {
+  try {
+    const { data } = await httpApi.get('/build/log', { params: { buildId } });
+
+    return data;
+  } catch (err) {
+    const messageErr = 'Failed to get build logo (SHRI API: GET /build/log)';
+    shriApiLogger.log('error', messageErr, err);
+
+    throw new Error(err);
+  }
+}
+
 module.exports = {
   getConfig,
   addConfig,
@@ -113,4 +126,5 @@ module.exports = {
   getBuildList,
   getBuild,
   buildRequest,
+  getBuildLogs,
 };
