@@ -40,12 +40,12 @@ async function getCommitInfo(commitHash, repoName) {
     const { stdout } = await exec(command, { cwd: repoDir });
     const data = stdout.split(/\r?\n/);
 
-    if (data.length !== 2) {
+    if (data.length < 2) {
       throw new Error('Failed to get commit data');
     }
 
     const commitDataArr = data[0].split('|');
-    const branchName = data[1].slice(0, data[1].length - 2);
+    const branchName = data[1].split('~')[0];
 
     return {
       commitHash: commitDataArr[0],
