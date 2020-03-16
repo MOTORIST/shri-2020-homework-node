@@ -31,6 +31,12 @@ router
    * @param {Settings.model} data.body.required - settings data
    * @returns {Settings.model} 200 - Success
    */
-  .post(validate(validationRules.addSettings), controller.add);
+  .post(validate(validationRules.addSettings), controller.add)
+  /**
+   * @route DELETE /settings
+   * @group Settings - Repository settings
+   * @returns 204 - Success
+   */
+  .delete(controller.remove);
 
 module.exports = router;

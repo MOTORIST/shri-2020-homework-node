@@ -47,7 +47,25 @@ async function addConfig(data) {
   }
 }
 
+async function deleteConfig() {
+  try {
+    const { status } = await httpApi.delete('conf');
+
+    if (status !== 200) {
+      return false;
+    }
+
+    return true;
+  } catch (err) {
+    const messageErr = 'Failed to delete repository configuration (SHRI API: DELETE /conf)';
+    shriApiLogger.log('error', messageErr, err);
+
+    throw new Error(err);
+  }
+}
+
 module.exports = {
   getConfig,
   addConfig,
+  deleteConfig,
 };

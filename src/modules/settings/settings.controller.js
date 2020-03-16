@@ -1,3 +1,4 @@
+const httpStatus = require('http-status');
 const shriApi = require('../../services/shriApi.service');
 
 async function get(_, res, next) {
@@ -18,7 +19,17 @@ async function add(req, res, next) {
   }
 }
 
+async function remove(_, res, next) {
+  try {
+    await shriApi.deleteConfig();
+    res.sendStatus(httpStatus.NO_CONTENT);
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   get,
   add,
+  remove,
 };
