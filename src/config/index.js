@@ -14,7 +14,7 @@ module.exports = {
   SHRI_API_AUTH_TOKEN: process.env.SHRI_API_AUTH_TOKEN,
   APP_DIR: appDir,
   STORAGE_DIR: storageDir,
-  REPOSITORIES_DIR_NAME: repositoriesDir,
+  REPOSITORIES_DIR: repositoriesDir,
   LOGS_DIR: logsDir,
   SWAGGER_PORT: process.env.SWAGGER_PORT,
 };
