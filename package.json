@@ -6,6 +6,8 @@
   "author": "Gerasin Ivan <webartmotor@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "start": "cross-env ENV=production node ./src/server.js",
+    "dev": "cross-env ENV=development nodemon ./src/server.js",
     "commit": "git-cz",
     "eslint": "eslint -c .eslintrc.js 'src/**/*.js'"
   },
@@ -22,14 +24,13 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g './commitlint.js'"
     }
   },
-
-	"lint-staged": {
-		"src/**/*.{ts,tsx}": [
-			"eslint -c .eslintrc.js 'src/**/*.js'",
-			"prettier --write",
-			"git add"
-		]
-	},
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint -c .eslintrc.js 'src/**/*.js'",
+      "prettier --write",
+      "git add"
+    ]
+  },
   "devDependencies": {
     "commitizen": "^4.0.3",
     "cz-customizable": "^6.2.0",
@@ -40,6 +41,11 @@
     "eslint-plugin-promise": "^4.2.1",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
+    "nodemon": "^2.0.2",
     "prettier": "^1.19.1"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.2",
+    "express": "^4.17.1"
   }
 }
