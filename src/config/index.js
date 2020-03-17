@@ -4,6 +4,7 @@ const appDir = path.resolve();
 const storageDir = path.join(appDir, process.env.STORAGE_DIR_NAME);
 const repositoriesDir = path.join(storageDir, process.env.REPOSITORIES_DIR_NAME);
 const logsDir = path.join(storageDir, 'logs');
+const cacheDir = path.join(storageDir, 'cache');
 
 module.exports = {
   ENV: process.env.ENV,
@@ -16,5 +17,6 @@ module.exports = {
   STORAGE_DIR: storageDir,
   REPOSITORIES_DIR: repositoriesDir,
   LOGS_DIR: logsDir,
+  CACHE_DIR: cacheDir,
   SWAGGER_PORT: process.env.SWAGGER_PORT,
 };

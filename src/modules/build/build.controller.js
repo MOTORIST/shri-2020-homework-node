@@ -1,6 +1,7 @@
 const shriApi = require('../../services/shriApi.service');
 const { pickFromArray, pick } = require('../../helpers');
 const gitCommands = require('../../services/gitCommands.service');
+const cacheBuildLogs = require('../../services/cacheBuildLogs.service');
 
 // TODO: вынести в модель
 const buildFields = [
@@ -50,10 +51,22 @@ async function add(req, res, next) {
 }
 
 async function getBuildLogs(req, res, next) {
-  try {
-    const logsData = await shriApi.getBuildLogs(req.params.buildId);
+  const { buildId } = req.params;
 
-    res.json(logsData);
+  try {
+    const cache = await cacheBuildLogs.get(buildId);
+
+    if (cache) {
+      res.json(cache);
+    } else {
+      const logsData = await shriApi.getBuildLogs(buildId);
+
+      if (logsData) {
+        cacheBuildLogs.set(buildId, logsData);
+      }
+
+      res.json(logsData);
+    }
   } catch (err) {
     next(err);
   }
