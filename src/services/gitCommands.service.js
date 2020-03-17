@@ -43,7 +43,8 @@ async function getCommitInfo(commitHash, repoName) {
     const data = stdout.split(/\r?\n/);
 
     if (data.length < 2) {
-      throw new Error('Failed to get commit data');
+      const message = 'Failed to get commit data';
+      throw new APIError({ message, appError: appErrors.GIT_COMMANDS });
     }
 
     const commitDataArr = data[0].split('|');
@@ -55,8 +56,8 @@ async function getCommitInfo(commitHash, repoName) {
       commitMessage: commitDataArr[2],
       branchName,
     };
-  } catch (err) {
-    throw new Error(err);
+  } catch ({ stack, message }) {
+    throw new APIError({ message, stack, appError: appErrors.GIT_COMMANDS });
   }
 }
 

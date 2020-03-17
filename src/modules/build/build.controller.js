@@ -2,9 +2,11 @@ const shriApi = require('../../services/shriApi.service');
 const { pickFromArray, pick } = require('../../helpers');
 const gitCommands = require('../../services/gitCommands.service');
 const cacheBuildLogs = require('../../services/cacheBuildLogs.service');
+const APIError = require('../../helpers/APIError');
 
 // TODO: вынести в модель
 const buildFields = [
+  'id',
   'buildNumber',
   'commitMessage',
   'commitHash',
@@ -38,7 +40,7 @@ async function add(req, res, next) {
     } = await shriApi.getConfig();
 
     if (!repoName) {
-      throw new Error('No settings');
+      throw new APIError({ message: 'Repository settings not set', public: true });
     }
 
     const commitData = await gitCommands.getCommitInfo(req.params.commitHash, repoName);
