@@ -3,7 +3,8 @@ const path = require('path');
 const fs = require('fs');
 const exec = util.promisify(require('child_process').exec);
 const { REPOSITORIES_DIR } = require('../config');
-const { gitLogger } = require('./logger.service');
+const APIError = require('../helpers/APIError');
+const appErrors = require('../config/app.errors');
 
 function getRepoDir(repoName) {
   return path.join(REPOSITORIES_DIR, repoName);
@@ -14,16 +15,17 @@ function getRepoDir(repoName) {
  * @param {string} repoName
  */
 async function clone(repoName) {
-  const repoPath = `https://github.com/${repoName}.git`;
-  const cloneDir = getRepoDir(repoName);
-  const command = `git clone ${repoPath} ${cloneDir}`;
-
   try {
+    const repoPath = `https://github.com/${repoName}.git`;
+    const cloneDir = getRepoDir(repoName);
+    const command = `git clone ${repoPath} ${cloneDir}`;
+
     if (!fs.existsSync(cloneDir)) {
       exec(command);
     }
-  } catch (err) {
-    gitLogger.log('error', `Command: ${command}`, err);
+  } catch ({ stack }) {
+    const message = `Failed to clone repository "${repoName}"`;
+    throw new APIError({ message, stack, appError: appErrors.GIT_COMMANDS });
   }
 }
 

@@ -1,6 +1,7 @@
-const httpStatus = require('http-status');
 const shriApi = require('../../services/shriApi.service');
 const git = require('../../services/gitCommands.service');
+const APIError = require('../../helpers/APIError');
+const gitHub = require('../../services/gitHubApi.service');
 
 async function get(_, res, next) {
   try {
@@ -12,22 +13,32 @@ async function get(_, res, next) {
 }
 
 async function add(req, res, next) {
+  const repoData = req.body;
+
   try {
-    const repoData = req.body;
+    const isExist = await gitHub.checkRepo(repoData.repoName);
+
+    if (!isExist) {
+      throw new APIError({
+        status: 400,
+        message: `Repository "${repoData.repoName}" not found`,
+        public: true,
+      });
+    }
+
     await shriApi.addConfig(repoData);
-    // TODO check exists repo in github;
     git.clone(repoData.repoName);
 
     res.json(req.body);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 }
 
 async function remove(_, res, next) {
   try {
     await shriApi.deleteConfig();
-    res.sendStatus(httpStatus.NO_CONTENT);
+    res.sendStatus(204);
   } catch (err) {
     next(err);
   }

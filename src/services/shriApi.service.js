@@ -1,6 +1,7 @@
 const axios = require('axios');
 const https = require('https');
-const { shriApiLogger } = require('./logger.service');
+const appErrors = require('../config/app.errors');
+const APIError = require('../helpers/APIError');
 const {
   SHRI_API_URL,
   SHRI_API_TIMEOUT,
@@ -23,10 +24,8 @@ async function getConfig() {
     const { data } = await httpApi.get('conf');
     return data;
   } catch (err) {
-    const messageErr = 'Failed to get repository configuration (SHRI API: GET / conf)';
-    shriApiLogger.log('error', messageErr, err);
-
-    throw new Error(err);
+    const message = 'Failed to get repository configuration (SHRI API: GET / conf)';
+    throw new APIError({ message, appError: appErrors.SHRI_API });
   }
 }
 
@@ -40,10 +39,8 @@ async function addConfig(data) {
 
     return true;
   } catch (err) {
-    const messageErr = 'Failed to add repository configuration (SHRI API: POST /conf)';
-    shriApiLogger.log('error', messageErr, err);
-
-    throw new Error(err);
+    const message = 'Failed to add repository configuration (SHRI API: POST /conf)';
+    throw new APIError({ message, appError: appErrors.SHRI_API });
   }
 }
 
@@ -57,10 +54,8 @@ async function deleteConfig() {
 
     return true;
   } catch (err) {
-    const messageErr = 'Failed to delete repository configuration (SHRI API: DELETE /conf)';
-    shriApiLogger.log('error', messageErr, err);
-
-    throw new Error(err);
+    const message = 'Failed to delete repository configuration (SHRI API: DELETE /conf)';
+    throw new APIError({ message, appError: appErrors.SHRI_API });
   }
 }
 
@@ -69,23 +64,18 @@ async function getBuildList() {
     const { data } = await httpApi.get('build/list');
     return data;
   } catch (err) {
-    const messageErr = 'Failed to get build list (SHRI API: GET /build/list)';
-    shriApiLogger.log('error', messageErr, err);
-
-    throw new Error(err);
+    const message = 'Failed to get build list (SHRI API: GET /build/list)';
+    throw new APIError({ message, appError: appErrors.SHRI_API });
   }
 }
 
 async function getBuild(buildId) {
   try {
     const { data } = await httpApi.get('/build/details', { params: { buildId } });
-
     return data;
   } catch (err) {
-    const messageErr = 'Failed to get build data (SHRI API: GET /build/details)';
-    shriApiLogger.log('error', messageErr, err);
-
-    throw new Error(err);
+    const message = 'Failed to get build data (SHRI API: GET /build/details)';
+    throw new APIError({ message, appError: appErrors.SHRI_API });
   }
 }
 
@@ -99,10 +89,8 @@ async function buildRequest(buildData) {
 
     return true;
   } catch (err) {
-    const messageErr = 'Failed to create build (SHRI API: POST /build/request)';
-    shriApiLogger.log('error', messageErr, err);
-
-    throw new Error(err);
+    const message = 'Failed to create build (SHRI API: POST /build/request)';
+    throw new APIError({ message, appError: appErrors.SHRI_API });
   }
 }
 
@@ -112,10 +100,8 @@ async function getBuildLogs(buildId) {
 
     return data;
   } catch (err) {
-    const messageErr = 'Failed to get build logo (SHRI API: GET /build/log)';
-    shriApiLogger.log('error', messageErr, err);
-
-    throw new Error(err);
+    const message = 'Failed to get build logo (SHRI API: GET /build/log)';
+    throw new APIError({ message, appError: appErrors.SHRI_API });
   }
 }
 
