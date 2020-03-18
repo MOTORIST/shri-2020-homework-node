@@ -25,7 +25,7 @@ async function getConfig() {
     return data;
   } catch (err) {
     const message = 'Failed to get repository configuration (SHRI API: GET / conf)';
-    throw new APIError({ message, appError: appErrors.SHRI_API });
+    throw new APIError({ message, appError: appErrors.SHRI_API, stack: err.stack });
   }
 }
 
