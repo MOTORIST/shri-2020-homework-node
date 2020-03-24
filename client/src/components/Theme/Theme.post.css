@@ -1,0 +1,12 @@
+.Theme {
+  --size-figure-s: 12px;
+  --size-figure-m: 16px;
+  --size-figure-l: 20px;
+  --size-figure-xl: 24px;
+  --size-figure-2xl: 32px;
+  --size-figure-3xl: 40px;
+  --size-figure-4xl: 48px;
+  --size-figure-5xl: 72px;
+  --size-figure-6xl: 96px;
+  --size-figure-7xl: 124px;
+}

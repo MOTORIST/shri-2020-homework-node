@@ -1,0 +1,77 @@
+$color-base: #000000;
+$color-base-brand: #FFCC00;
+$color-base-success: #00B341;
+$color-base-error: #FF3333;
+$color-base-warning: #FF9A00;
+$color-base-controls: #000000;
+
+.Theme_color_default {
+  /* Background colors */
+  --color-bg-default: #FFFFFF;
+
+  --color-bg-success: $color-base-success;
+  --color-bg-error: $color-base-error;
+  --color-bg-warning: $color-base-warning;
+
+  /* Typography */
+  --color-text-default: $color-base;
+  --color-text-secondary: color($color-base a(65%));
+  --color-text-success: $color-base-success;
+  --color-text-error: $color-base-error;
+  --color-text-warning: $color-base-warning;
+
+  /* Controls */
+  --color-control-bg: #FFFFFF;
+  --color-text-control-placeholder: color($color-base-controls a(20%));
+  --color-control-hint: color($color-base-controls h(210) s(1%) l(27%));
+
+  --color-control-bg-default: color($color-base-controls l(90%));
+  --color-control-text-default: $color-base-controls;
+  --color-control-bg-default-hover: color($color-base-controls l(86%));
+  --color-control-border-default-focus: color($color-base-controls l(70%));
+
+  --color-control-bg-default-disabled: color($color-base-controls l(95%));
+  --color-control-text-default-disabled: color($color-base-controls l(50%) a(50%));
+
+  --color-control-bg-primary: $color-base-brand;
+  --color-control-text-primary: $color-base;
+  --color-control-bg-primary-hover: color($color-base-brand l(47%));
+  --color-control-border-primary-focus: color($color-base-brand l(35%));
+
+  --color-control-border: color($color-base-controls l(85%));
+  --color-control-border-focus: color($color-base-controls l(70%));
+  --color-control-clear-icon: color($color-base-controls l(80%));
+}
+
+/*
+hsla(0, 0%, 0%, 1) base control
+hsla(0, 0%, 85%, 1) #D9D9D9 - input border
+hsla(0, 0%, 70%, 1) #B3B3B3 - input border focus
+hsla(0, 0%, 0%, 0.2) #000000 0.2 - placeholder
+hsla(210, 1%, 27%, 1) #434445 - value after input (HINT)
+hsla(210, 1%, 27%, 1) - HINT
+
+PRIMARY
+hsla(48, 100%, 50%, 1) - button background
+hsla(48, 100%, 47%, 1) #F2C200 - button background HOVER
+hsla(48, 100%, 35%, 1) #B38F00 - button border FOCUS
+
+DEFAULT
+hsla(0, 0%, 90%, 1) #E6E6E6 - button background
+hsla(0, 0%, 86%, 1) #DBDBDB - button background HOVER
+hsla(0, 0%, 70%, 1) #B3B3B3 - button border FOCUS
+hsla(0, 0%, 95%, 1) #F2F2F2 - button background DISABLED
+hsla(0, 0%, 50%, 0.5) #7F7F7F 0.5 - button color DISABLED
+
+hsla(0, 0%, 0%, 0.65) #000000 0.65 commit hash
+
+hsla(200, 11%, 95%, 1) #F0F2F3 - background footer
+hsla(210, 2%, 51%, 1) #7F8285 - link footer
+
+hsla(210, 2%, 51%, 1) #7F8285 - h2 secondary
+
+hsla(210, 2%, 51%, 1) #7F8285 - description color SETTINGS
+
+hsla(0, 0%, 80%, 1) #CCCCCC - clear button input
+
+*/
