@@ -16,9 +16,9 @@ import './_size/Icon_size_7xl.post.css';
 
 const IconCn = cn('Icon');
 
-export const Icon = ({ color, size, name }) => {
+export const Icon = ({ color, size, name, className }) => {
   return (
-    <svg className={IconCn({ color, size })} viewBox="0 0 124 124">
+    <svg className={IconCn({ color, size }, [className])} viewBox="0 0 124 124">
       <path d={icons[name]} />
     </svg>
   );
@@ -41,6 +41,7 @@ Icon.propTypes = {
     'stopwatch',
     'user',
   ]).isRequired,
+  className: PropTypes.string,
 };
 
 Icon.defaultProps = {
