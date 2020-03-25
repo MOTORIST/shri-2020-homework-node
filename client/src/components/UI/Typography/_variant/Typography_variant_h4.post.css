@@ -1,0 +1,8 @@
+.Typography_variant_h4 {
+  font-family: var(--font-base);
+  font-style: normal;
+  font-weight: bold;
+  font-size: var(--text-size-s);
+  line-height: var(--text-line-height-m);
+  margin: var(--space-4xs) 0;
+}

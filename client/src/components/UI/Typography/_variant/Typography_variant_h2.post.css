@@ -1,0 +1,9 @@
+.Typography_variant_h2 {
+  font-family: var(--font-base);
+  font-style: normal;
+  font-weight: 500;
+  font-size: var(--text-size-l);
+  line-height: var(--text-line-height-xl);
+  letter-spacing: 0.25px;
+  margin: var(--space-3xs) 0;
+}
