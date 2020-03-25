@@ -1,0 +1,6 @@
+.Button_size_m {
+  --button-space: var(--control-space-m);
+  --button-height: var(--control-height-m);
+  --button-space-icon: var(--control-space-icon-m);
+  --button-line-height: var(--text-line-height-3xl);
+}

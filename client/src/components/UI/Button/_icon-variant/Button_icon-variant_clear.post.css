@@ -1,0 +1,14 @@
+.Button_icon-variant_clear {
+  padding: 0;
+  height: initial;
+  width: initial;
+  background-color: transparent;
+
+  &:focus {
+    border-color: transparent;
+  }
+
+  & .Button-Icon {
+    width: initial;
+  }
+}
