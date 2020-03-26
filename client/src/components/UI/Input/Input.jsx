@@ -11,16 +11,17 @@ import './Control/Input-Control.post.css';
 
 const InputCn = cn('Input');
 
-export const Input = ({ size, clearable, placeholder, className }) => {
+export const Input = ({ id, size, clearable, placeholder, className }) => {
   return (
     <div className={InputCn({ size, clearable }, [className])}>
-      <input className={InputCn('Control')} placeholder={placeholder} />
+      <input className={InputCn('Control')} id={id} placeholder={placeholder} />
       {clearable && <ClearButton size={size} />}
     </div>
   );
 };
 
 Input.propTypes = {
+  id: PropTypes.string,
   placeholder: PropTypes.string,
   size: PropTypes.oneOf(['s', 'm']),
   clearable: PropTypes.bool,
