@@ -1,0 +1,13 @@
+.FormGroup_row {
+  flex-direction: row;
+  align-items: center;
+
+  & .FormGroup-Label {
+    margin-right: var(--space-3xs);
+    margin-bottom: 0;
+  }
+
+  & .FormGroup-Hint {
+    margin-left: var(--space-3xs);
+  }
+}
