@@ -11,10 +11,11 @@ const defaultButtonKnobs = () => ({
   color: select('Color', ['default', 'primary'], 'default'),
   disabled: boolean('Disabled', false),
   full: boolean('Full', false),
-  iconVariant: select('Icon variant', ['clear', 'left', 'only'], null),
+  iconVariant: select('Icon variant', ['---', 'clear', 'left', 'only']),
   icon: select(
     'Icon',
     [
+      '---',
       'calendar',
       'clear',
       'clock',
@@ -29,6 +30,11 @@ const defaultButtonKnobs = () => ({
       'user',
     ],
     null
+  ),
+  iconColor: select(
+    'Icon color',
+    ['default', 'error', 'secondary', 'success', 'warning'],
+    'default'
   ),
   size: select('Size', ['s', 'm'], 'm'),
 });

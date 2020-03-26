@@ -19,14 +19,25 @@ import './Icon/Button-Icon.post.css';
 
 export const ButtonCn = cn('Button');
 
-export const Button = ({ color, disabled, full, icon, iconVariant, size, children, className }) => {
+export const Button = ({
+  color,
+  disabled,
+  full,
+  icon,
+  iconVariant,
+  iconColor,
+  size,
+  children,
+  className,
+}) => {
+  const text = <div className={ButtonCn('Text')}>{children}</div>;
+  let body = text;
+
   const buttonIcon = (
     <div className={ButtonCn('Icon')}>
-      <Icon name={icon} size={size}></Icon>
+      <Icon name={icon} size={size} color={iconColor}></Icon>
     </div>
   );
-
-  let body = <div className={ButtonCn('Text')}>{children}</div>;
 
   if (icon && (iconVariant === 'clear' || iconVariant === 'only')) {
     body = buttonIcon;
@@ -34,7 +45,7 @@ export const Button = ({ color, disabled, full, icon, iconVariant, size, childre
     body = (
       <>
         {buttonIcon}
-        <div className={ButtonCn('Text')}>{children}</div>
+        {text}
       </>
     );
   }
@@ -69,11 +80,13 @@ Button.propTypes = {
     'stopwatch',
     'user',
   ]),
+  iconColor: PropTypes.oneOf(['default', 'error', 'secondary', 'success', 'warning']),
   size: PropTypes.oneOf(['s', 'm']),
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 Button.defaultProps = {
   color: 'default',
   size: 'm',
+  iconColor: 'default',
 };

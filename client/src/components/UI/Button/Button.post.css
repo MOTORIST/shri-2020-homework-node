@@ -18,4 +18,5 @@
   font-style: normal;
   font-weight: normal;
   font-size: var(--text-size-xs);
+  line-height: calc(var(--button-line-height) - var(--control-border));
 }

@@ -15,7 +15,7 @@ $color-base-controls: #000000;
 
   /* Typography */
   --color-text-default: $color-base;
-  --color-text-secondary: color($color-base a(65%));
+  --color-text-secondary: color($color-base a(30%));
   --color-text-success: $color-base-success;
   --color-text-error: $color-base-error;
   --color-text-warning: $color-base-warning;

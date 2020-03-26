@@ -25,7 +25,7 @@ export const Icon = ({ color, size, name, className }) => {
 };
 
 Icon.propTypes = {
-  color: PropTypes.oneOf(['default', 'error', 'secondary', 'success', 'warning']).isRequired,
+  color: PropTypes.oneOf(['default', 'error', 'secondary', 'success', 'warning']),
   size: PropTypes.oneOf(['s', 'm', 'l', 'xl', '7xl']),
   name: PropTypes.oneOf([
     'calendar',
