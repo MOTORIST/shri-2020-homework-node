@@ -6,14 +6,16 @@ import './Input-ClearButton.post.css';
 
 const ClearButtonCn = cn('Input', 'ClearButton');
 
-export const ClearButton = ({ size, className }) => {
+export const ClearButton = ({ size, onClick, className }) => {
   return (
     <Button
       className={ClearButtonCn(null, [className])}
+      type="button"
       icon="clear"
       iconVariant="clear"
       iconColor="secondary"
       size={size}
+      onClick={onClick}
     />
   );
 };

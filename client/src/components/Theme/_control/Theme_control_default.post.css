@@ -9,4 +9,6 @@
   --control-space-m: var(--space-m);
   --control-height-m: var(--space-3xl);
   --control-space-icon-m: 28px;
+
+  --control-width-2xs: 52px;
 }

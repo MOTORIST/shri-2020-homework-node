@@ -10,6 +10,8 @@ export default {
 const inputKnobs = () => ({
   size: select('Size', ['s', 'm'], 'm'),
   clearable: boolean('Clearable', false),
+  status: select('status', ['---', 'error', 'success']),
+  width: select('width', ['full', '2xs'], 'full'),
 });
 
 export const input = () => (
