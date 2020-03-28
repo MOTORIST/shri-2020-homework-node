@@ -19,7 +19,7 @@ export const formGroup = () => (
 export const formGroupRow = () => (
   <FormGroup row>
     <FormGroupLabel htmlFor="input">Label</FormGroupLabel>
-    <Input id="input" />
+    <Input id="input" width="2xs" />
     <FormGroupHint>Hint</FormGroupHint>
   </FormGroup>
 );
