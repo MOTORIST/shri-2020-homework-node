@@ -40,6 +40,8 @@ $color-base-controls: #000000;
 
   --color-control-border: color($color-base-controls l(85%));
   --color-control-border-focus: color($color-base-controls l(70%));
+  --color-control-border-error: $color-base-error;
+  --color-control-border-success: $color-base-success;
   --color-control-clear-icon: color($color-base-controls l(80%));
 }
 
