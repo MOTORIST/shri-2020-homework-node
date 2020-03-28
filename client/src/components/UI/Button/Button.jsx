@@ -20,6 +20,7 @@ import './Icon/Button-Icon.post.css';
 export const ButtonCn = cn('Button');
 
 export const Button = ({
+  type,
   color,
   disabled,
   full,
@@ -27,19 +28,20 @@ export const Button = ({
   iconVariant,
   iconColor,
   size,
+  onClick,
   children,
   className,
 }) => {
   const text = <div className={ButtonCn('Text')}>{children}</div>;
   let body = text;
 
-  const buttonIcon = (
+  const buttonIcon = icon && (
     <div className={ButtonCn('Icon')}>
-      <Icon name={icon} size={size} color={iconColor}></Icon>
+      <Icon name={icon} size={size} color={iconColor} />
     </div>
   );
 
-  if (icon && (iconVariant === 'clear' || iconVariant === 'only')) {
+  if (iconVariant === 'clear' || iconVariant === 'only') {
     body = buttonIcon;
   } else if (icon && iconVariant === 'left') {
     body = (
@@ -52,6 +54,8 @@ export const Button = ({
 
   return (
     <button
+      type={type}
+      onClick={onClick}
       className={ButtonCn({ color, disabled, full, icon, 'icon-variant': iconVariant, size }, [
         className,
       ])}
@@ -62,6 +66,7 @@ export const Button = ({
 };
 
 Button.propTypes = {
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
   color: PropTypes.oneOf(['default', 'primary']),
   disabled: PropTypes.bool,
   full: PropTypes.bool,
@@ -82,10 +87,12 @@ Button.propTypes = {
   ]),
   iconColor: PropTypes.oneOf(['default', 'error', 'secondary', 'success', 'warning']),
   size: PropTypes.oneOf(['s', 'm']),
+  onClick: PropTypes.func,
   children: PropTypes.node,
 };
 
 Button.defaultProps = {
+  type: 'submit',
   color: 'default',
   size: 'm',
   iconColor: 'default',
