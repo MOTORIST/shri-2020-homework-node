@@ -1,0 +1,8 @@
+.SettingsForm-SaveButton {
+  margin-bottom: var(--space-2xs);
+
+  @media (min-width: $screen-m) {
+    width: initial;
+    margin-right: var(--space-4xs);
+  }
+}
