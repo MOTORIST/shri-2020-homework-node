@@ -1,5 +1,5 @@
 import React from 'react';
-import FormGroup, { FormGroupLabel, FormGroupHint } from '.';
+import FormGroup, { FormGroupLabel, FormGroupHint, FormGroupError } from '.';
 import Input from '../Input';
 
 export default {
@@ -21,5 +21,15 @@ export const formGroupRow = () => (
     <FormGroupLabel htmlFor="input">Label</FormGroupLabel>
     <Input id="input" />
     <FormGroupHint>Hint</FormGroupHint>
+  </FormGroup>
+);
+
+export const formGroupError = () => (
+  <FormGroup>
+    <FormGroupLabel htmlFor="input" required>
+      Label
+    </FormGroupLabel>
+    <Input id="input" status="error" />
+    <FormGroupError>Error message</FormGroupError>
   </FormGroup>
 );
