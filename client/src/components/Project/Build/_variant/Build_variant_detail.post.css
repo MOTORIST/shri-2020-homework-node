@@ -1,0 +1,20 @@
+.Build_variant_detail {
+  @media (min-width: $screen-m) {
+    display: flex;
+    flex-direction: column;
+
+    .Build-Info {
+      border-bottom: 1px solid #F0F2F3;
+    }
+    
+    .Build-TimeInfo {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+
+    .Build-Duration {
+      margin-left: var(--space-4xs);
+    }
+  }
+}

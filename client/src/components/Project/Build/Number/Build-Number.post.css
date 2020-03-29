@@ -1,0 +1,12 @@
+.Build-Number {
+  font-family: var(--font-base);
+  font-style: normal;
+  font-weight: 500;
+  font-size: var(--text-size-m);
+  line-height: var(--text-line-height-xs);
+
+  @media (min-width: $screen-m) {
+    font-size: var(--text-size-l);
+    line-height: var(--text-line-height-m);
+  }
+}

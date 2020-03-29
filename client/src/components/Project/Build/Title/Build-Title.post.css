@@ -1,0 +1,10 @@
+.Build-Title {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $screen-m) {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+  }
+}

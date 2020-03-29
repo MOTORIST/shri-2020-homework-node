@@ -1,0 +1,11 @@
+.Build-StatusIcon {
+  position: absolute;
+  left: var(--space-2xs);
+  top: var(--space-s);
+
+  @media (min-width: $screen-m) {
+    width: var(--size-figure-xl);
+    height: var(--size-figure-xl);
+    left: var(--space-l);
+  }
+}
