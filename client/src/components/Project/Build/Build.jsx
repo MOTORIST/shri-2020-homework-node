@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from '../../../libs/classname';
+import { useHistory } from 'react-router-dom';
 import { pick } from '../../../helpers';
 import Card from '../../UI/Card';
 import Icon from '../../UI/Icon';
@@ -23,6 +24,8 @@ const getIconName = status => {
 };
 
 export const Build = ({ data, variant, clickable, className }) => {
+  const history = useHistory();
+
   const dataInfo = pick(data, [
     'commitMessage',
     'status',
@@ -32,12 +35,20 @@ export const Build = ({ data, variant, clickable, className }) => {
     'commitHash',
   ]);
 
-  const { start, duration, status } = data;
+  const { id, start, duration, status } = data;
 
   const iconName = getIconName(status);
 
+  const handleToDetailPage = () => {
+    history.push(`/builds/${id}`);
+  };
+
   return (
-    <Card className={BuildCn({ variant }, [className])} clickable={clickable}>
+    <Card
+      className={BuildCn({ variant }, [className])}
+      onClick={handleToDetailPage}
+      clickable={clickable}
+    >
       <Info data={dataInfo} />
       <TimeInfo dateTime={start} duration={duration} />
       <Icon className={BuildCn('StatusIcon')} name={iconName} size="m" color={status} />
