@@ -1,0 +1,16 @@
+.Code {
+  box-sizing: border-box;
+  padding: var(--space-4xs) var(--space-2xs);
+  background: #F2F2F2;
+  border-radius: 6px;
+  margin: 0;
+
+  /* font-family: Hack; */
+  font-family: var(--font-base);
+  font-size: var(--text-size-2xs);
+  line-height: var(--text-line-height-m);
+  
+  color: color(#000000 a(90%));
+
+  overflow-x: auto;
+}
