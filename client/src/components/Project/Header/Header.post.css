@@ -1,0 +1,9 @@
+.Header {
+  box-sizing: border-box;
+  padding: 0 var(--space-s);
+  height: 52px;
+
+  @media (min-width: $screen-m) {
+    height: 38px;
+  }
+}
