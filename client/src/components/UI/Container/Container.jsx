@@ -25,8 +25,8 @@ export const Container = ({
     distribute,
     arrange,
     height,
-    'space-H': spaceH,
-    'vertical-Align': verticalAlign,
+    'space-h': spaceH,
+    'vertical-align': verticalAlign,
   };
 
   return <div className={ContainerCn(modificators, [className])}>{children}</div>;
