@@ -7,9 +7,9 @@ import './DateTime.post.css';
 
 const DateTimeCn = cn('DateTime');
 
-export const DateTime = ({ dateTime, icon }) => {
+export const DateTime = ({ dateTime, icon, className }) => {
   return (
-    <IconPlus className={DateTimeCn()} distance="xs">
+    <IconPlus className={DateTimeCn(null, [className])} distance="xs">
       <Icon name={icon} size="m" color="secondary" />
       <IconPlusContent>{dateTime}</IconPlusContent>
     </IconPlus>
@@ -19,6 +19,7 @@ export const DateTime = ({ dateTime, icon }) => {
 DateTime.propTypes = {
   dateTime: PropTypes.string.isRequired,
   icon: PropTypes.oneOf(['calendar', 'clock', 'stopwatch']).isRequired,
+  className: PropTypes.string,
 };
 
 DateTime.defaultProps = {
