@@ -1,0 +1,5 @@
+.BuildList-MoreButton {
+  @media (min-width: $screen-m) {
+    width: initial;
+  }
+}
