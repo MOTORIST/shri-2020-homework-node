@@ -6,7 +6,6 @@ import Icon from '../Icon';
 import './Button.post.css';
 import './_color/Button_color_default.post.css';
 import './_color/Button_color_primary.post.css';
-import './_disabled/Button_disabled.post.css';
 import './_full/Button_full.post.css';
 import './_icon-variant/Button_icon-variant_left.post.css';
 import './_icon-variant/Button_icon-variant_only.post.css';
@@ -56,9 +55,8 @@ export const Button = ({
     <button
       type={type}
       onClick={onClick}
-      className={ButtonCn({ color, disabled, full, icon, 'icon-variant': iconVariant, size }, [
-        className,
-      ])}
+      className={ButtonCn({ color, full, icon, 'icon-variant': iconVariant, size }, [className])}
+      disabled={disabled}
     >
       {body}
     </button>
