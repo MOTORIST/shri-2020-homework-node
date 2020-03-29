@@ -22,7 +22,7 @@ const getIconName = status => {
   return iconNames[status] ? iconNames[status] : 'done';
 };
 
-export const Build = ({ data, variant, clickable }) => {
+export const Build = ({ data, variant, clickable, className }) => {
   const dataInfo = pick(data, [
     'commitMessage',
     'status',
@@ -37,7 +37,7 @@ export const Build = ({ data, variant, clickable }) => {
   const iconName = getIconName(status);
 
   return (
-    <Card className={BuildCn({ variant })} clickable={clickable}>
+    <Card className={BuildCn({ variant }, [className])} clickable={clickable}>
       <Info data={dataInfo} />
       <TimeInfo dateTime={start} duration={duration} />
       <Icon className={BuildCn('StatusIcon')} name={iconName} size="m" color={status} />
@@ -58,4 +58,5 @@ Build.propTypes = {
   }).isRequired,
   clickable: PropTypes.bool,
   variant: PropTypes.oneOf(['detail']),
+  className: PropTypes.string,
 };
