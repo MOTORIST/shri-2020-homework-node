@@ -12,7 +12,7 @@ import './CancelButton/SettingsForm-CancelButton.post.css';
 
 const SettingsFormCn = cn('SettingsForm');
 
-const SettingsForm = ({ onSubmit, defaultValues, className }) => {
+const SettingsForm = ({ onSubmit, onCancel, defaultValues, className }) => {
   const { register, handleSubmit, errors, setValue } = useForm({ defaultValues });
 
   const validators = {
@@ -100,7 +100,7 @@ const SettingsForm = ({ onSubmit, defaultValues, className }) => {
           <Button className={SettingsFormCn('SaveButton')} color="primary" full>
             Save
           </Button>
-          <Button className={SettingsFormCn('CancelButton')} type="button" full>
+          <Button className={SettingsFormCn('CancelButton')} type="button" onClick={onCancel} full>
             Cancel
           </Button>
         </div>
@@ -111,6 +111,7 @@ const SettingsForm = ({ onSubmit, defaultValues, className }) => {
 
 SettingsForm.propTypes = {
   onSubmit: PropTypes.func,
+  onCancel: PropTypes.func,
   defaultValues: PropTypes.shape({
     repoName: PropTypes.string.isRequired,
     buildCommand: PropTypes.string.isRequired,
