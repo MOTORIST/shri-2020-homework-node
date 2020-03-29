@@ -1,0 +1,4 @@
+.Container_arrange_col {
+  display: flex;
+  flex-direction: column;
+}
