@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import cn from '../../../libs/classname';
 import { useForm } from 'react-hook-form';
@@ -12,8 +12,12 @@ import './CancelButton/SettingsForm-CancelButton.post.css';
 
 const SettingsFormCn = cn('SettingsForm');
 
-const SettingsForm = ({ onSubmit, onCancel, defaultValues, className }) => {
-  const { register, handleSubmit, errors, setValue } = useForm({ defaultValues });
+const SettingsForm = ({ onSubmit, onCancel, isFetching, defaultValues, className }) => {
+  const { register, handleSubmit, errors, setValue, reset } = useForm();
+
+  useEffect(() => {
+    reset(defaultValues);
+  }, [defaultValues, reset]);
 
   const validators = {
     required: { value: true, message: 'Field is required' },
@@ -97,10 +101,21 @@ const SettingsForm = ({ onSubmit, onCancel, defaultValues, className }) => {
         </FormGroup>
 
         <div>
-          <Button className={SettingsFormCn('SaveButton')} color="primary" full>
+          <Button
+            className={SettingsFormCn('SaveButton')}
+            color="primary"
+            disabled={isFetching}
+            full
+          >
             Save
           </Button>
-          <Button className={SettingsFormCn('CancelButton')} type="button" onClick={onCancel} full>
+          <Button
+            className={SettingsFormCn('CancelButton')}
+            type="button"
+            onClick={onCancel}
+            disabled={isFetching}
+            full
+          >
             Cancel
           </Button>
         </div>
@@ -113,10 +128,10 @@ SettingsForm.propTypes = {
   onSubmit: PropTypes.func,
   onCancel: PropTypes.func,
   defaultValues: PropTypes.shape({
-    repoName: PropTypes.string.isRequired,
-    buildCommand: PropTypes.string.isRequired,
-    mainBranch: PropTypes.string.isRequired,
-    period: PropTypes.number.isRequired,
+    repoName: PropTypes.string,
+    buildCommand: PropTypes.string,
+    mainBranch: PropTypes.string,
+    period: PropTypes.number,
   }),
 };
 
