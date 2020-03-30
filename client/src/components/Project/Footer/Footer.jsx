@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cn from '../../../libs/classname';
 import Container from '../../UI/Container';
 import Link from '../Link';
@@ -29,5 +28,3 @@ export const Footer = () => {
     </div>
   );
 };
-
-Footer.propTypes = {};
