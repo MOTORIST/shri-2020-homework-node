@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL } from '../config';
+import config from '../config';
 
 export const GET = 'GET';
 export const POST = 'POST';
@@ -8,7 +8,7 @@ export const DELETE = 'DELETE';
 
 const initAxios = () => {
   const instance = axios.create({
-    baseURL: API_URL,
+    baseURL: config.API_URL,
   });
 
   return instance;
