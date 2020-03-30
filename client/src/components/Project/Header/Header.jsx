@@ -24,7 +24,7 @@ Header.propTypes = {
   title: PropTypes.string.isRequired,
   color: PropTypes.oneOf(['secondary']),
   className: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 export default Header;

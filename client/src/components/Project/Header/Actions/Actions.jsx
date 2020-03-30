@@ -10,5 +10,5 @@ export const Actions = ({ children }) => {
 };
 
 Actions.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
