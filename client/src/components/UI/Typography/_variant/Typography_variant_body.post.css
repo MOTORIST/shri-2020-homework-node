@@ -4,6 +4,5 @@
   font-weight: 500;
   font-size: var(--text-size-xs);
   line-height: var(--text-line-height-xs);
-  color: #000000;
   margin: var(--text-line-height-xs) 0;
 }
