@@ -1,6 +1,6 @@
 import React from 'react';
 import Theme from './components/Theme';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import Page from './components/Project/Page';
 import Footer from './components/Project/Footer';
 import MainPage from './components/Pages/Main';
@@ -8,11 +8,12 @@ import SettingsPage from './components/Pages/Settings';
 import BuildsPage from './components/Pages/Builds';
 import BuildPage from './components/Pages/Build';
 import NotFoundPage from './components/Pages/NotFound';
+import history from './history';
 
 function App() {
   return (
     <Theme>
-      <Router>
+      <Router history={history}>
         <Page>
           <Switch>
             <Route path="/" exact>
