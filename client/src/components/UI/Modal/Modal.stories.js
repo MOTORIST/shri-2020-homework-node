@@ -4,7 +4,7 @@ import Button from '../Button';
 import Typography from '../Typography';
 import Input from '../Input';
 import ButtonGroups from '../ButtonGroups';
-import FormGroup, { FormGroupLabel, FormGroupHint, FormGroupError } from '../FormGroup';
+import FormGroup, { FormGroupLabel } from '../FormGroup';
 
 export default {
   title: 'UI',
