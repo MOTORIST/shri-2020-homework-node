@@ -6,13 +6,12 @@ import Button from '../../UI/Button';
 import Build from '../../Project/Build';
 import Code from '../../UI/Code';
 import cn from '../../../libs/classname';
-import { logsData } from './data.mock';
 import { useHistory } from 'react-router-dom';
 import './Detail/BuildPage-Detail.post.css';
 
 const BuildPageCn = cn('BuildPage');
 
-export const BuildPage = ({ repoName, buildData }) => {
+export const BuildPage = ({ repoName, buildData, logsData }) => {
   const history = useHistory();
 
   const handleToSettings = () => {
