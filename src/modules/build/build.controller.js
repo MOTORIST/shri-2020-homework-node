@@ -9,8 +9,10 @@ const buildFields = [
   'id',
   'buildNumber',
   'commitMessage',
+  'branchName',
   'commitHash',
   'authorName',
+  'status',
   'start',
   'duration',
 ];
