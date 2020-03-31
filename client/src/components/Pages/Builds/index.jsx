@@ -1,3 +1,3 @@
-import { BuildsPage } from './BuildsPage';
+import { BuildsPageContainer } from './BuildsPage.container';
 
-export default BuildsPage;
+export default BuildsPageContainer;

@@ -5,9 +5,8 @@ import ButtonGroups from '../../UI/ButtonGroups';
 import Button from '../../UI/Button';
 import BuildList from '../../Project/BuildList';
 import { useHistory } from 'react-router-dom';
-import { buildsData } from './data.mock';
 
-export const BuildsPage = () => {
+export const BuildsPage = ({ buildsData, repoName }) => {
   const history = useHistory();
 
   const handleToSettings = () => {
@@ -20,7 +19,7 @@ export const BuildsPage = () => {
 
   return (
     <>
-      <Header title="repo name">
+      <Header title={repoName}>
         <ButtonGroups>
           <Button icon="play" iconVariant="left" size="s" onClick={handleRunBuild}>
             Run build
@@ -34,3 +33,5 @@ export const BuildsPage = () => {
     </>
   );
 };
+
+// TODO: add PropTypes
