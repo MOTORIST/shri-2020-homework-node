@@ -6,13 +6,13 @@ import Button from '../../UI/Button';
 import Build from '../../Project/Build';
 import Code from '../../UI/Code';
 import cn from '../../../libs/classname';
-import { buildData, logsData } from './data.mock';
+import { logsData } from './data.mock';
 import { useHistory } from 'react-router-dom';
 import './Detail/BuildPage-Detail.post.css';
 
 const BuildPageCn = cn('BuildPage');
 
-export const BuildPage = () => {
+export const BuildPage = ({ repoName, buildData }) => {
   const history = useHistory();
 
   const handleToSettings = () => {
@@ -25,7 +25,7 @@ export const BuildPage = () => {
 
   return (
     <>
-      <Header title="repo name">
+      <Header title={repoName}>
         <ButtonGroups>
           <Button icon="rebuild" iconVariant="left" size="s" onClick={handleRebuild}>
             Rebuild
@@ -34,8 +34,8 @@ export const BuildPage = () => {
         </ButtonGroups>
       </Header>
       <PageContent>
-        <Build className={BuildPageCn('Detail')} data={buildData} />
-        <Code>{logsData}</Code>
+        {buildData && <Build className={BuildPageCn('Detail')} data={buildData} />}
+        {logsData && <Code>{logsData}</Code>}
       </PageContent>
     </>
   );
