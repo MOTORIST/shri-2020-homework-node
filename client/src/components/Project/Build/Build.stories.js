@@ -14,7 +14,7 @@ const data = {
   authorName: 'MOTORIST',
   branchName: 'test-repo',
   commitHash: 'asdsdfd',
-  start: '21 янв, 03:06',
+  start: '2020-03-20T22:39:36.2',
   duration: 60,
 };
 
