@@ -5,23 +5,33 @@ import ButtonGroups from '../../UI/ButtonGroups';
 import Button from '../../UI/Button';
 import BuildList from '../../Project/BuildList';
 import { useHistory } from 'react-router-dom';
+import { useModal } from '../../UI/Modal';
+import NewBuildForm from '../../Project/NewBuildForm';
+import webApi from '../../../api';
 
 export const BuildsPage = ({ buildsData, repoName }) => {
   const history = useHistory();
+  const { openModal, closeModal, isOpen, Modal } = useModal({ background: true });
 
   const handleToSettings = () => {
     history.push('/settings');
   };
 
-  const handleRunBuild = () => {
-    console.log('Run build');
+  const handleOnSubmit = ({ commitHash }) => {
+    webApi(`builds/${commitHash}`, 'POST')
+      .then(({ data: { data } }) => {
+        history.push(`/builds/${data.id}`);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   return (
     <>
       <Header title={repoName}>
         <ButtonGroups>
-          <Button icon="play" iconVariant="left" size="s" onClick={handleRunBuild}>
+          <Button icon="play" iconVariant="left" size="s" onClick={openModal}>
             Run build
           </Button>
           <Button icon="settings" iconVariant="only" size="s" onClick={handleToSettings} />
@@ -30,6 +40,12 @@ export const BuildsPage = ({ buildsData, repoName }) => {
       <PageContent>
         <BuildList buildsData={buildsData} />
       </PageContent>
+      {isOpen && (
+        <Modal>
+          {/* TODO: add async validation hash commit */}
+          <NewBuildForm onSubmit={handleOnSubmit} onCancel={closeModal} />
+        </Modal>
+      )}
     </>
   );
 };
