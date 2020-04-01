@@ -18,9 +18,21 @@ const getIconName = status => {
     success: 'done',
     error: 'fail',
     warning: 'clock',
+    waiting: 'clock',
   };
 
   return iconNames[status] ? iconNames[status] : 'done';
+};
+
+const getColor = status => {
+  const colors = {
+    success: 'success',
+    error: 'error',
+    warning: 'warning',
+    waiting: 'warning',
+  };
+
+  return colors[status] ? colors[status] : 'default';
 };
 
 export const Build = ({ data, variant, clickable, className }) => {
@@ -38,6 +50,7 @@ export const Build = ({ data, variant, clickable, className }) => {
   const { id, start, duration, status } = data;
 
   const iconName = getIconName(status);
+  const color = getColor(status);
 
   const handleToDetailPage = () => {
     history.push(`/builds/${id}`);
@@ -49,9 +62,9 @@ export const Build = ({ data, variant, clickable, className }) => {
       onClick={handleToDetailPage}
       clickable={clickable}
     >
-      <Info data={dataInfo} />
+      <Info data={dataInfo} color={color} />
       <TimeInfo dateTime={start} duration={duration} />
-      <Icon className={BuildCn('StatusIcon')} name={iconName} size="m" color={status} />
+      <Icon className={BuildCn('StatusIcon')} name={iconName} size="m" color={color} />
     </Card>
   );
 };
@@ -59,12 +72,12 @@ export const Build = ({ data, variant, clickable, className }) => {
 Build.propTypes = {
   data: PropTypes.shape({
     commitMessage: PropTypes.string.isRequired,
-    status: PropTypes.oneOf(['success', 'error', 'warning']),
+    status: PropTypes.oneOf(['success', 'error', 'warning', 'waiting']),
     buildNumber: PropTypes.number.isRequired,
     authorName: PropTypes.string.isRequired,
     branchName: PropTypes.string.isRequired,
     commitHash: PropTypes.string.isRequired,
-    start: PropTypes.string.isRequired,
+    start: PropTypes.string,
     duration: PropTypes.number,
   }).isRequired,
   clickable: PropTypes.bool,

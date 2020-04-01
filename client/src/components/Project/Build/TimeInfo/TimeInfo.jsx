@@ -10,13 +10,15 @@ const BuildCn = cn('Build');
 export const TimeInfo = ({ dateTime, duration }) => {
   return (
     <div className={BuildCn('TimeInfo')}>
-      <DateTime dateTime={dateTime} />
-      <DateTime className={BuildCn('Duration')} dateTime={duration} icon="stopwatch" />
+      {dateTime && <DateTime dateTime={dateTime} />}
+      {duration && (
+        <DateTime className={BuildCn('Duration')} dateTime={duration} icon="stopwatch" />
+      )}
     </div>
   );
 };
 
 TimeInfo.propTypes = {
-  dateTime: PropTypes.string.isRequired,
-  duration: PropTypes.number.isRequired,
+  dateTime: PropTypes.string,
+  duration: PropTypes.number,
 };

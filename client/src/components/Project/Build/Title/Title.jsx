@@ -8,10 +8,10 @@ import '../TitleText/Build-TitleText.post.css';
 
 const BuildCn = cn('Build');
 
-export const Title = ({ status, number, title }) => {
+export const Title = ({ color, number, title }) => {
   return (
     <div className={BuildCn('Title')}>
-      <Typography className={BuildCn('Number')} color={status}>
+      <Typography className={BuildCn('Number')} color={color}>
         #{number}
       </Typography>
       <div className={BuildCn('TitleText')}>{title}</div>
@@ -20,7 +20,7 @@ export const Title = ({ status, number, title }) => {
 };
 
 Title.propTypes = {
-  status: PropTypes.oneOf(['error', 'success', 'warning']).isRequired,
+  color: PropTypes.oneOf(['error', 'success', 'warning']).isRequired,
   number: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
 };
