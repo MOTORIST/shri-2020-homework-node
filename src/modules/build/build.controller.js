@@ -46,7 +46,11 @@ async function add(req, res, next) {
     }
 
     const commitData = await gitCommands.getCommitInfo(req.params.commitHash, repoName);
-    await shriApi.buildRequest(commitData);
+    const buildRequest = await shriApi.buildRequest(commitData);
+
+    commitData.id = buildRequest.data.id;
+    commitData.buildNumber = buildRequest.data.buildNumber;
+    commitData.status = buildRequest.data.status;
 
     res.json({ data: commitData });
   } catch (err) {
