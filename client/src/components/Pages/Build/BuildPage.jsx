@@ -11,7 +11,7 @@ import './Detail/BuildPage-Detail.post.css';
 
 const BuildPageCn = cn('BuildPage');
 
-export const BuildPage = ({ repoName, buildData, logsData }) => {
+export const BuildPage = ({ repoName, buildData, logsData, onRebuild }) => {
   const history = useHistory();
 
   const handleToSettings = () => {
@@ -19,7 +19,7 @@ export const BuildPage = ({ repoName, buildData, logsData }) => {
   };
 
   const handleRebuild = () => {
-    console.log('rebuild');
+    onRebuild(buildData);
   };
 
   return (

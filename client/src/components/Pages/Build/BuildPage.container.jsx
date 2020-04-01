@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { BuildPage } from './BuildPage';
 import { fetchBuild } from '../../../actions/builds';
 import { fetchSettings } from '../../../actions/settings';
@@ -8,6 +8,7 @@ import webApi from '../../../api';
 
 export const BuildPageContainer = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { id: buildId } = useParams();
   const { entities: buildsData } = useSelector(state => state.builds);
 
@@ -50,5 +51,22 @@ export const BuildPageContainer = () => {
     };
   }, [buildId]);
 
-  return <BuildPage repoName={settingsData.repoName} buildData={buildData} logsData={logsData} />;
+  const handleRebuild = ({ commitHash }) => {
+    webApi(`builds/${commitHash}`, 'POST')
+      .then(({ data: { data } }) => {
+        history.push(`/builds/${data.id}`);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+  return (
+    <BuildPage
+      repoName={settingsData.repoName}
+      buildData={buildData}
+      logsData={logsData}
+      onRebuild={handleRebuild}
+    />
+  );
 };
