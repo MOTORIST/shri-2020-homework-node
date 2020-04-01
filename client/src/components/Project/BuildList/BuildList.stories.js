@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs, select, boolean, object } from '@storybook/addon-knobs';
+import { withKnobs, boolean, object } from '@storybook/addon-knobs';
 import BuildList from '.';
 
 export default {
@@ -16,7 +16,7 @@ const buildsData = [
     authorName: 'MOTORIST',
     branchName: 'test-repo',
     commitHash: 'asdsdfd',
-    start: '21 янв, 03:06',
+    start: '2020-03-20T22:39:36.2',
     duration: 60,
   },
   {
@@ -27,7 +27,7 @@ const buildsData = [
     authorName: 'MOTORIST',
     branchName: 'test-repo',
     commitHash: 'asdsdfd',
-    start: '21 янв, 03:06',
+    start: '2020-03-20T22:39:36.2',
     duration: 60,
   },
   {
@@ -38,7 +38,7 @@ const buildsData = [
     authorName: 'MOTORIST',
     branchName: 'test-repo',
     commitHash: 'asdsdfd',
-    start: '21 янв, 03:06',
+    start: '2020-03-20T22:39:36.2',
     duration: 60,
   },
 ];
