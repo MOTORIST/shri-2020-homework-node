@@ -25,7 +25,7 @@ export function builds(state = initialState, action) {
         ...state,
         isFetching: false,
         error: null,
-        entities: [payload],
+        entities: [payload, ...state.entities.filter(b => b.id !== payload.id)],
       };
     case Types.GET_BUILD + FAILURE:
       return { ...state, isFetching: false, error };
