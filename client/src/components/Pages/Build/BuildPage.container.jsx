@@ -37,11 +37,17 @@ export const BuildPageContainer = () => {
   }, [buildId, buildsData, dispatch]);
 
   useEffect(() => {
+    let isMounted = true;
+
     webApi(`builds/${buildId}/logs`).then(({ data, status }) => {
-      if (status === 200) {
+      if (isMounted && status === 200) {
         setLogsData(data);
       }
     });
+
+    return () => {
+      isMounted = false;
+    };
   }, [buildId]);
 
   return <BuildPage repoName={settingsData.repoName} buildData={buildData} logsData={logsData} />;
