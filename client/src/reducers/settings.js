@@ -31,6 +31,6 @@ export function settings(state = initialState, action) {
     case Types.SAVE_SETTINGS + FAILURE:
       return { ...state, isFetching: false, error };
     default:
-      return initialState;
+      return state;
   }
 }
