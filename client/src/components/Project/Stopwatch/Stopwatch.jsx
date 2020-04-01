@@ -4,6 +4,7 @@ import cn from '../../../libs/classname';
 import ms from 'pretty-ms';
 import IconPlus, { IconPlusContent } from '../../UI/IconPlus';
 import Icon from '../../UI/Icon';
+import './Stopwatch.post.css';
 
 const StopwatchCn = cn('Stopwatch');
 
