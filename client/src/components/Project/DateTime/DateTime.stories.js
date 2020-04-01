@@ -2,9 +2,7 @@ import React from 'react';
 import DateTime from '.';
 
 export default {
-  title: 'Project/DateTime',
+  title: 'Project',
 };
 
-export const dateTime = () => <DateTime dateTime="12 янв, 12:00" />;
-
-export const stopwatch = () => <DateTime dateTime="12:00" icon="stopwatch" />;
+export const dateTime = () => <DateTime dateTime="2020-03-20T22:39:36.2" />;
