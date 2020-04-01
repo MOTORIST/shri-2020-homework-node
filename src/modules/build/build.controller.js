@@ -20,7 +20,12 @@ const buildFields = [
 async function list(_, res, next) {
   try {
     const buildList = await shriApi.getBuildList();
-    res.json({ data: pickFromArray(buildList.data, buildFields) });
+    const data = pickFromArray(buildList.data, buildFields).map(build => ({
+      ...build,
+      status: build.status.toLowerCase(),
+    }));
+
+    res.json({ data });
   } catch (err) {
     next(err);
   }
@@ -29,7 +34,14 @@ async function list(_, res, next) {
 async function get(req, res, next) {
   try {
     const buildData = await shriApi.getBuild(req.params.buildId);
-    res.json({ data: pick(buildData.data, buildFields) });
+    const filteredBuildData = pick(buildData.data, buildFields);
+
+    const data = {
+      ...pick(buildData.data, buildFields),
+      status: filteredBuildData.status.toLowerCase(),
+    };
+
+    res.json({ data });
   } catch (err) {
     next(err);
   }
