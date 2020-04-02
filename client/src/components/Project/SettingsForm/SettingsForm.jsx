@@ -21,6 +21,8 @@ const SettingsForm = ({ onSubmit, onCancel, isFetching, defaultValues, className
 
   const validators = {
     required: { value: true, message: 'Field is required' },
+    min: { value: 10, message: 'Field must be number and not equal to 0' },
+    pattern: { value: /^[1-9]\d*$/, message: 'Field must be number and not equal to 0' },
   };
 
   const getValidators = rules =>
@@ -91,7 +93,7 @@ const SettingsForm = ({ onSubmit, onCancel, isFetching, defaultValues, className
           <Input
             id="period"
             name="period"
-            inputRef={register(getValidators(['required']))}
+            inputRef={register(getValidators(['required', 'pattern']))}
             status={errors.period && 'error'}
             placeholder="10"
             width="2xs"
