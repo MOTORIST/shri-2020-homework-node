@@ -59,9 +59,9 @@ async function deleteConfig() {
   }
 }
 
-async function getBuildList() {
+async function getBuildList(offset = 0, limit = null) {
   try {
-    const { data } = await httpApi.get('build/list');
+    const { data } = await httpApi.get('build/list', { params: { offset, limit } });
     return data;
   } catch (err) {
     const message = 'Failed to get build list (SHRI API: GET /build/list)';

@@ -17,9 +17,14 @@ const buildFields = [
   'duration',
 ];
 
-async function list(_, res, next) {
+async function list(req, res, next) {
+  const { query } = req;
+  const offset = query.offset ? parseInt(query.offset, 10) : 0;
+  const limit = query.limit ? parseInt(query.limit, 10) : 25;
+
   try {
-    const buildList = await shriApi.getBuildList();
+    const buildList = await shriApi.getBuildList(offset, limit);
+
     const data = pickFromArray(buildList.data, buildFields).map(build => ({
       ...build,
       status: build.status.toLowerCase(),
