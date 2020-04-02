@@ -9,7 +9,7 @@ import { useModal } from '../../UI/Modal';
 import NewBuildForm from '../../Project/NewBuildForm';
 import webApi from '../../../api';
 
-export const BuildsPage = ({ buildsData, repoName }) => {
+export const BuildsPage = ({ buildsData, repoName, isMore, onLoadMore }) => {
   const history = useHistory();
   const { openModal, closeModal, isOpen, Modal } = useModal({ background: true });
 
@@ -38,7 +38,7 @@ export const BuildsPage = ({ buildsData, repoName }) => {
         </ButtonGroups>
       </Header>
       <PageContent>
-        <BuildList buildsData={buildsData} />
+        <BuildList buildsData={buildsData} isMore={isMore} onLoadMore={onLoadMore} />
       </PageContent>
       {isOpen && (
         <Modal>

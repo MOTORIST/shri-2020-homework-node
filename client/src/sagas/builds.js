@@ -9,9 +9,12 @@ import {
 import { REQUEST } from '../constants';
 import webApi from '../api';
 
-function* getBuildsSaga() {
+function* getBuildsSaga({ offset, limit }) {
   try {
-    const { data: builds } = yield call(webApi, 'builds');
+    const { data: builds } = yield call(webApi, 'builds', 'GET', null, {
+      params: { offset, limit },
+    });
+
     yield put(fetchBuildsSuccess(builds.data));
   } catch (error) {
     const message = 'Failed to fetch builds';

@@ -7,9 +7,14 @@ import { fetchSettings } from '../../../actions/settings';
 export const BuildsPageContainer = () => {
   const dispatch = useDispatch();
 
-  const { isLoaded: isLoadedBuilds, entities: buildsData, error } = useSelector(
-    state => state.builds
-  );
+  const {
+    isLoaded: isLoadedBuilds,
+    entities: buildsData,
+    error,
+    count: countBuilds,
+    isFetching: isFetchingBuilds,
+    isMore,
+  } = useSelector(state => state.builds);
 
   const {
     isLoaded: isLoadedSettings,
@@ -24,5 +29,18 @@ export const BuildsPageContainer = () => {
     !isLoadedBuilds && dispatch(fetchBuilds());
   }, [dispatch, isLoadedBuilds]);
 
-  return <BuildsPage buildsData={buildsData} repoName={repoName} error={error} />;
+  const handleOnLoadMore = () => {
+    dispatch(fetchBuilds(countBuilds));
+  };
+  const isMoreBuilds = isMore && !isFetchingBuilds;
+
+  return (
+    <BuildsPage
+      buildsData={buildsData}
+      repoName={repoName}
+      error={error}
+      onLoadMore={handleOnLoadMore}
+      isMore={isMoreBuilds}
+    />
+  );
 };

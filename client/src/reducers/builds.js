@@ -6,6 +6,8 @@ const initialState = {
   isLoaded: false,
   entities: [],
   error: null,
+  count: 0,
+  isMore: true,
 };
 
 export function builds(state = initialState, action) {
@@ -15,7 +17,15 @@ export function builds(state = initialState, action) {
     case Types.GET_BUILDS + REQUEST:
       return { ...state, isFetching: true };
     case Types.GET_BUILDS + SUCCESS:
-      return { ...state, isFetching: false, isLoaded: true, entities: payload, error: null };
+      return {
+        ...state,
+        isFetching: false,
+        isLoaded: true,
+        entities: [...state.entities, ...payload],
+        error: null,
+        count: state.count + payload.length,
+        isMore: payload.length > 0,
+      };
     case Types.GET_BUILDS + FAILURE:
       return { ...state, isFetching: false, error };
     case Types.GET_BUILD + REQUEST:
