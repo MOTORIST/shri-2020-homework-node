@@ -4,6 +4,7 @@ import Header from '../../Project/Header';
 import ButtonGroups from '../../UI/ButtonGroups';
 import Button from '../../UI/Button';
 import BuildList from '../../Project/BuildList';
+import Typography from '../../UI/Typography';
 import { useHistory } from 'react-router-dom';
 import { useModal } from '../../UI/Modal';
 import NewBuildForm from '../../Project/NewBuildForm';
@@ -42,6 +43,11 @@ export const BuildsPage = ({ buildsData, repoName, isMore, onLoadMore }) => {
         </ButtonGroups>
       </Header>
       <PageContent>
+        {buildsData.length === 0 && (
+          <Typography variant="body" color="warning">
+            You don't have builds. Click "run build" to create new build.
+          </Typography>
+        )}
         <BuildList
           buildsData={buildsData}
           isMore={isMore}
