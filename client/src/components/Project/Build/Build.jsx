@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from '../../../libs/classname';
-import { useHistory } from 'react-router-dom';
 import { pick } from '../../../helpers';
 import Card from '../../UI/Card';
 import Icon from '../../UI/Icon';
@@ -35,8 +34,8 @@ const getColor = status => {
   return colors[status] ? colors[status] : 'default';
 };
 
-export const Build = ({ data, variant, clickable, className }) => {
-  const history = useHistory();
+export const Build = ({ data, variant, onClick, className }) => {
+  const clickable = onClick ? true : false;
 
   const dataInfo = pick(data, [
     'commitMessage',
@@ -52,14 +51,14 @@ export const Build = ({ data, variant, clickable, className }) => {
   const iconName = getIconName(status);
   const color = getColor(status);
 
-  const handleToDetailPage = () => {
-    history.push(`/builds/${id}`);
+  const handleOnClick = () => {
+    onClick && onClick(id);
   };
 
   return (
     <Card
       className={BuildCn({ variant }, [className])}
-      onClick={handleToDetailPage}
+      onClick={handleOnClick}
       clickable={clickable}
     >
       <Info data={dataInfo} color={color} />
@@ -80,7 +79,7 @@ Build.propTypes = {
     start: PropTypes.string,
     duration: PropTypes.number,
   }).isRequired,
-  clickable: PropTypes.bool,
+  onClick: PropTypes.func,
   variant: PropTypes.oneOf(['detail']),
   className: PropTypes.string,
 };

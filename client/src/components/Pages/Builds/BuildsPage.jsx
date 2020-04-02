@@ -17,6 +17,10 @@ export const BuildsPage = ({ buildsData, repoName, isMore, onLoadMore }) => {
     history.push('/settings');
   };
 
+  const handleToDetailPage = id => {
+    history.push(`/builds/${id}`);
+  };
+
   const handleOnSubmit = ({ commitHash }) => {
     webApi(`builds/${commitHash}`, 'POST')
       .then(({ data: { data } }) => {
@@ -38,7 +42,12 @@ export const BuildsPage = ({ buildsData, repoName, isMore, onLoadMore }) => {
         </ButtonGroups>
       </Header>
       <PageContent>
-        <BuildList buildsData={buildsData} isMore={isMore} onLoadMore={onLoadMore} />
+        <BuildList
+          buildsData={buildsData}
+          isMore={isMore}
+          onLoadMore={onLoadMore}
+          onClickBuild={handleToDetailPage}
+        />
       </PageContent>
       {isOpen && (
         <Modal>

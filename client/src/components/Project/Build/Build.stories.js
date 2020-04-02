@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs, select, object, boolean } from '@storybook/addon-knobs';
+import { withKnobs, select, object, boolean, button } from '@storybook/addon-knobs';
 import Build from '.';
 
 export default {
@@ -8,6 +8,7 @@ export default {
 };
 
 const data = {
+  id: 'gdfg-dfgdfg-dfgdfg-dfgdg',
   commitMessage: 'fix: (client) create Build component',
   status: 'success',
   buildNumber: 13,
@@ -20,8 +21,11 @@ const data = {
 
 const buildKnobs = () => ({
   data: object('Data', data),
-  clickable: boolean('Clickable', false),
   variant: select('Variant', ['---', 'detail']),
 });
 
-export const build = () => <Build status="success" {...buildKnobs()} />;
+const handleOnClick = id => {
+  console.log('build', id);
+};
+
+export const build = () => <Build status="success" onClick={handleOnClick} {...buildKnobs()} />;

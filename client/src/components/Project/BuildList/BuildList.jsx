@@ -10,7 +10,7 @@ import './MoreButton/BuildList-MoreButton.post.css';
 
 const BuildListCn = cn('BuildList');
 
-export const BuildList = ({ buildsData, onLoadMore, isMore, className }) => {
+export const BuildList = ({ buildsData, onLoadMore, isMore, onClickBuild, className }) => {
   if (!buildsData) {
     return <Typography variant="body">No builds</Typography>;
   }
@@ -18,7 +18,12 @@ export const BuildList = ({ buildsData, onLoadMore, isMore, className }) => {
   return (
     <div className={BuildListCn(null, [className])}>
       {buildsData.map(buildData => (
-        <Build className={BuildListCn('Item')} key={buildData.id} data={buildData} clickable />
+        <Build
+          className={BuildListCn('Item')}
+          key={buildData.id}
+          data={buildData}
+          onClick={onClickBuild}
+        />
       ))}
 
       <Button className={BuildListCn('MoreButton')} onClick={onLoadMore} disabled={!isMore} full>
@@ -32,5 +37,6 @@ BuildList.propTypes = {
   buildsData: PropTypes.array,
   onLoadMore: PropTypes.func,
   isMore: PropTypes.bool,
+  onClickBuild: PropTypes.func,
   className: PropTypes.string,
 };
