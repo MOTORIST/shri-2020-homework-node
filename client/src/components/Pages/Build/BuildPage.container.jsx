@@ -6,24 +6,29 @@ import { fetchBuild } from '../../../actions/builds';
 import { fetchSettings } from '../../../actions/settings';
 import webApi from '../../../api';
 
+const getBuild = id => state => {
+  const { entities, error, isFetching, isLoaded } = state.builds;
+  const buildData = entities.filter(build => build.id === id)[0];
+
+  return {
+    buildData,
+    isFetching,
+    isLoaded,
+    error,
+  };
+};
+
 export const BuildPageContainer = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id: buildId } = useParams();
-  const { entities: buildsData } = useSelector(state => state.builds);
+  const { buildData } = useSelector(getBuild(buildId));
 
   const { isLoaded: isLoadedSettings, entities: settingsData } = useSelector(
     state => state.settings
   );
 
   const [logsData, setLogsData] = useState(null);
-
-  const buildData = buildsData
-    .filter(build => build.id === buildId)
-    .map(build => {
-      build.status = build.status.toLowerCase();
-      return build;
-    })[0];
 
   useEffect(() => {
     if (!isLoadedSettings) {
@@ -32,10 +37,8 @@ export const BuildPageContainer = () => {
   }, [dispatch, isLoadedSettings]);
 
   useEffect(() => {
-    if (!buildsData.some(e => e.id === buildId)) {
-      dispatch(fetchBuild(buildId));
-    }
-  }, [buildId, buildsData, dispatch]);
+    !buildData && dispatch(fetchBuild(buildId));
+  }, [buildId, buildData, dispatch]);
 
   useEffect(() => {
     let isMounted = true;
