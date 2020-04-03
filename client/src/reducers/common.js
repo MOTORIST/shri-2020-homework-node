@@ -15,6 +15,6 @@ export function common(state = initialState, action) {
     case Types.SET_IS_SET_SETTINGS:
       return { ...state, isSetSettings: payload };
     default:
-      return initialState;
+      return state;
   }
 }
