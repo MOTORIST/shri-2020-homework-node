@@ -1,3 +1,3 @@
-import { MainPageContainer } from './MainPage.container';
+import { MainPage } from './MainPage';
 
-export default MainPageContainer;
+export default MainPage;

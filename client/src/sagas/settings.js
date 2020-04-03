@@ -30,7 +30,7 @@ function* saveSettingsSaga({ values }) {
     yield call(webApi, 'settings', POST, values);
     yield put(saveSettingsSuccess(values));
     yield put(setIsSetSettings(true));
-    yield call(forwardTo, '/builds');
+    yield call(forwardTo, '/');
   } catch (error) {
     const message = 'Failed to save settings';
     yield put(saveSettingsFailure(message));
