@@ -41,6 +41,7 @@ export const BuildsPageContainer = () => {
       error={error}
       onLoadMore={handleOnLoadMore}
       isMore={isMoreBuilds}
+      isFetchingBuilds={isFetchingBuilds}
     />
   );
 };

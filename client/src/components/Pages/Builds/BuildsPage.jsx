@@ -10,7 +10,7 @@ import { useModal } from '../../UI/Modal';
 import NewBuildForm from '../../Project/NewBuildForm';
 import webApi from '../../../api';
 
-export const BuildsPage = ({ buildsData, repoName, isMore, onLoadMore }) => {
+export const BuildsPage = ({ buildsData, repoName, isMore, onLoadMore, isFetchingBuilds }) => {
   const history = useHistory();
   const { openModal, closeModal, isOpen, Modal } = useModal({ background: true });
 
@@ -43,7 +43,7 @@ export const BuildsPage = ({ buildsData, repoName, isMore, onLoadMore }) => {
         </ButtonGroups>
       </Header>
       <PageContent>
-        {buildsData.length === 0 && (
+        {buildsData.length === 0 && !isFetchingBuilds && (
           <Typography variant="body" color="warning">
             You don't have builds. Click "run build" to create new build.
           </Typography>
