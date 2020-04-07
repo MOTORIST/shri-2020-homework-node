@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { BuildPage } from './BuildPage';
 import { fetchBuild } from '../../../actions/builds';
 import { fetchSettings } from '../../../actions/settings';
-import webApi from '../../../api';
+import api from '../../../api';
 
 const getBuild = id => state => {
   const { entities, error, isFetching, isLoaded } = state.builds;
@@ -42,12 +42,14 @@ export const BuildPageContainer = () => {
 
   useEffect(() => {
     let isMounted = true;
-
-    webApi(`builds/${buildId}/logs`).then(({ data, status }) => {
+    
+    api.builds.getBuildLogs(buildId)
+    .then(({ data, status }) => {
       if (isMounted && status === 200) {
         setLogsData(data);
       }
-    });
+    })
+    .catch(error => console.error(error));
 
     return () => {
       isMounted = false;
@@ -55,7 +57,7 @@ export const BuildPageContainer = () => {
   }, [buildId]);
 
   const handleRebuild = ({ commitHash }) => {
-    webApi(`builds/${commitHash}`, 'POST')
+    api.builds.runBuild(commitHash)
       .then(({ data: { data } }) => {
         history.push(`/builds/${data.id}`);
       })

@@ -1,3 +1,4 @@
-import webAPI from './webApi';
+import * as settings from './settings';
+import * as builds from './builds';
 
-export default webAPI;
+export default { settings, builds };

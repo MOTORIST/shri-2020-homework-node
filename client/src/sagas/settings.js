@@ -1,5 +1,5 @@
-import { call, put, all, takeLatest } from 'redux-saga//effects';
-import webApi from '../api';
+import { call, put, all, takeLatest } from 'redux-saga/effects';
+import api from '../api';
 import {
   Types,
   fetchSettingsSuccess,
@@ -9,12 +9,11 @@ import {
 } from '../actions/settings';
 import { setIsSetSettings } from '../actions/common';
 import { REQUEST } from '../constants';
-import { POST } from '../api/webApi';
 import { forwardTo } from '../history';
 
 function* fetchSettingsSaga() {
   try {
-    const { data: settings } = yield call(webApi, 'settings');
+    const { data: settings } = yield call(api.settings.getSettings);
 
     if (settings) {
       yield put(fetchSettingsSuccess(settings.data));
@@ -22,18 +21,20 @@ function* fetchSettingsSaga() {
   } catch (error) {
     const message = 'Failed to fetch settings';
     yield put(fetchSettingsFailure(message));
+    console.error(error);
   }
 }
 
 function* saveSettingsSaga({ values }) {
   try {
-    yield call(webApi, 'settings', POST, values);
+    yield call(api.settings.saveSaveSettings, values);
     yield put(saveSettingsSuccess(values));
     yield put(setIsSetSettings(true));
     yield call(forwardTo, '/');
   } catch (error) {
     const message = 'Failed to save settings';
     yield put(saveSettingsFailure(message));
+    console.error(error);
   }
 }
 

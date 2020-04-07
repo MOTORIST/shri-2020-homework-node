@@ -7,14 +7,11 @@ import {
   fetchBuildFailure,
 } from '../actions/builds';
 import { REQUEST } from '../constants';
-import webApi from '../api';
+import api from '../api';
 
 function* getBuildsSaga({ offset, limit }) {
   try {
-    const { data: builds } = yield call(webApi, 'builds', 'GET', null, {
-      params: { offset, limit },
-    });
-
+    const { data: builds } = yield call(api.builds.getBuilds, offset, limit);
     yield put(fetchBuildsSuccess(builds.data));
   } catch (error) {
     const message = 'Failed to fetch builds';
@@ -24,7 +21,7 @@ function* getBuildsSaga({ offset, limit }) {
 
 function* getBuildSaga({ buildId }) {
   try {
-    const { data: build } = yield call(webApi, `builds/${buildId}`);
+    const { data: build } = yield call(api.builds.getBuild, buildId);
     yield put(fetchBuildSuccess(build.data));
   } catch (error) {
     console.error(error);

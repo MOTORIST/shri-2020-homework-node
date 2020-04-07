@@ -8,7 +8,7 @@ import Typography from '../../UI/Typography';
 import { useHistory } from 'react-router-dom';
 import { useModal } from '../../UI/Modal';
 import NewBuildForm from '../../Project/NewBuildForm';
-import webApi from '../../../api';
+import api from '../../../api';
 
 export const BuildsPage = ({ buildsData, repoName, isMore, onLoadMore, isFetchingBuilds }) => {
   const history = useHistory();
@@ -23,12 +23,12 @@ export const BuildsPage = ({ buildsData, repoName, isMore, onLoadMore, isFetchin
   };
 
   const handleOnSubmit = ({ commitHash }) => {
-    webApi(`builds/${commitHash}`, 'POST')
+    api.builds.runBuild(commitHash)
       .then(({ data: { data } }) => {
         history.push(`/builds/${data.id}`);
       })
       .catch(error => {
-        console.log(error);
+        console.error(error);
       });
   };
 
