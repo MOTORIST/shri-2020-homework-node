@@ -20,8 +20,10 @@
 
 ## 🧐 About <a name = "about"></a>
 ![School CI server](screenshots/screenshot-01.png)
+![School CI server](screenshots/screenshot-02.png)
+![School CI server](screenshots/screenshot-03.png)
 
-Описание api сделал через swagger http://localhost:3000/api-docs#/
+Описание api сделал через swagger http://localhost:8080/api-docs#/
 
 Не все успел реализовать из того, что хотел (см. TODO)
 

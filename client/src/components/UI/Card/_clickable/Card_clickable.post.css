@@ -1,0 +1,7 @@
+.Card_clickable {
+  cursor: pointer;
+  
+  &:hover {
+    box-shadow: var(--shadow-m);
+  }
+}

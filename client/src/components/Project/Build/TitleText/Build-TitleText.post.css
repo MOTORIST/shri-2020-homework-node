@@ -1,0 +1,15 @@
+.Build-TitleText {
+  font-family: var(--font-base);
+  font-style: normal;
+  font-weight: normal;
+  font-size: var(--text-size-s);
+  line-height: var(--text-line-height-m);
+
+  @media (min-width: $screen-m) {
+    margin-left: var(--space-6xs);
+    max-width: 560px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}

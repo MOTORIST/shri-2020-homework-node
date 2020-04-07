@@ -1,0 +1,11 @@
+.Input_clearable {
+  position: relative;
+
+  & .Input-ClearButton {
+    display: initial;
+  }
+
+  .Input-Control {
+    padding-right: 32px;
+  }
+}

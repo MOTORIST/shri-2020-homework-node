@@ -1,0 +1,18 @@
+.Build {
+  position: relative;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 1px rgba(67, 68, 69, 0.3), 0px 0px 1px rgba(67, 68, 69, 0.3);
+  border-radius: 6px;
+  padding: var(--space-2xs) var(--space-2xs) var(--space-2xs) var(--space-3xl);
+
+  .Build-Number {
+    margin: var(--space-6xs) 0;
+  }
+
+  @media (min-width: $screen-m) {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-2xs) var(--space-l) var(--space-2xs) var(--space--5xl);
+  }
+}

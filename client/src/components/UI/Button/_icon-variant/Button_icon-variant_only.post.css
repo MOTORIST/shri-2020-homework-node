@@ -1,0 +1,7 @@
+.Button_icon-variant_only {
+  width: var(--button-height);
+  padding: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,14 @@
+.Theme_control_default {
+  --control-radius: 4px;
+  --control-border: 2px;
+
+  --control-space-s: var(--space-xs);
+  --control-height-s: var(--space-xl);
+  --control-space-icon-s: 25px;
+
+  --control-space-m: var(--space-m);
+  --control-height-m: var(--space-3xl);
+  --control-space-icon-m: 28px;
+
+  --control-width-2xs: 52px;
+}

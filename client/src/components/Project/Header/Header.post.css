@@ -1,0 +1,8 @@
+.Header {
+  box-sizing: border-box;
+  padding: var(--space-3xs) var(--space-s);
+
+  @media (min-width: $screen-m) {
+    padding: var(--space-s);
+  }
+}

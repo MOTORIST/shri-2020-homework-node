@@ -1,0 +1,15 @@
+.Build-Meta {
+  font-family: var(--font-base);
+  font-style: normal;
+  font-weight: normal;
+  font-size: var(--text-size-xs);
+  line-height: var(--text-line-height-xs);
+  letter-spacing: 0.06px;
+  padding: var(--space-4xs) 0;
+  border-bottom: 1px solid #F0F2F3;
+
+  @media (min-width: $screen-m) {
+    display: flex;
+    border: none;
+  }
+}

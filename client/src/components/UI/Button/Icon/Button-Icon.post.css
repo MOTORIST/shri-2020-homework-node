@@ -1,0 +1,5 @@
+.Button-Icon {
+  display: flex;
+  width: var(--button-height);
+  justify-content: center;
+}

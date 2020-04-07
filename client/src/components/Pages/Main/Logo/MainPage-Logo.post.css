@@ -1,0 +1,4 @@
+.MainPage-Logo {
+  fill: color(#000000 a(10%));
+  margin-bottom: var(--space-2xl);
+}

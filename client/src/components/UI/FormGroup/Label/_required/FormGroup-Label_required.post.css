@@ -1,0 +1,7 @@
+.FormGroup-Label_required {
+  &::after {
+    content: '*';
+    color: var(--color-text-error);
+    margin-left: var(--space-7xs);
+  }
+}

@@ -19,4 +19,5 @@ module.exports = {
   LOGS_DIR: logsDir,
   CACHE_DIR: cacheDir,
   SWAGGER_PORT: process.env.SWAGGER_PORT,
+  CLIENT_URL: process.env.CLIENT_URL,
 };

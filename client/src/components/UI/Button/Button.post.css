@@ -1,0 +1,22 @@
+.Button {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  outline: none;
+
+  border-radius: var(--control-radius);
+  padding: 0 var(--button-space);
+  height: var(--button-height);
+  font-family: var(--font-base);
+  font-style: normal;
+  font-weight: normal;
+  font-size: var(--text-size-xs);
+  line-height: calc(var(--button-line-height) - var(--control-border));
+}

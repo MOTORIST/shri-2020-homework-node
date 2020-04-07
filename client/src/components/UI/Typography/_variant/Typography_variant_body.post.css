@@ -1,0 +1,8 @@
+.Typography_variant_body {
+  font-family: var(--font-base);
+  font-style: normal;
+  font-weight: 500;
+  font-size: var(--text-size-xs);
+  line-height: var(--text-line-height-xs);
+  margin: var(--text-line-height-xs) 0;
+}

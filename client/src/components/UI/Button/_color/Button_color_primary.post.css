@@ -1,0 +1,19 @@
+.Button_color_primary {
+  background-color: var(--color-control-bg-primary);
+  color: var(--color-control-text-primary);
+  border: var(--control-border) solid transparent;
+
+  &:hover {
+    background-color: var(--color-control-bg-primary-hover);
+  }
+
+  &:focus {
+    border: var(--control-border) solid var(--color-control-border-primary-focus);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--color-control-bg-default-disabled);
+    color: var(--color-control-text-default-disabled);
+  }
+}

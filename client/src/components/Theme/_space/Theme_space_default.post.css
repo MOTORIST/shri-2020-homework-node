@@ -1,0 +1,17 @@
+.Theme_space_default {
+  --space-7xs: 2px;
+  --space-6xs: 4px;
+  --space-5xs: 6px;
+  --space-4xs: 8px;
+  --space-3xs: 10px;
+  --space-2xs: 12px;
+  --space-xs: 13px;
+  --space-s: 16px;
+  --space-m: 20px;
+  --space-l: 24px;
+  --space-xl: 28px;
+  --space-2xl: 32px;
+  --space-3xl: 36px;
+  --space--4xl: 48px;
+  --space--5xl: 56px;
+}

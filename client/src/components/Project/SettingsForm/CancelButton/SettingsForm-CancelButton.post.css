@@ -1,0 +1,5 @@
+.SettingsForm-CancelButton {
+    @media (min-width: $screen-m) {
+        width: initial;
+      }
+}

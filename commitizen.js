@@ -16,7 +16,7 @@ module.exports = {
     { value: 'docs', name: 'docs: Update documentation' },
     { value: 'revert', name: 'revert: Rollback to previous commits' },
   ],
-  scopes: [{ name: 'modules' }],
+  scopes: [{ name: 'server' }, { name: 'client' }],
 
   /*
   scopeOverrides: {

@@ -1,0 +1,11 @@
+.Page-Content {
+  box-sizing: border-box;
+  flex: 1 1 100%;
+  padding: var(--space-4xs) var(--space-s) var(--space-m);
+}
+
+@media (min-width: $screen-m) {
+  .Page-Content {
+    padding: var(--space-4xs) 0 var(--space-m);
+  }
+}

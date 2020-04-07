@@ -6,8 +6,15 @@ const v1Router = require('../routes/v1');
 const swaggerOptions = require('./swagger');
 const { APP_DIR } = require('.');
 const errorHandler = require('../middlewares/errorHandler.middleware');
+const config = require('.');
 
 const app = express();
+
+app.use((_, res, next) => {
+  res.header('Access-Control-Allow-Origin', `${config.CLIENT_URL}`);
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

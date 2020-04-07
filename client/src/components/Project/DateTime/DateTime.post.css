@@ -1,0 +1,10 @@
+.DateTime {
+  font-family: var(--font-base);
+  font-style: normal;
+  font-weight: normal;
+  font-size: var(--text-size-xs);
+  line-height: var(--text-line-height-xs);
+  letter-spacing: 0.06px; /* TODO move to Theme */
+  color: #595959; /* TODO move to Theme */
+  display: flex;
+}

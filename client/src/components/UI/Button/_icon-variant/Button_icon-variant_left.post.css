@@ -1,0 +1,9 @@
+.Button_icon-variant_left {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 0;
+  
+  .Button-Text {
+    margin-left: calc(-1 * var(--space-6xs));
+  }
+}

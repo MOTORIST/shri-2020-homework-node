@@ -1,0 +1,5 @@
+.Input_status_error {
+    .Input-Control, .Input-Control:focus {
+        border-color: var(--color-control-border-error);
+    }
+}

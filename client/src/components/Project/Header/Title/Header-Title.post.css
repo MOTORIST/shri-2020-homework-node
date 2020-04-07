@@ -1,0 +1,13 @@
+.Header-Title {
+  padding-right: var(--space-4xs);
+  margin-top: 0;
+  margin-bottom: 0;
+  
+  @media (min-width: $screen-m) {
+    font-size: var(--text-size-l);
+    line-height: var(--text-line-height-l);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

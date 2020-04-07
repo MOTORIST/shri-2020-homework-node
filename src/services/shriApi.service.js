@@ -59,9 +59,9 @@ async function deleteConfig() {
   }
 }
 
-async function getBuildList() {
+async function getBuildList(offset = 0, limit = null) {
   try {
-    const { data } = await httpApi.get('build/list');
+    const { data } = await httpApi.get('build/list', { params: { offset, limit } });
     return data;
   } catch (err) {
     const message = 'Failed to get build list (SHRI API: GET /build/list)';
@@ -81,13 +81,13 @@ async function getBuild(buildId) {
 
 async function buildRequest(buildData) {
   try {
-    const { status } = await httpApi.post('/build/request', buildData);
+    const { status, data } = await httpApi.post('/build/request', buildData);
 
     if (status !== 200) {
       return false;
     }
 
-    return true;
+    return data;
   } catch (err) {
     const message = 'Failed to create build (SHRI API: POST /build/request)';
     throw new APIError({ message, appError: appErrors.SHRI_API });

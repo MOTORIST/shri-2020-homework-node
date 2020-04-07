@@ -1,0 +1,6 @@
+.Header-Container {
+    @media (min-width: $screen-m) {
+        display: flex;
+        align-items: center;
+    }
+}

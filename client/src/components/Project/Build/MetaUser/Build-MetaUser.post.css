@@ -1,0 +1,5 @@
+.Build-MetaUser {
+  @media (min-width: $screen-m) {
+    margin-left: var(--space-3xs)
+  }
+}

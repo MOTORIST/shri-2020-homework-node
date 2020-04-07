@@ -1,0 +1,8 @@
+.FormGroup-Label {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: normal;
+  font-size: var(--text-size-xs);
+  line-height: var(--text-line-height-s);
+  letter-spacing: 0.06px;
+}

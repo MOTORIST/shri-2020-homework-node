@@ -1,0 +1,8 @@
+.Build-MetaRepo {
+  box-sizing: border-box;
+  margin-bottom: var(--space-6xs);
+
+  @media (min-width: $screen-m) {
+    margin-bottom: 0;
+  }
+}

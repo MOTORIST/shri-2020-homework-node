@@ -1,0 +1,7 @@
+.Build-Duration {
+    margin-left: var(--space-4xs);
+
+    @media (min-width: $screen-m) {
+        margin-left: 0;
+    }
+}

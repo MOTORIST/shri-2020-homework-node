@@ -1,0 +1,9 @@
+.Typography_variant_h3 {
+  font-family: var(--font-base);
+  font-style: normal;
+  font-weight: 500;
+  font-size: var(--text-size-m);
+  line-height: var(--text-line-height-l);
+  letter-spacing: 0.25px;
+  margin: var(--space-3xs) 0;
+}

@@ -1,0 +1,12 @@
+.Build-TimeInfo {
+  padding: var(--space-4xs) 0 var(--space-6xs);
+  display: flex;
+  align-items: center;
+
+  @media (min-width: $screen-m) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}

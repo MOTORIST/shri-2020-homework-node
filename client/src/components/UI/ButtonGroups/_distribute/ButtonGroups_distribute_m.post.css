@@ -1,0 +1,9 @@
+.ButtonGroups_distribute_m {
+    .Button {
+        margin-right: var(--space-4xs);
+    }
+
+    .Button:last-child {
+        margin-right: 0;
+    }
+}
