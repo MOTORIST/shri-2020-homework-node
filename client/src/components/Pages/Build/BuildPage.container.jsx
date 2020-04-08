@@ -4,25 +4,14 @@ import { useParams, useHistory } from 'react-router-dom';
 import { BuildPage } from './BuildPage';
 import { fetchBuild } from '../../../actions/builds';
 import { fetchSettings } from '../../../actions/settings';
+import { getBuildById } from '../../../reducers/builds';
 import api from '../../../api';
-
-const getBuild = id => state => {
-  const { entities, error, isFetching, isLoaded } = state.builds;
-  const buildData = entities.filter(build => build.id === id)[0];
-
-  return {
-    buildData,
-    isFetching,
-    isLoaded,
-    error,
-  };
-};
 
 export const BuildPageContainer = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id: buildId } = useParams();
-  const { buildData } = useSelector(getBuild(buildId));
+  const buildData = useSelector(getBuildById(buildId));
 
   const { isLoaded: isLoadedSettings, entity: settingsData } = useSelector(
     state => state.settings

@@ -3,23 +3,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import { BuildsPage } from './BuildsPage';
 import { fetchBuilds } from '../../../actions/builds';
 import { fetchSettings } from '../../../actions/settings';
+import { getBuilds } from '../../../reducers/builds';
 
 export const BuildsPageContainer = () => {
   const dispatch = useDispatch();
 
   const {
+    isLoaded: isLoadedSettings,
+    entity: { repoName },
+  } = useSelector(state => state.settings);
+
+  const {
     isLoaded: isLoadedBuilds,
-    entities: buildsData,
     error,
     count: countBuilds,
     isFetching: isFetchingBuilds,
     isMore,
   } = useSelector(state => state.builds);
 
-  const {
-    isLoaded: isLoadedSettings,
-    entity: { repoName },
-  } = useSelector(state => state.settings);
+  const buildsData = useSelector(getBuilds);
 
   useEffect(() => {
     !isLoadedSettings && dispatch(fetchSettings());
@@ -32,7 +34,6 @@ export const BuildsPageContainer = () => {
   const handleOnLoadMore = () => {
     dispatch(fetchBuilds(countBuilds));
   };
-  const isMoreBuilds = isMore && !isFetchingBuilds;
 
   return (
     <BuildsPage
@@ -40,7 +41,7 @@ export const BuildsPageContainer = () => {
       repoName={repoName}
       error={error}
       onLoadMore={handleOnLoadMore}
-      isMore={isMoreBuilds}
+      isMore={isMore}
       isFetchingBuilds={isFetchingBuilds}
     />
   );

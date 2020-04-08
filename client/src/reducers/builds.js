@@ -1,45 +1,53 @@
+import produce from 'immer';
 import { Types } from '../actions/builds';
 import { REQUEST, SUCCESS, FAILURE } from '../constants';
 
 const initialState = {
   isFetching: false,
   isLoaded: false,
-  entities: [],
+  entities: {},
   error: null,
   count: 0,
   isMore: true,
 };
 
-export function builds(state = initialState, action) {
+export const builds = produce((draft, action) => {
   const { type, payload, error } = action;
 
   switch (type) {
     case Types.GET_BUILDS + REQUEST:
-      return { ...state, isFetching: true };
+      draft.isFetching = true;
+      break;
     case Types.GET_BUILDS + SUCCESS:
-      return {
-        ...state,
-        isFetching: false,
-        isLoaded: true,
-        entities: [...state.entities, ...payload],
-        error: null,
-        count: state.count + payload.length,
-        isMore: payload.length > 0,
-      };
+      draft.isFetching = false;
+      draft.isLoaded = true;
+      draft.count += payload.length;
+      draft.isMore = payload.length > 0;
+      payload.forEach(build => draft.entities[build.id] = build);
+      break;
     case Types.GET_BUILDS + FAILURE:
-      return { ...state, isFetching: false, error };
+      draft.isFetching = false;
+      draft.error = error;
+      break;
     case Types.GET_BUILD + REQUEST:
-      return { ...state, isFetching: true };
+      draft.isFetching = true;
+      break;
     case Types.GET_BUILD + SUCCESS:
-      return {
-        ...state,
-        isFetching: false,
-        error: null,
-        entities: [payload, ...state.entities.filter(b => b.id !== payload.id)],
-      };
+      draft.isFetching = false;
+      draft.entities[payload.id] = payload;
+      break;
     case Types.GET_BUILD + FAILURE:
-      return { ...state, isFetching: false, error };
+      draft.isFetching = false;
+      draft.error = error;
+      break;
     default:
-      return state;
   }
+}, initialState);
+
+export const getBuildById = id => state => {
+  return state.builds.entities[id];
+}
+
+export const getBuilds = state => {
+  return Object.values(state.builds.entities).sort((a, b) => b.buildNumber - a.buildNumber );
 }

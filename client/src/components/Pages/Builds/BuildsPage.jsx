@@ -50,7 +50,7 @@ export const BuildsPage = ({ buildsData, repoName, isMore, onLoadMore, isFetchin
         )}
         <BuildList
           buildsData={buildsData}
-          isMore={isMore}
+          isMore={isMore && !isFetchingBuilds}
           onLoadMore={onLoadMore}
           onClickBuild={handleToDetailPage}
         />
