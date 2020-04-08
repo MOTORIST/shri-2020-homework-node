@@ -18,7 +18,7 @@ export const BuildsPageContainer = () => {
 
   const {
     isLoaded: isLoadedSettings,
-    entities: { repoName },
+    entity: { repoName },
   } = useSelector(state => state.settings);
 
   useEffect(() => {

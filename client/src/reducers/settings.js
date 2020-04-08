@@ -1,3 +1,4 @@
+import produce from 'immer';
 import { Types } from '../actions/settings';
 import { REQUEST, SUCCESS, FAILURE } from '../constants';
 
@@ -11,26 +12,38 @@ const defaultValues = {
 const initialState = {
   isFetching: false,
   isLoaded: false,
-  entities: defaultValues,
+  entity: defaultValues,
   error: null,
 };
 
-export function settings(state = initialState, action) {
+export const settings = produce((draft, action) => {
   const { type, payload, error } = action;
+
   switch (type) {
     case Types.GET_SETTINGS + REQUEST:
-      return { ...state, isFetching: true };
+      draft.isFetching = true;
+      break;
     case Types.GET_SETTINGS + SUCCESS:
-      return { ...state, entities: payload, isFetching: false, isLoaded: true, error: null };
+      draft.isFetching = false;
+      draft.isLoaded = true;
+      draft.entity = payload;
+      break;
     case Types.GET_SETTINGS + FAILURE:
-      return { ...state, isFetching: false, error };
+      draft.isFetching = false;
+      draft.error = error;
+      break;
     case Types.SAVE_SETTINGS + REQUEST:
-      return { ...state, isFetching: true };
+      draft.isFetching = true;
+      break;
     case Types.SAVE_SETTINGS + SUCCESS:
-      return { ...state, isFetching: false, isLoaded: true, entities: payload };
+      draft.isFetching = false;
+      draft.isLoaded = true;
+      draft.entity= payload;
+      break;
     case Types.SAVE_SETTINGS + FAILURE:
-      return { ...state, isFetching: false, error };
+      draft.isFetching = false;
+      draft.error = error;
+      break;
     default:
-      return state;
   }
-}
+}, initialState);

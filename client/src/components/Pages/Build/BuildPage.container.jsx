@@ -24,7 +24,7 @@ export const BuildPageContainer = () => {
   const { id: buildId } = useParams();
   const { buildData } = useSelector(getBuild(buildId));
 
-  const { isLoaded: isLoadedSettings, entities: settingsData } = useSelector(
+  const { isLoaded: isLoadedSettings, entity: settingsData } = useSelector(
     state => state.settings
   );
 

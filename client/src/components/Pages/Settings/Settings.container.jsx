@@ -6,7 +6,7 @@ import { SettingsPage } from './SettingsPage';
 const SettingsContainer = () => {
   const dispatch = useDispatch();
 
-  const { isFetching, isLoaded, entities: settingsData, error } = useSelector(
+  const { isFetching, isLoaded, entity: settingsData, error } = useSelector(
     state => state.settings
   );
 
