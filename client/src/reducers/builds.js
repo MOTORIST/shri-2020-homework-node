@@ -2,7 +2,7 @@ import produce from 'immer';
 import { Types } from '../actions/builds';
 import { REQUEST, SUCCESS, FAILURE } from '../constants';
 
-const initialState = {
+export const initialState = {
   isFetching: false,
   isLoaded: false,
   entities: {},
