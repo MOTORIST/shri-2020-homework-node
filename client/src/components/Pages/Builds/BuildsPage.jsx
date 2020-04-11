@@ -10,7 +10,7 @@ import { useModal } from '../../UI/Modal';
 import NewBuildForm from '../../Project/NewBuildForm';
 import api from '../../../api';
 
-export const BuildsPage = ({ buildsData, repoName, isMore, onLoadMore, isFetchingBuilds }) => {
+export const BuildsPage = ({ repoName, buildsData, isMore, onLoadMore, isFetchingBuilds, buildsError }) => {
   const history = useHistory();
   const { openModal, closeModal, isOpen, Modal } = useModal({ background: true });
 
@@ -36,21 +36,31 @@ export const BuildsPage = ({ buildsData, repoName, isMore, onLoadMore, isFetchin
     <>
       <Header title={repoName}>
         <ButtonGroups>
-          <Button icon="play" iconVariant="left" size="s" onClick={openModal}>
+          <Button data-testid="run-build-button" icon="play" iconVariant="left" size="s" onClick={openModal}>
             Run build
           </Button>
-          <Button icon="settings" iconVariant="only" size="s" onClick={handleToSettings} />
+          <Button data-testid="settings-button" icon="settings" iconVariant="only" size="s" onClick={handleToSettings} />
         </ButtonGroups>
       </Header>
       <PageContent>
-        {buildsData.length === 0 && !isFetchingBuilds && (
-          <Typography variant="body" color="warning">
+        {isFetchingBuilds && (
+          <Typography data-testid="builds-loader" variant="body" color="secondary">
+            Loading builds...
+          </Typography>
+        )}
+        {!isFetchingBuilds && buildsError && (
+          <Typography data-testid="builds-error" variant="body" color="error">
+            Failed loading builds
+          </Typography>
+        )}
+        {!isFetchingBuilds && buildsData.length === 0 && (
+          <Typography data-testid="not-builds-message" variant="body" color="warning">
             You don't have builds. Click "run build" to create new build.
           </Typography>
         )}
         <BuildList
           buildsData={buildsData}
-          isMore={isMore && !isFetchingBuilds}
+          isMore={!isFetchingBuilds && isMore}
           onLoadMore={onLoadMore}
           onClickBuild={handleToDetailPage}
         />
