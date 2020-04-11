@@ -11,30 +11,27 @@ import { setIsSetSettings } from '../actions/common';
 import { REQUEST } from '../constants';
 import { forwardTo } from '../history';
 
-function* fetchSettingsSaga() {
+export function* fetchSettingsSaga() {
   try {
     const { data: settings } = yield call(api.settings.getSettings);
-
-    if (settings) {
-      yield put(fetchSettingsSuccess(settings.data));
-    }
+    yield put(fetchSettingsSuccess(settings.data));
   } catch (error) {
     const message = 'Failed to fetch settings';
     yield put(fetchSettingsFailure(message));
-    console.error(error);
+    throw error;
   }
 }
 
-function* saveSettingsSaga({ values }) {
+export function* saveSettingsSaga({ values }) {
   try {
-    yield call(api.settings.saveSaveSettings, values);
-    yield put(saveSettingsSuccess(values));
+    const { data: settings } = yield call(api.settings.saveSaveSettings, values);
+    yield put(saveSettingsSuccess(settings.data));
     yield put(setIsSetSettings(true));
     yield call(forwardTo, '/');
   } catch (error) {
     const message = 'Failed to save settings';
     yield put(saveSettingsFailure(message));
-    console.error(error);
+    throw error;
   }
 }
 
