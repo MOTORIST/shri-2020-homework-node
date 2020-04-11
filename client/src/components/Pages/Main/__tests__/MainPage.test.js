@@ -8,7 +8,7 @@ describe('MainPage component', () => {
     const historyMock = {push: jest.fn()};
 
     beforeEach(() => {
-        mainPage = mount(withRouterMock(MainPage, historyMock));
+        mainPage = mount(withRouterMock(<MainPage/>, historyMock));
     });
 
     afterEach(() => {
