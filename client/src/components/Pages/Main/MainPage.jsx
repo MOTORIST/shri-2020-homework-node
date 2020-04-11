@@ -23,7 +23,7 @@ export const MainPage = () => {
     <>
       <Header title="School CI server" color="secondary">
         <ButtonGroups>
-          <Button icon="settings" iconVariant="left" size="s" onClick={handleToSettings}>
+          <Button data-testid="open-settings-icon-button" icon="settings" iconVariant="left" size="s" onClick={handleToSettings}>
             Settings
           </Button>
         </ButtonGroups>
@@ -33,7 +33,7 @@ export const MainPage = () => {
         <Typography className={MainPageCn('Description')} variant="body" align="center">
           Configure repository connection and synchronization settings
         </Typography>
-        <Button color="primary" size="m" onClick={handleToSettings}>
+        <Button data-testid="open-settings-button" color="primary" size="m" onClick={handleToSettings}>
           Open settings
         </Button>
       </PageContent>
