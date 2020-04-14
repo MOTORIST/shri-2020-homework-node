@@ -29,7 +29,7 @@ async function add(req, res, next) {
     await shriApi.addConfig(repoData);
     git.clone(repoData.repoName);
 
-    res.json(req.body);
+    res.json({ data: req.body });
   } catch (error) {
     next(error);
   }
