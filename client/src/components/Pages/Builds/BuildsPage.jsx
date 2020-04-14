@@ -8,9 +8,13 @@ import Typography from '../../UI/Typography';
 import { useHistory } from 'react-router-dom';
 import { useModal } from '../../UI/Modal';
 import NewBuildForm from '../../Project/NewBuildForm';
+import Page from '../../Project/Page';
+import Footer from '../../Project/Footer';
+import cn from '../../../libs/classname';
 import api from '../../../api';
 
 export const BuildsPage = ({ repoName, buildsData, isMore, onLoadMore, isFetchingBuilds, buildsError }) => {
+  const BuildsPageCn = cn('BuildsPage');
   const history = useHistory();
   const { openModal, closeModal, isOpen, Modal } = useModal({ background: true });
 
@@ -33,7 +37,7 @@ export const BuildsPage = ({ repoName, buildsData, isMore, onLoadMore, isFetchin
   };
 
   return (
-    <>
+    <Page data-testid="builds-page" className={BuildsPageCn()}>
       <Header title={repoName}>
         <ButtonGroups>
           <Button data-testid="run-build-button" icon="play" iconVariant="left" size="s" onClick={openModal}>
@@ -71,7 +75,8 @@ export const BuildsPage = ({ repoName, buildsData, isMore, onLoadMore, isFetchin
           <NewBuildForm onSubmit={handleOnSubmit} onCancel={closeModal} />
         </Modal>
       )}
-    </>
+      <Footer />
+    </Page>
   );
 };
 

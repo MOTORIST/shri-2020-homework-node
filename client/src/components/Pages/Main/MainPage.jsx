@@ -7,6 +7,8 @@ import Typography from '../../UI/Typography';
 import Icon from '../../UI/Icon';
 import { useHistory } from 'react-router-dom';
 import cn from '../../../libs/classname';
+import Page from '../../Project/Page';
+import Footer from '../../Project/Footer';
 import './Description/MainPage-Description.post.css';
 import './Logo/MainPage-Logo.post.css';
 
@@ -20,7 +22,7 @@ export const MainPage = () => {
   };
 
   return (
-    <>
+    <Page data-testid="main-page" className={MainPageCn()}>
       <Header title="School CI server" color="secondary">
         <ButtonGroups>
           <Button data-testid="open-settings-icon-button" icon="settings" iconVariant="left" size="s" onClick={handleToSettings}>
@@ -37,6 +39,7 @@ export const MainPage = () => {
           Open settings
         </Button>
       </PageContent>
-    </>
+      <Footer/>
+    </Page>
   );
 };

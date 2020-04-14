@@ -13,7 +13,6 @@ function App() {
   return (
     <Theme>
       <Router history={history}>
-        <Page>
           <Switch>
             <Route path="/" exact>
               <IndexPage />
@@ -31,8 +30,6 @@ function App() {
               <NotFoundPage />
             </Route>
           </Switch>
-          <Footer />
-        </Page>
       </Router>
     </Theme>
   );
