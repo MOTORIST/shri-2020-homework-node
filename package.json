@@ -10,7 +10,7 @@
     "dev": "cross-env ENV=development nodemon ./src/server.js",
     "commit": "git-cz",
     "eslint": "eslint -c .eslintrc.js 'src/**/*.js'",
-    "e2e:screenshots": "npx hermione gui"
+    "e2e": "hermione"
   },
   "engines": {
     "node": ">=v12.4.0"
