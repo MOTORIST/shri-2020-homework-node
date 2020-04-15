@@ -5,94 +5,94 @@ import { withRouterMock } from '../../../../tests/utils/withRouterMock';
 import BuildList from '../../../Project/BuildList';
 
 describe('BuildsPage component', () => {
-    const props = {
-        repoName: '',
-        buildsData: [],
-        isMore: true,
-        onLoadMore: () => {},
-        isFetchingBuilds: false,
-    }
+  const props = {
+    repoName: '',
+    buildsData: [],
+    isMore: true,
+    onLoadMore: () => {},
+    isFetchingBuilds: false,
+  };
 
-    const historyMock = {push: jest.fn()};
+  const historyMock = { push: jest.fn() };
 
-    afterEach(() => {
-        historyMock.push.mockClear();
-    });
+  afterEach(() => {
+    historyMock.push.mockClear();
+  });
 
-    it('should render loader if isFetchingBuilds', () => {
-        const nextProps = {
-            ...props,
-            isFetchingBuilds: true,
-        }
-        
-        const buildsPage = mount(withRouterMock(<BuildsPage {...nextProps} />, historyMock));
-        const loader = buildsPage.find('[data-testid="builds-loader"]');
+  it('should render loader if isFetchingBuilds', () => {
+    const nextProps = {
+      ...props,
+      isFetchingBuilds: true,
+    };
 
-        expect(loader.length).toBe(1);
-    });
+    const buildsPage = mount(withRouterMock(<BuildsPage {...nextProps} />, historyMock));
+    const loader = buildsPage.find('[data-testid="builds-loader"]');
 
-    it('should render loader if error', () => {
-        const nextProps = {
-            ...props,
-            isFetchingBuilds: false,
-            buildsError: 'Error message',
-        }
-        
-        const buildsPage = mount(withRouterMock(<BuildsPage {...nextProps} />, historyMock));
-        const loader = buildsPage.find('[data-testid="builds-error"]');
+    expect(loader.length).toBe(1);
+  });
 
-        expect(loader.length).toBe(1);
-    });
+  it('should render loader if error', () => {
+    const nextProps = {
+      ...props,
+      isFetchingBuilds: false,
+      buildsError: 'Error message',
+    };
 
-    it('should show message if not builds', () => {
-        const nextProps = {
-            ...props,
-            isFetchingBuilds: false,
-            buildsData: [],
-        }
-        
-        const buildsPage = mount(withRouterMock(<BuildsPage {...nextProps} />, historyMock));
-        const loader = buildsPage.find('[data-testid="not-builds-message"]');
+    const buildsPage = mount(withRouterMock(<BuildsPage {...nextProps} />, historyMock));
+    const loader = buildsPage.find('[data-testid="builds-error"]');
 
-        expect(loader.length).toBe(1);
-    });
+    expect(loader.length).toBe(1);
+  });
 
-    it('should rendered BuildsList', () => {
-        const nextProps = {
-            ...props,
-            isFetchingBuilds: false,
-            buildsData: [],
-        }
-        
-        const buildsPage = mount(withRouterMock(<BuildsPage {...nextProps} />, historyMock));
-        const loader = buildsPage.find(BuildList);
+  it('should show message if not builds', () => {
+    const nextProps = {
+      ...props,
+      isFetchingBuilds: false,
+      buildsData: [],
+    };
 
-        expect(loader.length).toBe(1);
-    });
+    const buildsPage = mount(withRouterMock(<BuildsPage {...nextProps} />, historyMock));
+    const loader = buildsPage.find('[data-testid="not-builds-message"]');
 
-    it('should not show build run Modal', () => {
-        const buildsPage = mount(withRouterMock(<BuildsPage {...props} />, historyMock));
-        const modal = buildsPage.find('[data-testid="build-run-modal"]');
+    expect(loader.length).toBe(1);
+  });
 
-        expect(modal.length).toBe(0);
-    });
+  it('should rendered BuildsList', () => {
+    const nextProps = {
+      ...props,
+      isFetchingBuilds: false,
+      buildsData: [],
+    };
 
-    it('should open Modal, if click on run button', () => {
-        const buildsPage = mount(withRouterMock(<BuildsPage {...props} />, historyMock));
-        const runBuildButton = buildsPage.find('[data-testid="run-build-button"]');
+    const buildsPage = mount(withRouterMock(<BuildsPage {...nextProps} />, historyMock));
+    const loader = buildsPage.find(BuildList);
 
-        runBuildButton.simulate('click');
-        const modal = buildsPage.find('.Modal');
+    expect(loader.length).toBe(1);
+  });
 
-        expect(modal.length).toBe(1);
-    });
+  it('should not show build run Modal', () => {
+    const buildsPage = mount(withRouterMock(<BuildsPage {...props} />, historyMock));
+    const modal = buildsPage.find('[data-testid="build-run-modal"]');
 
-    it('should forward to /settings if click on settings button', () => {
-        const buildsPage = mount(withRouterMock(<BuildsPage {...props} />, historyMock));
-        const settingsButton = buildsPage.find('[data-testid="settings-button"]');
+    expect(modal.length).toBe(0);
+  });
 
-        settingsButton.simulate('click');
-        
-        expect(historyMock.push.mock.calls[0][0]).toBe('/settings');
-    });
+  it('should open Modal, if click on run button', () => {
+    const buildsPage = mount(withRouterMock(<BuildsPage {...props} />, historyMock));
+    const runBuildButton = buildsPage.find('[data-testid="run-build-button"]').hostNodes();
+
+    runBuildButton.simulate('click');
+    const modal = buildsPage.find('.Modal');
+
+    expect(modal.length).toBe(1);
+  });
+
+  it('should forward to /settings if click on settings button', () => {
+    const buildsPage = mount(withRouterMock(<BuildsPage {...props} />, historyMock));
+    const settingsButton = buildsPage.find('[data-testid="settings-button"]').hostNodes();
+
+    settingsButton.simulate('click');
+
+    expect(historyMock.push.mock.calls[0][0]).toBe('/settings');
+  });
 });

@@ -30,6 +30,7 @@ export const Button = ({
   onClick,
   children,
   className,
+  ...other
 }) => {
   const text = <div className={ButtonCn('Text')}>{children}</div>;
   let body = text;
@@ -57,6 +58,7 @@ export const Button = ({
       onClick={onClick}
       className={ButtonCn({ color, full, icon, 'icon-variant': iconVariant, size }, [className])}
       disabled={disabled}
+      {...other}
     >
       {body}
     </button>
