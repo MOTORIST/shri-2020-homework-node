@@ -26,12 +26,12 @@ describe('BuildsPage component', () => {
     };
 
     const buildsPage = mount(withRouterMock(<BuildsPage {...nextProps} />, historyMock));
-    const loader = buildsPage.find('[data-testid="builds-loader"]');
+    const loader = buildsPage.find('[data-testid="builds-loader"]').hostNodes();
 
     expect(loader.length).toBe(1);
   });
 
-  it('should render loader if error', () => {
+  it('should show error message if error', () => {
     const nextProps = {
       ...props,
       isFetchingBuilds: false,
@@ -39,9 +39,9 @@ describe('BuildsPage component', () => {
     };
 
     const buildsPage = mount(withRouterMock(<BuildsPage {...nextProps} />, historyMock));
-    const loader = buildsPage.find('[data-testid="builds-error"]');
+    const errorMessage = buildsPage.find('[data-testid="builds-error"]').hostNodes();
 
-    expect(loader.length).toBe(1);
+    expect(errorMessage.length).toBe(1);
   });
 
   it('should show message if not builds', () => {
@@ -52,7 +52,7 @@ describe('BuildsPage component', () => {
     };
 
     const buildsPage = mount(withRouterMock(<BuildsPage {...nextProps} />, historyMock));
-    const loader = buildsPage.find('[data-testid="not-builds-message"]');
+    const loader = buildsPage.find('[data-testid="not-builds-message"]').hostNodes();
 
     expect(loader.length).toBe(1);
   });
