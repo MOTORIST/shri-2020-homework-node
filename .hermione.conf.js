@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { deleteSettings, saveSettings } = require('./tests/e2e/commands');
 
 module.exports = {
   baseUrl: 'http://localhost:3000',
@@ -29,6 +30,8 @@ module.exports = {
     },
   },
   prepareBrowser: function(browser) {
-    browser.addCommand('deleteSettings', require('./tests/e2e/commands/delete-settings.command'));
+    browser.addCommand('deleteSettings', deleteSettings);
+    browser.addCommand('saveSettings', saveSettings);
+    // browser.addCommand('deleteSettings', require('./tests/e2e/commands/delete-settings.command'));
   },
 };

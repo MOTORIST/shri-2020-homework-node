@@ -1,7 +1,9 @@
 const { assert } = require('chai');
 
-describe('Index page', () => {
-  it('should rendered MainPage if isSetSettings localStorage key is undefined', function() {
+describe('Index page', async () => {
+  it('should rendered MainPage if isSetSettings localStorage key is undefined', async function() {
+    await this.browser.url('/').localStorage('DELETE', { key: 'isSetSettings' });
+
     return this.browser
       .url('/')
       .localStorage('DELETE', { key: 'isSetSettings' })
