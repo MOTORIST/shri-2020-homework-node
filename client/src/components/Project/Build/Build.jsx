@@ -14,10 +14,11 @@ const BuildCn = cn('Build');
 
 const getIconName = status => {
   const iconNames = {
-    success: 'done',
-    error: 'fail',
-    warning: 'clock',
-    waiting: 'clock',
+    Waiting: 'clock',
+    InProgress: 'clock',
+    Success: 'done',
+    Fail: 'fail',
+    Canceled: 'fail',
   };
 
   return iconNames[status] ? iconNames[status] : 'done';
@@ -25,10 +26,11 @@ const getIconName = status => {
 
 const getColor = status => {
   const colors = {
-    success: 'success',
-    error: 'error',
-    warning: 'warning',
-    waiting: 'warning',
+    Waiting: 'warning',
+    InProgress: 'warning',
+    Success: 'success',
+    Fail: 'error',
+    Canceled: 'error',
   };
 
   return colors[status] ? colors[status] : 'default';
@@ -71,7 +73,7 @@ export const Build = ({ data, variant, onClick, className }) => {
 Build.propTypes = {
   data: PropTypes.shape({
     commitMessage: PropTypes.string.isRequired,
-    status: PropTypes.oneOf(['success', 'error', 'warning', 'waiting']),
+    status: PropTypes.oneOf(['Waiting', 'InProgress', 'Success', 'Fail', 'Canceled']),
     buildNumber: PropTypes.number.isRequired,
     authorName: PropTypes.string.isRequired,
     branchName: PropTypes.string.isRequired,
