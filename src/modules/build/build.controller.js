@@ -25,10 +25,7 @@ async function list(req, res, next) {
   try {
     const buildList = await shriApi.getBuildList(offset, limit);
 
-    const data = pickFromArray(buildList.data, buildFields).map(build => ({
-      ...build,
-      status: build.status.toLowerCase(),
-    }));
+    const data = pickFromArray(buildList.data, buildFields);
 
     res.json({ data });
   } catch (err) {
@@ -39,12 +36,7 @@ async function list(req, res, next) {
 async function get(req, res, next) {
   try {
     const buildData = await shriApi.getBuild(req.params.buildId);
-    const filteredBuildData = pick(buildData.data, buildFields);
-
-    const data = {
-      ...pick(buildData.data, buildFields),
-      status: filteredBuildData.status.toLowerCase(),
-    };
+    const data = pick(buildData.data, buildFields);
 
     res.json({ data });
   } catch (err) {

@@ -15,7 +15,7 @@ export const BuildsPageContainer = () => {
 
   const {
     isLoaded: isLoadedBuilds,
-    error,
+    error: buildsError,
     count: countBuilds,
     isFetching: isFetchingBuilds,
     isMore,
@@ -39,7 +39,7 @@ export const BuildsPageContainer = () => {
     <BuildsPage
       buildsData={buildsData}
       repoName={repoName}
-      error={error}
+      buildsError={buildsError}
       onLoadMore={handleOnLoadMore}
       isMore={isMore}
       isFetchingBuilds={isFetchingBuilds}

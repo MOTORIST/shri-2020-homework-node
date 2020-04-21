@@ -1,3 +1,4 @@
 node_modules
 storage
 .env
+tests/e2e/hermione-reports

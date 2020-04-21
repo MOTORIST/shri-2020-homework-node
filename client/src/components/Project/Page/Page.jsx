@@ -5,8 +5,8 @@ import './Page.post.css';
 
 const PageCn = cn('Page');
 
-export const Page = ({ className, children }) => {
-  return <div className={PageCn(null, [className])}>{children}</div>;
+export const Page = ({ className, children, ...other }) => {
+  return <div className={PageCn(null, [className])} {...other}>{children}</div>;
 };
 
 Page.propTypes = {

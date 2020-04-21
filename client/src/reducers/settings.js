@@ -9,7 +9,7 @@ const defaultValues = {
   period: null,
 };
 
-const initialState = {
+export const initialState = {
   isFetching: false,
   isLoaded: false,
   entity: defaultValues,

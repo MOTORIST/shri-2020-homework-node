@@ -5,6 +5,11 @@ import Header from '../../Project/Header';
 import { PageContent } from '../../Project/Page';
 import { useHistory } from 'react-router-dom';
 import Typography from '../../UI/Typography';
+import Page from '../../Project/Page';
+import Footer from '../../Project/Footer';
+import cn from '../../../libs/classname';
+
+const SettingsPageCn = cn('SettingsPage');
 
 export const SettingsPage = ({ settingsFormDefaultValues, onSaveSettings, isFetching, error }) => {
   const history = useHistory();
@@ -14,7 +19,7 @@ export const SettingsPage = ({ settingsFormDefaultValues, onSaveSettings, isFetc
   };
 
   return (
-    <>
+    <Page data-testid="settings-page" className={SettingsPageCn()}>
       <Header title="School CI server" color="secondary" />
       <PageContent>
         {error && (
@@ -30,7 +35,8 @@ export const SettingsPage = ({ settingsFormDefaultValues, onSaveSettings, isFetc
           onCancel={handleToMainPage}
         />
       </PageContent>
-    </>
+      <Footer />
+    </Page>
   );
 };
 

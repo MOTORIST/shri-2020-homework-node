@@ -7,6 +7,8 @@ import Build from '../../Project/Build';
 import Code from '../../UI/Code';
 import cn from '../../../libs/classname';
 import { useHistory } from 'react-router-dom';
+import Page from '../../Project/Page';
+import Footer from '../../Project/Footer';
 import './Detail/BuildPage-Detail.post.css';
 
 const BuildPageCn = cn('BuildPage');
@@ -23,7 +25,7 @@ export const BuildPage = ({ repoName, buildData, logsData, onRebuild }) => {
   };
 
   return (
-    <>
+    <Page data-testid="build-page" className={BuildPageCn()}>
       <Header title={repoName}>
         <ButtonGroups>
           <Button icon="rebuild" iconVariant="left" size="s" onClick={handleRebuild}>
@@ -36,6 +38,7 @@ export const BuildPage = ({ repoName, buildData, logsData, onRebuild }) => {
         {buildData && <Build className={BuildPageCn('Detail')} data={buildData} />}
         {logsData && <Code>{logsData}</Code>}
       </PageContent>
-    </>
+      <Footer/>
+    </Page>
   );
 };

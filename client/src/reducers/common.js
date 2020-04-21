@@ -4,7 +4,7 @@ const getIsSetSettings = () => {
   return localStorage.getItem('isSetSettings') ? true : false;
 };
 
-const initialState = {
+export const initialState = {
   isSetSettings: getIsSetSettings(),
 };
 

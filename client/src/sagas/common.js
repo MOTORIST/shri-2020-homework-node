@@ -1,9 +1,9 @@
 import { call, all, takeLatest } from 'redux-saga//effects';
 import { Types } from '../actions/common';
 
-function* setIsSetSettingsSaga({ payload }) {
+export function* setIsSetSettingsSaga({ value }) {
   try {
-    yield call([localStorage, localStorage.setItem], 'isSetSettings', payload);
+    yield call([localStorage, localStorage.setItem], 'isSetSettings', value);
   } catch (error) {
     throw error;
   }

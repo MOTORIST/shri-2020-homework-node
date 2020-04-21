@@ -16,9 +16,11 @@ import './_variant/Typography_variant_h4.post.css';
 
 const TypographyCn = cn('Typography');
 
-const Typography = ({ nowrap, variant, color, align, children, className }) => {
+const Typography = ({ nowrap, variant, color, align, children, className, ...other }) => {
   return (
-    <div className={TypographyCn({ nowrap, variant, color, align }, [className])}>{children}</div>
+    <div className={TypographyCn({ nowrap, variant, color, align }, [className])} {...other}>
+      {children}
+    </div>
   );
 };
 

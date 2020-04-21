@@ -9,24 +9,25 @@ import {
 import { REQUEST } from '../constants';
 import api from '../api';
 
-function* getBuildsSaga({ offset, limit }) {
+export function* getBuildsSaga({ offset, limit }) {
   try {
     const { data: builds } = yield call(api.builds.getBuilds, offset, limit);
     yield put(fetchBuildsSuccess(builds.data));
   } catch (error) {
     const message = 'Failed to fetch builds';
     yield put(fetchBuildsFailure(message));
+    throw error;
   }
 }
 
-function* getBuildSaga({ buildId }) {
+export function* getBuildSaga({ buildId }) {
   try {
     const { data: build } = yield call(api.builds.getBuild, buildId);
     yield put(fetchBuildSuccess(build.data));
   } catch (error) {
-    console.error(error);
     const message = 'Failed to fetch build';
     yield put(fetchBuildFailure(message));
+    throw error;
   }
 }
 
