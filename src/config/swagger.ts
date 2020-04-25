@@ -1,4 +1,4 @@
-const { SWAGGER_PORT, APP_DIR } = require('.');
+import { APP_DIR } from '.';
 
 const options = {
   swaggerDefinition: {
@@ -7,7 +7,7 @@ const options = {
       version: '1.0.0',
       description: 'School CI server',
     },
-    host: `localhost:${SWAGGER_PORT}`,
+    host: `localhost:${APP_DIR}`,
     basePath: '/api/v1',
     produces: ['application/json'],
     schemes: ['http', 'https'],
@@ -16,4 +16,4 @@ const options = {
   files: ['src/modules/**/*.routes.js'],
 };
 
-module.exports = options;
+export default options;

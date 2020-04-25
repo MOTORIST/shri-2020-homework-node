@@ -1,18 +1,19 @@
-const shriApi = require('../../services/shriApi.service');
-const git = require('../../services/gitCommands.service');
-const APIError = require('../../helpers/APIError');
-const gitHub = require('../../services/gitHubApi.service');
+import { Request, Response, NextFunction } from 'express';
+import shriApi from '../../services/shriApi.service';
+import git from '../../services/gitCommands.service';
+import APIError from '../../helpers/APIError';
+import gitHub from '../../services/gitHubApi.service';
 
-async function get(_, res, next) {
+export async function get(_: Request, res: Response, next: NextFunction): Promise<void> {
   try {
     const settingsData = await shriApi.getConfig();
-    res.json(settingsData);
+    res.json({ data: settingsData });
   } catch (err) {
     next(err);
   }
 }
 
-async function add(req, res, next) {
+export async function add(req: Request, res: Response, next: NextFunction): Promise<void> {
   const repoData = req.body;
 
   try {
@@ -22,7 +23,7 @@ async function add(req, res, next) {
       throw new APIError({
         status: 400,
         message: `Repository "${repoData.repoName}" not found`,
-        public: true,
+        isPublic: true,
       });
     }
 
@@ -35,7 +36,7 @@ async function add(req, res, next) {
   }
 }
 
-async function remove(_, res, next) {
+export async function remove(_: Request, res: Response, next: NextFunction): Promise<void> {
   try {
     await shriApi.deleteConfig();
     res.sendStatus(204);
@@ -44,7 +45,7 @@ async function remove(_, res, next) {
   }
 }
 
-module.exports = {
+export default {
   get,
   add,
   remove,

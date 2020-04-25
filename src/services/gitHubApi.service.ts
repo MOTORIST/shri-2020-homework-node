@@ -1,24 +1,29 @@
-const axios = require('axios');
-const APIError = require('../helpers/APIError');
-// const https = require('https');
-// const { SHRI_API_AUTH_TOKEN } = require('../config');
+import axios from 'axios';
+import APIError from '../helpers/APIError';
 
 const httpApi = axios.create({
   baseURL: 'https://api.github.com/',
   timeout: 3000,
 });
 
-// httpApi.defaults.headers.common.Authorization = `token ${SHRI_API_AUTH_TOKEN}`;
+interface Repo {
+  id: number;
+  node_id: string;
+  name: string;
+  full_name: string;
+  private: boolean;
+}
 
-async function getRepo(ownerAndRepoName) {
+export async function getRepo(ownerAndRepoName: string): Promise<Repo> {
   try {
-    return httpApi.get(`repos/${ownerAndRepoName}`);
+    const { data } = await httpApi.get(`repos/${ownerAndRepoName}`);
+    return data;
   } catch ({ stack }) {
     throw new APIError({ message: 'Failed to get repository information from github.com', stack });
   }
 }
 
-async function checkRepo(ownerAndRepoName) {
+export async function checkRepo(ownerAndRepoName: string): Promise<boolean> {
   try {
     const { status } = await httpApi.get(`repos/${ownerAndRepoName}`);
 
@@ -32,7 +37,7 @@ async function checkRepo(ownerAndRepoName) {
   }
 }
 
-module.exports = {
+export default {
   getRepo,
   checkRepo,
 };

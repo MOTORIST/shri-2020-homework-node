@@ -1,40 +1,44 @@
-const util = require('util');
-const path = require('path');
-const fs = require('fs');
-const exec = util.promisify(require('child_process').exec);
-const { REPOSITORIES_DIR } = require('../config');
-const APIError = require('../helpers/APIError');
-const appErrors = require('../config/app.errors');
+import { promisify } from 'util';
+import { join } from 'path';
+import { existsSync } from 'fs';
+const exec = promisify(require('child_process').exec);
+import { REPOSITORIES_DIR } from '../config';
+import APIError from '../helpers/APIError';
+import { GIT_COMMANDS } from '../config/app.errors';
 
-function getRepoDir(repoName) {
-  return path.join(REPOSITORIES_DIR, repoName);
+interface Commit {
+  commitHash: string;
+  authorName: string;
+  commitMessage: string;
+  branchName: string;
+}
+
+function getRepoDir(repoName: string): string {
+  return join(REPOSITORIES_DIR, repoName);
 }
 
 /**
  * Clone repository
- * @param {string} repoName
  */
-async function clone(repoName) {
+export async function clone(repoName: string): Promise<void> {
   try {
     const repoPath = `https://github.com/${repoName}.git`;
     const cloneDir = getRepoDir(repoName);
     const command = `git clone ${repoPath} ${cloneDir}`;
 
-    if (!fs.existsSync(cloneDir)) {
+    if (!existsSync(cloneDir)) {
       exec(command);
     }
   } catch ({ stack }) {
     const message = `Failed to clone repository "${repoName}"`;
-    throw new APIError({ message, stack, appError: appErrors.GIT_COMMANDS });
+    throw new APIError({ message, stack, appError: GIT_COMMANDS });
   }
 }
 
 /**
  * Commit info
- * @param {string} commitHash
- * @param {string} repoName
  */
-async function getCommitInfo(commitHash, repoName) {
+export async function getCommitInfo(commitHash: string, repoName: string): Promise<Commit> {
   const repoDir = getRepoDir(repoName);
   const command = `git log -1 --format="%h|%cn|%s" ${commitHash} && git name-rev --name-only --exclude=tags/* ${commitHash}`;
 
@@ -44,7 +48,7 @@ async function getCommitInfo(commitHash, repoName) {
 
     if (data.length < 2) {
       const message = 'Failed to get commit data';
-      throw new APIError({ message, appError: appErrors.GIT_COMMANDS });
+      throw new APIError({ message, appError: GIT_COMMANDS });
     }
 
     const commitDataArr = data[0].split('|');
@@ -57,11 +61,11 @@ async function getCommitInfo(commitHash, repoName) {
       branchName,
     };
   } catch ({ stack, message }) {
-    throw new APIError({ message, stack, appError: appErrors.GIT_COMMANDS });
+    throw new APIError({ message, stack, appError: GIT_COMMANDS });
   }
 }
 
-module.exports = {
+export default {
   clone,
   getCommitInfo,
 };

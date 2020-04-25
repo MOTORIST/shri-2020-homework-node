@@ -1,7 +1,7 @@
-const express = require('express');
-const { validate } = require('express-validation');
-const controller = require('./settings.controller');
-const validationRules = require('./settings.validation');
+import express from 'express';
+import { validate } from 'express-validation';
+import controller from './settings.controller';
+import validationRules from './settings.validation';
 
 const router = express.Router();
 
@@ -39,4 +39,4 @@ router
    */
   .delete(controller.remove);
 
-module.exports = router;
+export default router;

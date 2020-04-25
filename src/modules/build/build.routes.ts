@@ -1,11 +1,11 @@
-const express = require('express');
-const { validate } = require('express-validation');
-const controller = require('./build.controller');
-const validationRules = require('./build.validation');
+import { Router } from 'express';
+import { validate } from 'express-validation';
+import { list, get, add, getBuildLogs } from './build.controller';
+import { getBuild, addBuild, getBuildLogs as _getBuildLogs } from './build.validation';
 
-const router = express.Router();
+const router = Router();
 
-module.exports = router;
+export default router;
 
 /**
  * Build model
@@ -27,7 +27,7 @@ router
    *  @group Build - Build list
    *  @returns {Array.<Build>} 200
    */
-  .get(controller.list);
+  .get(list);
 
 router
   .route('/:buildId')
@@ -38,7 +38,7 @@ router
    *  @param {string} buildId.path.required - build id
    *  @returns {Build.model} 200
    */
-  .get(validate(validationRules.getBuild), controller.get);
+  .get(validate(getBuild), get);
 
 router
   .route('/:commitHash')
@@ -49,7 +49,7 @@ router
    *  @param {string} commitHash.path.required - commit hash
    *  @returns {Build.model} 200
    */
-  .post(validate(validationRules.addBuild), controller.add);
+  .post(validate(addBuild), add);
 
 router
   .route('/:buildId/logs')
@@ -60,4 +60,4 @@ router
    *  @param {string} buildId.path.required - build id
    *  @returns {string} 200
    */
-  .get(validate(validationRules.getBuildLogs), controller.getBuildLogs);
+  .get(validate(_getBuildLogs), getBuildLogs);

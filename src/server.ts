@@ -1,6 +1,7 @@
-require('dotenv').config();
-const app = require('./config/express');
-const { PORT, ENV } = require('./config');
+import dotenv from 'dotenv';
+dotenv.config();
+import app from './config/express';
+import { PORT, ENV } from './config';
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
