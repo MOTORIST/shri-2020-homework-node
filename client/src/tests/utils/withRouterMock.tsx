@@ -2,10 +2,10 @@ import React from 'react';
 import { Router } from 'react-router-dom';
 
 /**
- * 
- * @param {*} Component 
+ *
+ * @param {*} Component
  * @param {*} historyMock - { push: jest.fn(), location: {}, listen: jest.fn() }
- * 
+ *
  * @example
  * const historyMock = {push: jest.fn()};
  * mount(withRouterMock(<Component />, historyMock));
@@ -13,7 +13,7 @@ import { Router } from 'react-router-dom';
  * expect(path).toBe('/path');
  */
 export const withRouterMock = (Component, historyMock) => {
-    historyMock = Object.assign({ push: jest.fn(), location: {}, listen: jest.fn()}, historyMock);
+  historyMock = Object.assign({ push: jest.fn(), location: {}, listen: jest.fn() }, historyMock);
 
-    return <Router history={historyMock}>{Component}</Router>
-}
+  return <Router history={historyMock}>{Component}</Router>;
+};
