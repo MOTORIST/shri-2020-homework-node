@@ -1,15 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 import cn from '../../../../libs/classname';
 import './FormGroup-Hint.post.css';
 
 const HintCn = cn('FormGroup', 'Hint');
 
-export const Hint = ({ className, children }) => {
-  return <div className={HintCn(null, [className])}>{children}</div>;
-};
+export interface HintProps {
+  children?: ReactNode;
+  className?: string;
+}
 
-Hint.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
+export const Hint: React.FC<HintProps> = ({ className, children }) => {
+  return <div className={HintCn(null, [className])}>{children}</div>;
 };

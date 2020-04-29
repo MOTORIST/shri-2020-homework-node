@@ -1,8 +1,19 @@
-import produce from 'immer';
+import { produce } from 'immer';
 import { Types } from '../actions/builds';
 import { REQUEST, SUCCESS, FAILURE } from '../constants';
+import { Build } from '../../../types/Build';
+import { RootState } from '.';
 
-export const initialState = {
+export interface InitialState {
+  isFetching: boolean;
+  isLoaded: boolean;
+  entities: Record<string, Build>;
+  error: string | null;
+  count: number;
+  isMore: boolean;
+}
+
+export const initialState: InitialState = {
   isFetching: false,
   isLoaded: false,
   entities: {},
@@ -23,7 +34,7 @@ export const builds = produce((draft, action) => {
       draft.isLoaded = true;
       draft.count += payload.length;
       draft.isMore = payload.length > 0;
-      payload.forEach(build => draft.entities[build.id] = build);
+      payload.forEach((build: Build) => (draft.entities[build.id] = build));
       break;
     case Types.GET_BUILDS + FAILURE:
       draft.isFetching = false;
@@ -44,10 +55,11 @@ export const builds = produce((draft, action) => {
   }
 }, initialState);
 
-export const getBuildById = id => state => {
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export const getBuildById = (id: string) => (state: RootState) => {
   return state.builds.entities[id];
-}
+};
 
-export const getBuilds = state => {
-  return Object.values(state.builds.entities).sort((a, b) => b.buildNumber - a.buildNumber );
-}
+export const getBuilds = (state: RootState) => {
+  return Object.values(state.builds.entities).sort((a, b) => b.buildNumber - a.buildNumber);
+};

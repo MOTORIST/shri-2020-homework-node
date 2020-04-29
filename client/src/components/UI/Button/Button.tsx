@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 import cn from '../../../libs/classname';
 import Icon from '../Icon';
 
@@ -15,25 +14,40 @@ import './_size/Button_size_m.post.css';
 
 import './Text/Button-Text.post.css';
 import './Icon/Button-Icon.post.css';
+import { IconValue } from '../Icon/Icon';
 
 export const ButtonCn = cn('Button');
 
-export const Button = ({
-  type,
-  color,
+interface ButtonProp {
+  type?: 'button' | 'submit' | 'reset';
+  color?: 'default' | 'primary';
+  disabled?: boolean;
+  full?: boolean;
+  iconVariant?: 'clear' | 'left' | 'only';
+  icon?: IconValue;
+  iconColor?: 'default' | 'error' | 'secondary' | 'success' | 'warning';
+  size?: 's' | 'm';
+  onClick?: () => void;
+  className?: string;
+  children?: ReactNode;
+}
+
+export const Button: React.FC<ButtonProp> = ({
+  type = 'submit',
+  color = 'default',
+  size = 'm',
+  iconColor = 'default',
   disabled,
   full,
   icon,
   iconVariant,
-  iconColor,
-  size,
   onClick,
   children,
   className,
   ...other
 }) => {
+  let body: ReactNode;
   const text = <div className={ButtonCn('Text')}>{children}</div>;
-  let body = text;
 
   const buttonIcon = icon && (
     <div className={ButtonCn('Icon')}>
@@ -41,7 +55,7 @@ export const Button = ({
     </div>
   );
 
-  if (iconVariant === 'clear' || iconVariant === 'only') {
+  if (icon && (iconVariant === 'clear' || iconVariant === 'only')) {
     body = buttonIcon;
   } else if (icon && iconVariant === 'left') {
     body = (
@@ -50,6 +64,8 @@ export const Button = ({
         {text}
       </>
     );
+  } else {
+    body = text;
   }
 
   return (
@@ -63,37 +79,4 @@ export const Button = ({
       {body}
     </button>
   );
-};
-
-Button.propTypes = {
-  type: PropTypes.oneOf(['button', 'submit', 'reset']),
-  color: PropTypes.oneOf(['default', 'primary']),
-  disabled: PropTypes.bool,
-  full: PropTypes.bool,
-  iconVariant: PropTypes.oneOf(['clear', 'left', 'only']),
-  icon: PropTypes.oneOf([
-    'calendar',
-    'clear',
-    'clock',
-    'codeCommit',
-    'done',
-    'fail',
-    'logo',
-    'play',
-    'rebuild',
-    'settings',
-    'stopwatch',
-    'user',
-  ]),
-  iconColor: PropTypes.oneOf(['default', 'error', 'secondary', 'success', 'warning']),
-  size: PropTypes.oneOf(['s', 'm']),
-  onClick: PropTypes.func,
-  children: PropTypes.node,
-};
-
-Button.defaultProps = {
-  type: 'submit',
-  color: 'default',
-  size: 'm',
-  iconColor: 'default',
 };

@@ -11,7 +11,7 @@ import './Coop/Footer-Coop.post.css';
 
 const FooterCn = cn('Footer');
 
-export const Footer = () => {
+export const Footer: React.FC = () => {
   return (
     <div className={FooterCn()}>
       <Container className={FooterCn('Container')}>

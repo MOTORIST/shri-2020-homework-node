@@ -1,15 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 import cn from '../../../libs/classname';
 import './Page.post.css';
 
 const PageCn = cn('Page');
 
-export const Page = ({ className, children, ...other }) => {
-  return <div className={PageCn(null, [className])} {...other}>{children}</div>;
-};
+export interface PageProps {
+  className?: string;
+  children: ReactNode;
+}
 
-Page.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
+export const Page: React.FC<PageProps> = ({ className, children, ...other }) => {
+  return (
+    <div className={PageCn(null, [className])} {...other}>
+      {children}
+    </div>
+  );
 };

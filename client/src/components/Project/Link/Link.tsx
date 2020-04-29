@@ -1,29 +1,29 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 import cn from '../../../libs/classname';
 import { Link as RouteLink } from 'react-router-dom';
 import './Link.post.css';
 
 const LinkCn = cn('Link');
 
-export const Link = ({ href, to, children, className }) => {
-  if (href) {
+export interface LinkProps {
+  href?: string;
+  to?: string;
+  children?: ReactNode;
+  className?: string;
+}
+
+export const Link: React.FC<LinkProps> = ({ href, to, children, className }) => {
+  if (to) {
     return (
-      <a className={LinkCn(null, [className])} href={href}>
+      <RouteLink className={LinkCn(null, [className])} to={to}>
         {children}
-      </a>
+      </RouteLink>
     );
   }
 
   return (
-    <RouteLink className={LinkCn(null, [className])} to={to}>
+    <a className={LinkCn(null, [className])} href={href}>
       {children}
-    </RouteLink>
+    </a>
   );
-};
-
-Link.propTypes = {
-  href: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
 };

@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSettings, saveSettings } from '../../../actions/settings';
-import { SettingsPage } from './SettingsPage';
+import { SettingsPage, SettingsPageProps } from './SettingsPage';
+import { RootState } from '../../../reducers';
+import { Config } from '../../../../../types/Config';
 
-const SettingsContainer = () => {
+const SettingsContainer = (): React.ReactElement<SettingsPageProps> => {
   const dispatch = useDispatch();
 
   const { isFetching, isLoaded, entity: settingsData, error } = useSelector(
-    state => state.settings
+    (state: RootState) => state.settings,
   );
 
-  const handleOnSaveSettings = data => {
-    data.period = Number.parseInt(data.period);
-    dispatch(saveSettings(data));
+  const handleOnSaveSettings = (data: Config): void => {
+    dispatch(saveSettings(data.period));
   };
 
   useEffect(() => {

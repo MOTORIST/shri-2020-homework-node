@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cn from '../../../libs/classname';
 import Typography from '../../UI/Typography';
 import FormGroup, { FormGroupLabel, FormGroupError } from '../../UI/FormGroup';
@@ -10,10 +9,16 @@ import { useForm } from 'react-hook-form';
 
 const NewBuildFormCn = cn('NewBuildForm');
 
-export const NewBuildForm = ({ onCancel, onSubmit, className }) => {
+export interface NewBuildFormProps {
+  onCancel: () => void;
+  onSubmit: () => void;
+  className?: string;
+}
+
+export const NewBuildForm: React.FC<NewBuildFormProps> = ({ onCancel, onSubmit, className }) => {
   const { register, handleSubmit, errors, setValue } = useForm();
 
-  const handleClearableInput = ({ name }) => {
+  const handleClearableInput = ({ name }: { name: string }): void => {
     setValue(name, '');
   };
 
@@ -47,10 +52,4 @@ export const NewBuildForm = ({ onCancel, onSubmit, className }) => {
       </form>
     </div>
   );
-};
-
-NewBuildForm.propTypes = {
-  onCancel: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  className: PropTypes.string,
 };

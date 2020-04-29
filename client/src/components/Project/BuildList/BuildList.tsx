@@ -1,23 +1,37 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cn from '../../../libs/classname';
 import Build from '../Build';
 import Typography from '../../UI/Typography';
 import Button from '../../UI/Button';
+import { Build as IBuild } from '../../../../../types/Build';
 import './BuildList.post.css';
 import './Item/BuildList-Item.post.css';
 import './MoreButton/BuildList-MoreButton.post.css';
 
 const BuildListCn = cn('BuildList');
 
-export const BuildList = ({ buildsData, onLoadMore, isMore, onClickBuild, className }) => {
+export interface BuildListProps {
+  buildsData: IBuild[];
+  onLoadMore: () => void;
+  isMore: boolean;
+  onClickBuild: () => void;
+  className: string;
+}
+
+export const BuildList: React.FC<BuildListProps> = ({
+  buildsData,
+  onLoadMore,
+  isMore,
+  onClickBuild,
+  className,
+}) => {
   if (!buildsData) {
     return <Typography variant="body">No builds</Typography>;
   }
 
   return (
     <div className={BuildListCn(null, [className])}>
-      {buildsData.map(buildData => (
+      {buildsData.map((buildData) => (
         <Build
           className={BuildListCn('Item')}
           key={buildData.id}
@@ -31,12 +45,4 @@ export const BuildList = ({ buildsData, onLoadMore, isMore, onClickBuild, classN
       </Button>
     </div>
   );
-};
-
-BuildList.propTypes = {
-  buildsData: PropTypes.array,
-  onLoadMore: PropTypes.func,
-  isMore: PropTypes.bool,
-  onClickBuild: PropTypes.func,
-  className: PropTypes.string,
 };

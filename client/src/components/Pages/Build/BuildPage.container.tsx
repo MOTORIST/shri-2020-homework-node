@@ -6,15 +6,17 @@ import { fetchBuild } from '../../../actions/builds';
 import { fetchSettings } from '../../../actions/settings';
 import { getBuildById } from '../../../reducers/builds';
 import api from '../../../api';
+import { RootState } from '../../../reducers';
+import { Build } from '../../../../../types/Build';
 
-export const BuildPageContainer = () => {
+export const BuildPageContainer: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id: buildId } = useParams();
   const buildData = useSelector(getBuildById(buildId));
 
   const { isLoaded: isLoadedSettings, entity: settingsData } = useSelector(
-    state => state.settings
+    (state: RootState) => state.settings,
   );
 
   const [logsData, setLogsData] = useState(null);
@@ -31,26 +33,28 @@ export const BuildPageContainer = () => {
 
   useEffect(() => {
     let isMounted = true;
-    
-    api.builds.getBuildLogs(buildId)
-    .then(({ data, status }) => {
-      if (isMounted && status === 200) {
-        setLogsData(data);
-      }
-    })
-    .catch(error => console.error(error));
 
-    return () => {
+    api.builds
+      .getBuildLogs(buildId)
+      .then(({ data, status }) => {
+        if (isMounted && status === 200) {
+          setLogsData(data);
+        }
+      })
+      .catch((error) => console.error(error));
+
+    return (): void => {
       isMounted = false;
     };
   }, [buildId]);
 
-  const handleRebuild = ({ commitHash }) => {
-    api.builds.runBuild(commitHash)
+  const handleRebuild = ({ commitHash }: Pick<Build, 'commitHash'>): void => {
+    api.builds
+      .runBuild(commitHash)
       .then(({ data: { data } }) => {
         history.push(`/builds/${data.id}`);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   };

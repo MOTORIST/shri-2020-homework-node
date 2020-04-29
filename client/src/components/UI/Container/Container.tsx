@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 import cn from '../../../libs/classname';
 import './Container.post.css';
 import './_arrange/Container_arrange_col.post.css';
@@ -12,7 +11,17 @@ import './_vertical-align/Container_vertical-align_center.post.css';
 
 export const ContainerCn = cn('Container');
 
-export const Container = ({
+export interface ContainerProps {
+  distribute?: 'between' | 'center';
+  arrange?: 'col' | 'row';
+  height?: 'full';
+  spaceH?: 's';
+  verticalAlign?: 'center';
+  className?: string;
+  children: ReactNode;
+}
+
+export const Container: React.FC<ContainerProps> = ({
   distribute,
   arrange,
   height,
@@ -21,7 +30,7 @@ export const Container = ({
   className,
   children,
 }) => {
-  const modificators = {
+  const modifications = {
     distribute,
     arrange,
     height,
@@ -29,15 +38,5 @@ export const Container = ({
     'vertical-align': verticalAlign,
   };
 
-  return <div className={ContainerCn(modificators, [className])}>{children}</div>;
-};
-
-Container.propTypes = {
-  distribute: PropTypes.oneOf(['between', 'center']),
-  arrange: PropTypes.oneOf(['col', 'row']),
-  height: PropTypes.oneOf(['full']),
-  spaceH: PropTypes.oneOf(['s']),
-  verticalAlign: PropTypes.oneOf(['center']),
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  return <div className={ContainerCn(modifications, [className])}>{children}</div>;
 };

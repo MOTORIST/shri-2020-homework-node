@@ -1,14 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 import cn from '../../../../libs/classname';
 import './Header-Actions.post.css';
 
 const ActionsCn = cn('Header', 'Actions');
 
-export const Actions = ({ children }) => {
-  return <div className={ActionsCn()}>{children}</div>;
-};
+export interface ActionsProps {
+  children: ReactNode;
+}
 
-Actions.propTypes = {
-  children: PropTypes.node,
+export const Actions: React.FC<ActionsProps> = ({ children }) => {
+  return <div className={ActionsCn()}>{children}</div>;
 };

@@ -27,7 +27,7 @@ export async function getConfig(): Promise<Config> {
     return config.data;
   } catch (err) {
     const message = 'Failed to get repository configuration (SHRI API: GET / conf)';
-    throw new APIError({ message, appError: SHRI_API, stack: err.stack });
+    throw new APIError({ message, appError: SHRI_API, stack: err.stack, errors: [err] });
   }
 }
 
@@ -42,7 +42,7 @@ export async function addConfig(data: Config): Promise<boolean> {
     return true;
   } catch (err) {
     const message = 'Failed to add repository configuration (SHRI API: POST /conf)';
-    throw new APIError({ message, appError: SHRI_API });
+    throw new APIError({ message, appError: SHRI_API, errors: [err] });
   }
 }
 
@@ -57,7 +57,7 @@ export async function deleteConfig(): Promise<boolean> {
     return true;
   } catch (err) {
     const message = 'Failed to delete repository configuration (SHRI API: DELETE /conf)';
-    throw new APIError({ message, appError: SHRI_API });
+    throw new APIError({ message, appError: SHRI_API, errors: [err] });
   }
 }
 
@@ -69,7 +69,7 @@ export async function getBuildList(offset = 0, limit = 25): Promise<BuildList> {
     return buildList.data;
   } catch (err) {
     const message = 'Failed to get build list (SHRI API: GET /build/list)';
-    throw new APIError({ message, appError: SHRI_API });
+    throw new APIError({ message, appError: SHRI_API, errors: [err] });
   }
 }
 
@@ -79,7 +79,7 @@ export async function getBuild(buildId: string): Promise<Build> {
     return build.data;
   } catch (err) {
     const message = 'Failed to get build data (SHRI API: GET /build/details)';
-    throw new APIError({ message, appError: SHRI_API });
+    throw new APIError({ message, appError: SHRI_API, errors: [err] });
   }
 }
 
@@ -93,7 +93,7 @@ export async function buildRequest(buildData: BuildRequestArg): Promise<BuildReq
     return buildRequest.data;
   } catch (err) {
     const message = 'Failed to create build (SHRI API: POST /build/request)';
-    throw new APIError({ message, appError: SHRI_API });
+    throw new APIError({ message, appError: SHRI_API, errors: [err] });
   }
 }
 
@@ -103,7 +103,7 @@ export async function getBuildLogs(buildId: string): Promise<string> {
     return log.data;
   } catch (err) {
     const message = 'Failed to get build logo (SHRI API: GET /build/log)';
-    throw new APIError({ message, appError: SHRI_API });
+    throw new APIError({ message, appError: SHRI_API, errors: [err] });
   }
 }
 

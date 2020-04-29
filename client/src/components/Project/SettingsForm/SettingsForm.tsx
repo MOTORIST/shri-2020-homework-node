@@ -1,19 +1,33 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import cn from '../../../libs/classname';
-import { useForm } from 'react-hook-form';
+import { useForm, DeepPartial, OnSubmit } from 'react-hook-form';
 import Typography from '../../UI/Typography';
 import FormGroup, { FormGroupHint, FormGroupLabel, FormGroupError } from '../../UI/FormGroup';
 import Input from '../../UI/Input';
 import Button from '../../UI/Button';
+import { Config } from '../../../../../types/Config';
 import './SettingsForm.post.css';
 import './SaveButton/SettingsForm-SaveButton.post.css';
 import './CancelButton/SettingsForm-CancelButton.post.css';
 
 const SettingsFormCn = cn('SettingsForm');
 
-const SettingsForm = ({ onSubmit, onCancel, isFetching, defaultValues, className }) => {
-  const { register, handleSubmit, errors, setValue, reset } = useForm();
+interface SettingsFormProps {
+  onSubmit: OnSubmit<Config>;
+  onCancel?: () => void;
+  isFetching?: boolean;
+  className?: string;
+  defaultValues: DeepPartial<Config>;
+}
+
+const SettingsForm: React.FC<SettingsFormProps> = ({
+  onSubmit,
+  onCancel,
+  isFetching,
+  defaultValues,
+  className,
+}) => {
+  const { register, handleSubmit, errors, setValue, reset } = useForm<Config>();
 
   useEffect(() => {
     reset(defaultValues);
@@ -25,10 +39,10 @@ const SettingsForm = ({ onSubmit, onCancel, isFetching, defaultValues, className
     pattern: { value: /^[1-9]\d*$/, message: 'Field must be number and not equal to 0' },
   };
 
-  const getValidators = rules =>
+  const getValidators = (rules: Record<string, any>) =>
     Object.fromEntries(Object.entries(validators).filter(([key]) => rules.includes(key)));
 
-  const handleClearableInput = ({ name }) => {
+  const handleClearableInput = ({ name }: { name: string }): void => {
     setValue(name, '');
   };
 
@@ -36,7 +50,7 @@ const SettingsForm = ({ onSubmit, onCancel, isFetching, defaultValues, className
     <div className={SettingsFormCn(null, [className])}>
       <Typography variant="h4">Settings</Typography>
       <Typography variant="body" color="secondary">
-        Configure repository connection and synchronization settings.
+        Configure repository connection and synchronization settings.
       </Typography>
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -124,17 +138,6 @@ const SettingsForm = ({ onSubmit, onCancel, isFetching, defaultValues, className
       </form>
     </div>
   );
-};
-
-SettingsForm.propTypes = {
-  onSubmit: PropTypes.func,
-  onCancel: PropTypes.func,
-  defaultValues: PropTypes.shape({
-    repoName: PropTypes.string,
-    buildCommand: PropTypes.string,
-    mainBranch: PropTypes.string,
-    period: PropTypes.number,
-  }),
 };
 
 export default SettingsForm;

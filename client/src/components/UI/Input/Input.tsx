@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cn from '../../../libs/classname';
 import { ClearButton } from './ClearButton/ClearButton';
 import './Input.post.css';
@@ -10,25 +9,37 @@ import './_status/Input_status_error.post.css';
 import './_status/Input_status_success.post.css';
 import './_width/Input_width_2xs.post.css';
 import './_width/Input_width_full.post.css';
-
 import './Control/Input-Control.post.css';
 
 const InputCn = cn('Input');
 
-export const Input = ({
+interface InputProps {
+  id?: string;
+  name: string;
+  placeholder?: string;
+  size?: 's' | 'm';
+  clearable?: boolean;
+  onClearable?: ({ name }: { name: string }) => void;
+  status?: 'success' | 'error';
+  width?: 'full' | '2xs';
+  className?: string;
+  inputRef?: any;
+}
+
+export const Input: React.FC<InputProps> = ({
   id,
   name,
   size,
   clearable,
   onClearable,
   status,
-  width,
+  width = 'full',
   placeholder,
   className,
   inputRef,
 }) => {
-  const handleClearable = e => {
-    onClearable({ name });
+  const handleClearable = (): void => {
+    onClearable && onClearable({ name });
   };
 
   return (
@@ -43,19 +54,4 @@ export const Input = ({
       {clearable && <ClearButton size={size} onClick={handleClearable} />}
     </div>
   );
-};
-
-Input.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  placeholder: PropTypes.string,
-  size: PropTypes.oneOf(['s', 'm']),
-  clearable: PropTypes.bool,
-  onClearable: PropTypes.func,
-  status: PropTypes.oneOf(['success', 'error']),
-  width: PropTypes.oneOf(['full', '2xs']),
-};
-
-Input.defaultProps = {
-  width: 'full',
 };

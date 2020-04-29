@@ -1,15 +1,24 @@
-import produce from 'immer';
+import { produce } from 'immer';
 import { Types } from '../actions/settings';
 import { REQUEST, SUCCESS, FAILURE } from '../constants';
+import { Config } from '../../../types/Config';
 
 const defaultValues = {
+  id: '',
   repoName: '',
   buildCommand: '',
   mainBranch: '',
-  period: null,
+  period: 10,
 };
 
-export const initialState = {
+export interface InitialState {
+  isFetching: boolean;
+  isLoaded: boolean;
+  entity: Config;
+  error: null;
+}
+
+export const initialState: InitialState = {
   isFetching: false,
   isLoaded: false,
   entity: defaultValues,
@@ -38,7 +47,7 @@ export const settings = produce((draft, action) => {
     case Types.SAVE_SETTINGS + SUCCESS:
       draft.isFetching = false;
       draft.isLoaded = true;
-      draft.entity= payload;
+      draft.entity = payload;
       break;
     case Types.SAVE_SETTINGS + FAILURE:
       draft.isFetching = false;

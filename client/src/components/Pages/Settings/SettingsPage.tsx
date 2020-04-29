@@ -1,20 +1,31 @@
 import React from 'react';
 import SettingsForm from '../../Project/SettingsForm';
-import PropTypes from 'prop-types';
 import Header from '../../Project/Header';
-import { PageContent } from '../../Project/Page';
+import Page, { PageContent } from '../../Project/Page';
 import { useHistory } from 'react-router-dom';
 import Typography from '../../UI/Typography';
-import Page from '../../Project/Page';
+import { Config } from '../../../../../types/Config';
 import Footer from '../../Project/Footer';
 import cn from '../../../libs/classname';
 
 const SettingsPageCn = cn('SettingsPage');
 
-export const SettingsPage = ({ settingsFormDefaultValues, onSaveSettings, isFetching, error }) => {
+export interface SettingsPageProps {
+  settingsFormDefaultValues: Config;
+  onSaveSettings: (data: Config) => void;
+  isFetching: boolean;
+  error: string | null;
+}
+
+export const SettingsPage: React.FC<SettingsPageProps> = ({
+  settingsFormDefaultValues,
+  onSaveSettings,
+  isFetching,
+  error,
+}) => {
   const history = useHistory();
 
-  const handleToMainPage = () => {
+  const handleToMainPage = (): void => {
     history.push('/');
   };
 
@@ -38,11 +49,4 @@ export const SettingsPage = ({ settingsFormDefaultValues, onSaveSettings, isFetc
       <Footer />
     </Page>
   );
-};
-
-SettingsPage.propTypes = {
-  settingsFormDefaultValues: PropTypes.object,
-  onSaveSettings: PropTypes.func,
-  isFetching: PropTypes.bool,
-  error: PropTypes.string,
 };

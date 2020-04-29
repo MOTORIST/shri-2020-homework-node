@@ -1,15 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 import cn from '../../../../libs/classname';
 import './FormGroup-Error.post.css';
 
 const ErrorCn = cn('FormGroup', 'Error');
 
-export const Error = ({ children, className }) => {
-  return <div className={ErrorCn(null, [className])}>{children}</div>;
-};
+export interface ErrorProps {
+  children?: ReactNode;
+  className?: string;
+}
 
-Error.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
+export const Error: React.FC<ErrorProps> = ({ children, className }) => {
+  return <div className={ErrorCn(null, [className])}>{children}</div>;
 };

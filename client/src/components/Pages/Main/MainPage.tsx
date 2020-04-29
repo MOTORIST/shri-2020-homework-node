@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageContent } from '../../Project/Page';
+import Page, { PageContent } from '../../Project/Page';
 import Header from '../../Project/Header';
 import ButtonGroups from '../../UI/ButtonGroups';
 import Button from '../../UI/Button';
@@ -7,17 +7,16 @@ import Typography from '../../UI/Typography';
 import Icon from '../../UI/Icon';
 import { useHistory } from 'react-router-dom';
 import cn from '../../../libs/classname';
-import Page from '../../Project/Page';
 import Footer from '../../Project/Footer';
 import './Description/MainPage-Description.post.css';
 import './Logo/MainPage-Logo.post.css';
 
 const MainPageCn = cn('MainPage');
 
-export const MainPage = () => {
+export const MainPage: React.FC = () => {
   const history = useHistory();
 
-  const handleToSettings = () => {
+  const handleToSettings = (): void => {
     history.push('/settings');
   };
 
@@ -25,7 +24,13 @@ export const MainPage = () => {
     <Page data-testid="main-page" className={MainPageCn()}>
       <Header title="School CI server" color="secondary">
         <ButtonGroups>
-          <Button data-testid="open-settings-icon-button" icon="settings" iconVariant="left" size="s" onClick={handleToSettings}>
+          <Button
+            data-testid="open-settings-icon-button"
+            icon="settings"
+            iconVariant="left"
+            size="s"
+            onClick={handleToSettings}
+          >
             Settings
           </Button>
         </ButtonGroups>
@@ -35,11 +40,16 @@ export const MainPage = () => {
         <Typography className={MainPageCn('Description')} variant="body" align="center">
           Configure repository connection and synchronization settings
         </Typography>
-        <Button data-testid="open-settings-button" color="primary" size="m" onClick={handleToSettings}>
+        <Button
+          data-testid="open-settings-button"
+          color="primary"
+          size="m"
+          onClick={handleToSettings}
+        >
           Open settings
         </Button>
       </PageContent>
-      <Footer/>
+      <Footer />
     </Page>
   );
 };

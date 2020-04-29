@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { format, isThisYear } from 'date-fns';
 import cn from '../../../libs/classname';
 import Icon from '../../UI/Icon';
@@ -8,7 +7,13 @@ import './DateTime.post.css';
 
 const DateTimeCn = cn('DateTime');
 
-export const DateTime = ({ dateTime, icon, className }) => {
+export interface DateTimeProps {
+  dateTime: string;
+  className: string;
+  icon?: 'calendar' | 'clock' | 'stopwatch';
+}
+
+export const DateTime: React.FC<DateTimeProps> = ({ dateTime, icon = 'calendar', className }) => {
   const date = new Date(dateTime);
   const isCurrentYear = isThisYear(date);
   const formatString = isCurrentYear ? 'dd MMM, H:mm' : 'dd MMM yyyy, H:mm';
@@ -20,14 +25,4 @@ export const DateTime = ({ dateTime, icon, className }) => {
       <IconPlusContent>{formattedDate}</IconPlusContent>
     </IconPlus>
   );
-};
-
-DateTime.propTypes = {
-  dateTime: PropTypes.string.isRequired,
-  icon: PropTypes.oneOf(['calendar', 'clock', 'stopwatch']).isRequired,
-  className: PropTypes.string,
-};
-
-DateTime.defaultProps = {
-  icon: 'calendar',
 };

@@ -1,12 +1,32 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, SyntheticEvent, MutableRefObject } from 'react';
 import usePortal from 'react-useportal';
 import cn from '../../../libs/classname';
 import './Modal.post.css';
 
 const ModalCn = cn('Modal');
 
-export const useModal = ({ onOpen, onClose, background, ...config } = {}) => {
-  const modal = useRef();
+type HTMLElRef = MutableRefObject<HTMLElement>;
+
+type CustomEvent = {
+  event?: SyntheticEvent<any, Event>;
+  portal: HTMLElRef;
+  targetEl: HTMLElRef;
+} & SyntheticEvent<any, Event>;
+
+type CustomEventHandler = (customEvent: CustomEvent) => void;
+interface ModalConfig {
+  onOpen?: CustomEventHandler;
+  onClose?: CustomEventHandler;
+  background?: boolean;
+}
+
+export const useModal = ({
+  onOpen: handleOnOpen,
+  onClose: handleClose,
+  background,
+  ...config
+}: ModalConfig = {}) => {
+  const modal = useRef<HTMLElement>();
 
   const modalStyle = `
     position: fixed;
@@ -37,28 +57,36 @@ export const useModal = ({ onOpen, onClose, background, ...config } = {}) => {
     onOpen(event) {
       const { portal } = event;
       portal.current.style.cssText = background ? backgroundStyle : modalStyle;
-      if (onOpen) onOpen(event);
+
+      if (handleOnOpen) {
+        handleOnOpen(event);
+      }
     },
     onClose(event) {
       const { portal } = event;
       portal.current.removeAttribute('style');
-      if (onClose) onClose(event);
+
+      if (handleClose) {
+        handleClose(event);
+      }
     },
     onPortalClick({ target }) {
-      const clickingOutsideModal = modal && modal.current && !modal.current.contains(target);
-      if (clickingOutsideModal) closePortal();
+      const isClickingOutsideModal =
+        modal && modal.current && !modal.current.contains(target as Node);
+
+      if (isClickingOutsideModal) closePortal();
     },
-    bindTo: document.querySelector('.Theme'),
+    bindTo: document.querySelector('.Theme') as HTMLElement,
     ...config,
   });
 
   const ModalWithBackground = useCallback(
-    props => (
+    (props) => (
       <Portal>
         <div ref={modal} {...props} className={ModalCn()} />
       </Portal>
     ),
-    []
+    [],
   );
 
   const Modal = background ? ModalWithBackground : Portal;

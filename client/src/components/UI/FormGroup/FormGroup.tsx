@@ -1,19 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 import cn from '../../../libs/classname';
 import './FormGroup.post.css';
 import './_row/FormGroup_row.post.css';
 
 const FormGroupCn = cn('FormGroup');
 
-const FormGroup = ({ row, className, children }) => {
-  return <div className={FormGroupCn({ row }, [className])}>{children}</div>;
-};
+export interface FormGroupProps {
+  row?: boolean;
+  children?: ReactNode;
+  className?: string;
+}
 
-FormGroup.propTypes = {
-  row: PropTypes.bool,
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
+const FormGroup: React.FC<FormGroupProps> = ({ row, className, children }) => {
+  return <div className={FormGroupCn({ row }, [className])}>{children}</div>;
 };
 
 export default FormGroup;

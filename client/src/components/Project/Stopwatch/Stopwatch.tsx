@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cn from '../../../libs/classname';
+// eslint-disable-next-line import/default
 import ms from 'pretty-ms';
 import IconPlus, { IconPlusContent } from '../../UI/IconPlus';
 import Icon from '../../UI/Icon';
@@ -8,7 +8,12 @@ import './Stopwatch.post.css';
 
 const StopwatchCn = cn('Stopwatch');
 
-export const Stopwatch = ({ duration, className }) => {
+export interface StopwatchProps {
+  duration: number;
+  className?: string;
+}
+
+export const Stopwatch: React.FC<StopwatchProps> = ({ duration, className }) => {
   const formattedDuration = duration ? ms(duration) : 0;
 
   return (
@@ -17,9 +22,4 @@ export const Stopwatch = ({ duration, className }) => {
       <IconPlusContent>{formattedDuration}</IconPlusContent>
     </IconPlus>
   );
-};
-
-Stopwatch.propTypes = {
-  className: PropTypes.string,
-  duration: PropTypes.number,
 };

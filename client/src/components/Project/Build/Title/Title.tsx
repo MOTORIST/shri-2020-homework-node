@@ -1,14 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cn from '../../../../libs/classname';
 import Typography from '../../../UI/Typography';
 import '../Title/Build-Title.post.css';
 import '../Number/Build-Number.post.css';
 import '../TitleText/Build-TitleText.post.css';
+import { Color } from '../Build';
 
 const BuildCn = cn('Build');
 
-export const Title = ({ color, number, title }) => {
+export interface TitleProps {
+  color: Color;
+  number: number;
+  title: string;
+}
+
+export const Title: React.FC<TitleProps> = ({ color, number, title }) => {
   return (
     <div className={BuildCn('Title')}>
       <Typography className={BuildCn('Number')} color={color}>
@@ -17,10 +23,4 @@ export const Title = ({ color, number, title }) => {
       <div className={BuildCn('TitleText')}>{title}</div>
     </div>
   );
-};
-
-Title.propTypes = {
-  color: PropTypes.oneOf(['error', 'success', 'warning']).isRequired,
-  number: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
 };

@@ -1,12 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 import cn from '../../../../libs/classname';
 import Container from '../../../UI/Container';
 import './Page-Content.post.css';
 
 const ContentCn = cn('Page', 'Content');
+export interface ContentProps {
+  arrange?: 'row' | 'col';
+  contentPosition?: 'center';
+  className?: string;
+  children: ReactNode;
+}
 
-export const Content = ({ contentPosition, arrange, className, children }) => {
+export const Content: React.FC<ContentProps> = ({
+  contentPosition,
+  arrange,
+  className,
+  children,
+}) => {
   return (
     <Container
       className={ContentCn(null, [className])}
@@ -17,11 +27,4 @@ export const Content = ({ contentPosition, arrange, className, children }) => {
       {children}
     </Container>
   );
-};
-
-Content.propTypes = {
-  arrange: PropTypes.oneOf(['row', 'col']),
-  contentPosition: PropTypes.oneOf(['center']),
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
 };

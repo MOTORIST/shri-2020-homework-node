@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 import cn from '../../../libs/classname';
 import './Typography.post.css';
 import './_align/Typography_align_center.post.css';
@@ -16,21 +15,29 @@ import './_variant/Typography_variant_h4.post.css';
 
 const TypographyCn = cn('Typography');
 
-const Typography = ({ nowrap, variant, color, align, children, className, ...other }) => {
+interface TypographyProps {
+  nowrap?: boolean;
+  variant?: 'body' | 'h1' | 'h2' | 'h3' | 'h4';
+  color?: 'error' | 'secondary' | 'success' | 'warning' | 'default';
+  align?: 'center';
+  className?: string;
+  children: ReactNode;
+}
+
+const Typography: React.FC<TypographyProps> = ({
+  nowrap,
+  variant,
+  color = 'default',
+  align,
+  children,
+  className,
+  ...other
+}) => {
   return (
     <div className={TypographyCn({ nowrap, variant, color, align }, [className])} {...other}>
       {children}
     </div>
   );
-};
-
-Typography.propTypes = {
-  nowrap: PropTypes.bool,
-  variant: PropTypes.oneOf(['body', 'h1', 'h2', 'h3', 'h4']),
-  color: PropTypes.oneOf(['error', 'secondary', 'success', 'warning']),
-  align: PropTypes.oneOf(['center']),
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
 };
 
 export default Typography;

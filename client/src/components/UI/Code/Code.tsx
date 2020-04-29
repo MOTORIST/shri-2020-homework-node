@@ -1,12 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cn from '../../../libs/classname';
 import Convert from 'ansi-to-html';
 import './Code.post.css';
 
 const CodeCn = cn('Code');
 
-export const Code = ({ children, className }) => {
+export interface CodeProps {
+  children: string;
+  className?: string;
+}
+
+export const Code: React.FC<CodeProps> = ({ children, className }) => {
   const convert = new Convert({ fg: '#000' });
 
   return (
@@ -15,9 +19,4 @@ export const Code = ({ children, className }) => {
       dangerouslySetInnerHTML={{ __html: convert.toHtml(children) }}
     />
   );
-};
-
-Code.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
 };
