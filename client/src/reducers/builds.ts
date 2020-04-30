@@ -4,7 +4,7 @@ import { REQUEST, SUCCESS, FAILURE } from '../constants';
 import { Build } from '../../../types/Build';
 import { RootState } from '.';
 
-export interface InitialState {
+export interface BuildsState {
   isFetching: boolean;
   isLoaded: boolean;
   entities: Record<string, Build>;
@@ -13,7 +13,7 @@ export interface InitialState {
   isMore: boolean;
 }
 
-export const initialState: InitialState = {
+export const initialState: BuildsState = {
   isFetching: false,
   isLoaded: false,
   entities: {},
@@ -60,6 +60,6 @@ export const getBuildById = (id: string) => (state: RootState) => {
   return state.builds.entities[id];
 };
 
-export const getBuilds = (state: RootState) => {
+export const getBuilds = (state: RootState): Build[] => {
   return Object.values(state.builds.entities).sort((a, b) => b.buildNumber - a.buildNumber);
 };

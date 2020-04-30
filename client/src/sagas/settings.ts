@@ -6,12 +6,14 @@ import {
   fetchSettingsFailure,
   saveSettingsSuccess,
   saveSettingsFailure,
+  SaveSettingsAction,
 } from '../actions/settings';
 import { setIsSetSettings } from '../actions/common';
 import { REQUEST } from '../constants';
 import { forwardTo } from '../history';
+import { SagaIterator } from 'redux-saga';
 
-export function* fetchSettingsSaga() {
+export function* fetchSettingsSaga(): SagaIterator {
   try {
     const { data: settings } = yield call(api.settings.getSettings);
     yield put(fetchSettingsSuccess(settings.data));
@@ -22,7 +24,7 @@ export function* fetchSettingsSaga() {
   }
 }
 
-export function* saveSettingsSaga({ values }) {
+export function* saveSettingsSaga({ values }: SaveSettingsAction): SagaIterator {
   try {
     const { data: settings } = yield call(api.settings.saveSaveSettings, values);
     yield put(saveSettingsSuccess(settings.data));
@@ -35,7 +37,7 @@ export function* saveSettingsSaga({ values }) {
   }
 }
 
-function* watchSettingsSagas() {
+function* watchSettingsSagas(): SagaIterator {
   yield all([
     takeLatest(Types.GET_SETTINGS + REQUEST, fetchSettingsSaga),
     takeLatest(Types.SAVE_SETTINGS + REQUEST, saveSettingsSaga),

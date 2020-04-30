@@ -1,14 +1,18 @@
-import { Types } from '../actions/common';
+import { Types, CommonActionTypes } from '../actions/common';
 
-const getIsSetSettings = () => {
+const getIsSetSettings = (): boolean => {
   return localStorage.getItem('isSetSettings') ? true : false;
 };
 
-export const initialState = {
+export interface CommonState {
+  isSetSettings: boolean;
+}
+
+export const initialState: CommonState = {
   isSetSettings: getIsSetSettings(),
 };
 
-export function common(state = initialState, action) {
+export function common(state = initialState, action: CommonActionTypes): CommonState {
   const { type, payload } = action;
 
   switch (type) {

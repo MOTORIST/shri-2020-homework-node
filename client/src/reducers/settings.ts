@@ -11,14 +11,14 @@ const defaultValues = {
   period: 10,
 };
 
-export interface InitialState {
+export interface SettingsState {
   isFetching: boolean;
   isLoaded: boolean;
   entity: Config;
   error: null;
 }
 
-export const initialState: InitialState = {
+export const initialState: SettingsState = {
   isFetching: false,
   isLoaded: false,
   entity: defaultValues,

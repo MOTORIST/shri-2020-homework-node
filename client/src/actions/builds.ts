@@ -1,38 +1,78 @@
 import { REQUEST, SUCCESS, FAILURE } from '../constants';
 import config from '../config';
+import { Build } from '../../../types/Build';
 
 export const Types = {
   GET_BUILDS: 'GET_BUILDS',
   GET_BUILD: 'GET_BUILD',
 };
 
-export const fetchBuilds = (offset = 0, limit = config.BUILDS_PER_PAGE) => ({
+export interface FetchBuildsAction {
+  type: string;
+  offset: number;
+  limit: number;
+}
+
+export const fetchBuilds = (offset = 0, limit = config.BUILDS_PER_PAGE): FetchBuildsAction => ({
   type: Types.GET_BUILDS + REQUEST,
   offset,
   limit,
 });
 
-export const fetchBuildsSuccess = data => ({
+export interface FetchBuildsSuccessAction {
+  type: string;
+  payload: Build;
+}
+
+export const fetchBuildsSuccess = (data: Build): FetchBuildsSuccessAction => ({
   type: Types.GET_BUILDS + SUCCESS,
   payload: data,
 });
 
-export const fetchBuildsFailure = error => ({
+export interface FetchBuildsFailureAction {
+  type: string;
+  error: string;
+}
+
+export const fetchBuildsFailure = (error: string): FetchBuildsFailureAction => ({
   type: Types.GET_BUILDS + FAILURE,
   error,
 });
 
-export const fetchBuild = buildId => ({
+export interface FetchBuildAction {
+  type: string;
+  buildId: string;
+}
+
+export const fetchBuild = (buildId: string): FetchBuildAction => ({
   type: Types.GET_BUILD + REQUEST,
   buildId,
 });
 
-export const fetchBuildSuccess = data => ({
+export interface FetchBuildSuccessAction {
+  type: string;
+  payload: Build;
+}
+
+export const fetchBuildSuccess = (data: Build): FetchBuildSuccessAction => ({
   type: Types.GET_BUILD + SUCCESS,
   payload: data,
 });
 
-export const fetchBuildFailure = error => ({
+export interface FetchBuildFailureAction {
+  type: string;
+  error: string;
+}
+
+export const fetchBuildFailure = (error: string): FetchBuildFailureAction => ({
   type: Types.GET_BUILD + FAILURE,
   error,
 });
+
+export type BuildActionTypes =
+  | FetchBuildsAction
+  | FetchBuildSuccessAction
+  | FetchBuildFailureAction
+  | FetchBuildsAction
+  | FetchBuildsSuccessAction
+  | FetchBuildsFailureAction;
