@@ -6,8 +6,12 @@
   "author": "Gerasin Ivan <webartmotor@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env ENV=production node ./src/server.js",
-    "dev": "cross-env ENV=development nodemon --config nodemon.json",
+    "server:start": "cross-env ENV=production node ./build/src/server.js",
+    "server:dev": "cross-env ENV=development nodemon --config nodemon.json",
+    "server:build": "tsc --project ./tsconfig.json",
+    "client:start": "yarn --cwd ./client start",
+    "client:build": "yarn --cwd ./client build",
+    "client:test": "yarn --cwd ./client test --watchAll",
     "commit": "git-cz",
     "eslint": "eslint -c .eslintrc.js 'src/**/*.js'",
     "e2e": "hermione"
