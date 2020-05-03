@@ -60,7 +60,7 @@ export async function getBuildLogs(req: Request, res: Response, next: NextFuncti
     const cache = await cacheBuildLogs.get(buildId);
 
     if (cache) {
-      res.json(cache);
+      res.json({ data: cache });
     } else {
       const logsData = await shriApi.getBuildLogs(buildId);
 
@@ -68,7 +68,7 @@ export async function getBuildLogs(req: Request, res: Response, next: NextFuncti
         cacheBuildLogs.set(buildId, logsData);
       }
 
-      res.json(logsData);
+      res.json({ data: logsData });
     }
   } catch (err) {
     next(err);
