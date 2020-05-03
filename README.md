@@ -13,7 +13,6 @@
 
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Deployment](#deployment)
 - [TODO](#todo)
 - [Built Using](built_using)
 - [Authors](#authors)
@@ -37,23 +36,22 @@ cd shri-2020-homework-node
 yarn install
 ```
 Rename from .env.example to .env and change app settings.
-### Run
-
+#### Commands
+**Note!** Use yarn
 ```
-yarn start
-```
-
-## 🚀 Deployment <a name = "deployment"></a>
-
-```
-yarn dev
+yarn server:start
+yarn server:dev
+yarn server:build
+yarn client:start
+yarn client:build
+yarn client:test
 ```
 
 ## ✔️ TODO <a name = "todo"></a>
-
+- переписать swagger на TS
+- перевести storybook на TS
 - ~~сделать кеширование получения build logs~~
 - сделать очистку build logs (либо по событию "сохранить в кеш", либо как фоновая задача - раз в сутки)
-- выделить отдельный поток для фоновых задач
 - ~~написать middleware для обработки ошибок~~
 - кастомизировать формат логов
 - сделать дополнительные сервисы модулей и забрать логику из контроллеров туда
