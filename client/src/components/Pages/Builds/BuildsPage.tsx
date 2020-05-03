@@ -20,7 +20,7 @@ export interface BuildsPageProps {
   isMore: boolean;
   onLoadMore: () => void;
   isFetchingBuilds: boolean;
-  buildsError?: string;
+  buildsError?: string | null;
 }
 
 export const BuildsPage: React.FC<BuildsPageProps> = ({

@@ -6,17 +6,18 @@ import Input from '../../UI/Input';
 import ButtonGroups from '../../UI/ButtonGroups';
 import Button from '../../UI/Button';
 import { useForm } from 'react-hook-form';
+import { Build } from '../../../../../types/Build';
 
 const NewBuildFormCn = cn('NewBuildForm');
 
 export interface NewBuildFormProps {
   onCancel: () => void;
-  onSubmit: () => void;
+  onSubmit: ({ commitHash }: Pick<Build, 'commitHash'>) => void;
   className?: string;
 }
 
 export const NewBuildForm: React.FC<NewBuildFormProps> = ({ onCancel, onSubmit, className }) => {
-  const { register, handleSubmit, errors, setValue } = useForm();
+  const { register, handleSubmit, errors, setValue } = useForm<Pick<Build, 'commitHash'>>();
 
   const handleClearableInput = ({ name }: { name: string }): void => {
     setValue(name, '');

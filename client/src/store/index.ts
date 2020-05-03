@@ -3,14 +3,14 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer from '../reducers';
 import rootSaga from '../sagas';
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware({
+  onError(error) {
+    console.error(error);
+  },
+});
 
-const composeEnhancers =
-  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-      })
-    : compose;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancer = composeEnhancers(applyMiddleware(sagaMiddleware));
 

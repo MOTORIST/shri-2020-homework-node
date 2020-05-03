@@ -7,6 +7,8 @@ export const Types = {
   GET_BUILD: 'GET_BUILD',
 };
 
+export type BuildsConstants = typeof Types;
+
 export interface FetchBuildsAction {
   type: string;
   offset: number;
@@ -21,10 +23,10 @@ export const fetchBuilds = (offset = 0, limit = config.BUILDS_PER_PAGE): FetchBu
 
 export interface FetchBuildsSuccessAction {
   type: string;
-  payload: Build;
+  payload: Build[];
 }
 
-export const fetchBuildsSuccess = (data: Build): FetchBuildsSuccessAction => ({
+export const fetchBuildsSuccess = (data: Build[]): FetchBuildsSuccessAction => ({
   type: Types.GET_BUILDS + SUCCESS,
   payload: data,
 });

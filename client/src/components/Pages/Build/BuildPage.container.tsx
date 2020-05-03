@@ -19,7 +19,7 @@ export const BuildPageContainer: React.FC = () => {
     (state: RootState) => state.settings,
   );
 
-  const [logsData, setLogsData] = useState(null);
+  const [logsData, setLogsData] = useState<string>('');
 
   useEffect(() => {
     if (!isLoadedSettings) {
@@ -36,9 +36,9 @@ export const BuildPageContainer: React.FC = () => {
 
     api.builds
       .getBuildLogs(buildId)
-      .then(({ data, status }) => {
+      .then(({ data: buildLogs, status }) => {
         if (isMounted && status === 200) {
-          setLogsData(data);
+          setLogsData(buildLogs.data);
         }
       })
       .catch((error) => console.error(error));

@@ -28,6 +28,7 @@ export const builds = produce((draft, action) => {
   switch (type) {
     case Types.GET_BUILDS + REQUEST:
       draft.isFetching = true;
+      draft.error = null;
       break;
     case Types.GET_BUILDS + SUCCESS:
       draft.isFetching = false;

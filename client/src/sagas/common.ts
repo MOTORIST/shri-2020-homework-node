@@ -1,13 +1,12 @@
 import { call, all, takeLatest } from 'redux-saga/effects';
-import { Types, CommonActionTypes } from '../actions/common';
+import { Types, SetIsSetSettingsAction } from '../actions/common';
 import { SagaIterator } from 'redux-saga';
 
-export function* setIsSetSettingsSaga({ payload }: CommonActionTypes): Generator {
+export function* setIsSetSettingsSaga({ payload }: SetIsSetSettingsAction): Generator {
   try {
     yield call<Storage, any>([localStorage, localStorage.setItem], 'isSetSettings', payload);
   } catch (error) {
     console.error(error);
-    throw error;
   }
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { BuildsPage } from '../BuildsPage';
 import { withRouterMock } from '../../../../tests/utils/withRouterMock';
 import BuildList from '../../../Project/BuildList';
@@ -9,7 +9,7 @@ describe('BuildsPage component', () => {
     repoName: '',
     buildsData: [],
     isMore: true,
-    onLoadMore: () => {},
+    onLoadMore: (): void => undefined,
     isFetchingBuilds: false,
   };
 

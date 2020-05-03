@@ -7,7 +7,7 @@ import NotFoundPage from './components/Pages/NotFound';
 import IndexPage from './components/Pages/Index';
 import history from './history';
 
-function App() {
+function App(): React.ReactElement {
   return (
     <Theme>
       <Router history={history}>

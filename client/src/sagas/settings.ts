@@ -20,7 +20,6 @@ export function* fetchSettingsSaga(): SagaIterator {
   } catch (error) {
     const message = 'Failed to fetch settings';
     yield put(fetchSettingsFailure(message));
-    throw error;
   }
 }
 
@@ -33,7 +32,6 @@ export function* saveSettingsSaga({ values }: SaveSettingsAction): SagaIterator 
   } catch (error) {
     const message = 'Failed to save settings';
     yield put(saveSettingsFailure(message));
-    throw error;
   }
 }
 

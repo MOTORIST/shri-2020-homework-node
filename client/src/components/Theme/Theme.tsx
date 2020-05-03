@@ -10,11 +10,11 @@ import './_space/Theme_space_default.post.css';
 const ThemeCn = cn('Theme');
 
 export interface ThemeProps {
-  color: 'default';
-  control: 'default';
-  font: 'default';
-  size: 'default';
-  space: 'default';
+  color?: 'default';
+  control?: 'default';
+  font?: 'default';
+  size?: 'default';
+  space?: 'default';
   children: ReactNode;
 }
 

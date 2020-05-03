@@ -19,7 +19,6 @@ export function* getBuildsSaga({ offset, limit }: FetchBuildsAction): SagaIterat
   } catch (error) {
     const message = 'Failed to fetch builds';
     yield put(fetchBuildsFailure(message));
-    throw error;
   }
 }
 
@@ -30,7 +29,6 @@ export function* getBuildSaga({ buildId }: FetchBuildAction): SagaIterator {
   } catch (error) {
     const message = 'Failed to fetch build';
     yield put(fetchBuildFailure(message));
-    throw error;
   }
 }
 

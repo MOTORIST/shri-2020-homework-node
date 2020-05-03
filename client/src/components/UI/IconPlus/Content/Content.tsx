@@ -1,15 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 import cn from '../../../../libs/classname';
 import './IconPlus-Content.post.css';
 
 const ContentCn = cn('IconPlus', 'Content');
 
-export const Content = ({ children, className }) => {
-  return <div className={ContentCn(null, [className])}>{children}</div>;
-};
+export interface ContentProps {
+  children: ReactNode;
+  className?: string;
+}
 
-Content.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
+export const Content: React.FC<ContentProps> = ({ children, className }) => {
+  return <div className={ContentCn(null, [className])}>{children}</div>;
 };

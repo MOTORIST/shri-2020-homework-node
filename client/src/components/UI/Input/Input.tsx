@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { LegacyRef } from 'react';
 import cn from '../../../libs/classname';
 import { ClearButton } from './ClearButton/ClearButton';
 import './Input.post.css';
@@ -15,7 +15,7 @@ const InputCn = cn('Input');
 
 interface InputProps {
   id?: string;
-  name: string;
+  name?: string;
   placeholder?: string;
   size?: 's' | 'm';
   clearable?: boolean;
@@ -23,7 +23,7 @@ interface InputProps {
   status?: 'success' | 'error';
   width?: 'full' | '2xs';
   className?: string;
-  inputRef?: any;
+  inputRef?: LegacyRef<HTMLInputElement>;
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -39,7 +39,9 @@ export const Input: React.FC<InputProps> = ({
   inputRef,
 }) => {
   const handleClearable = (): void => {
-    onClearable && onClearable({ name });
+    if (onClearable && name) {
+      onClearable({ name });
+    }
   };
 
   return (

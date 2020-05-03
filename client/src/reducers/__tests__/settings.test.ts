@@ -1,110 +1,111 @@
-import { settings as settingsReducer, initialState} from '../settings';
+import { settings as settingsReducer, initialState } from '../settings';
 import { REQUEST, SUCCESS, FAILURE } from '../../constants';
-import { Types, fetchSettings, fetchSettingsSuccess, fetchSettingsFailure, saveSettings, saveSettingsSuccess, saveSettingsFailure } from '../../actions/settings';
+import {
+  Types,
+  fetchSettings,
+  fetchSettingsSuccess,
+  fetchSettingsFailure,
+  saveSettings,
+  saveSettingsSuccess,
+  saveSettingsFailure,
+} from '../../actions/settings';
+import { settingsData } from '../../tests/fake-data/settings.fake-data';
 
 describe('Settings reducer', () => {
-    const settingsData = {
-        repoName: 'test',
-        buildCommand: 'yarn build',
-        mainBranch: 'main',
-        period: 12,
-    }
+  it('should return init state an unhandled action', () => {
+    const nextState = settingsReducer(initialState, {});
 
-    it('should return init state an unhandled action', () => {
-        const nextState = settingsReducer(initialState, {});
+    expect(nextState).toEqual(initialState);
+  });
 
-        expect(nextState).toEqual(initialState);
-    });
+  it(Types.GET_SETTINGS + REQUEST, () => {
+    const nextState = settingsReducer(initialState, fetchSettings());
 
-    it(Types.GET_SETTINGS + REQUEST, () => {
-        const nextState = settingsReducer(initialState, fetchSettings());
+    expect(nextState).toEqual({ ...initialState, isFetching: true });
+  });
 
-        expect(nextState).toEqual({...initialState, isFetching: true});
-    });
+  it(Types.GET_SETTINGS + SUCCESS, () => {
+    const currentState = {
+      ...initialState,
+      isFetching: true,
+    };
 
-    it(Types.GET_SETTINGS + SUCCESS, () => {
+    const equalState = {
+      ...currentState,
+      isFetching: false,
+      isLoaded: true,
+      entity: settingsData,
+    };
 
-        const currentState = {
-            ...initialState,
-            isFetching: true,
-        }
+    const nextState = settingsReducer(currentState, fetchSettingsSuccess(settingsData));
 
-        const equalState = {
-            ...currentState,
-            isFetching: false,
-            isLoaded: true,
-            entity: settingsData,
-        }
+    expect(nextState).toEqual(equalState);
+  });
 
-        const nextState = settingsReducer(currentState, fetchSettingsSuccess(settingsData));
+  it(Types.GET_SETTINGS + FAILURE, () => {
+    const error = 'Error message';
 
-        expect(nextState).toEqual(equalState);
-    });
+    const currentState = {
+      ...initialState,
+      isFetching: true,
+    };
 
-    it(Types.GET_SETTINGS + FAILURE, () => {
-        const error = 'Error message';
+    const equalState = {
+      ...currentState,
+      isFetching: false,
+      error,
+    };
 
-        const currentState = {
-            ...initialState,
-            isFetching: true,
-        }
+    const nextState = settingsReducer(currentState, fetchSettingsFailure(error));
 
-        const equalState = {
-            ...currentState,
-            isFetching: false,
-            error,
-        }
+    expect(nextState).toEqual(equalState);
+  });
 
-        const nextState = settingsReducer(currentState, fetchSettingsFailure(error));
+  it(Types.SAVE_SETTINGS + REQUEST, () => {
+    const nextState = settingsReducer(initialState, saveSettings(settingsData));
 
-        expect(nextState).toEqual(equalState);
-    });
+    const equalState = {
+      ...initialState,
+      isFetching: true,
+    };
 
-    it(Types.SAVE_SETTINGS + REQUEST, () => {
-        const nextState = settingsReducer(initialState, saveSettings());
+    expect(nextState).toEqual(equalState);
+  });
 
-        const equalState = {
-            ...initialState,
-            isFetching: true,
-        }
+  it(Types.SAVE_SETTINGS + SUCCESS, () => {
+    const currentState = {
+      ...initialState,
+      isFetching: false,
+    };
 
-        expect(nextState).toEqual(equalState);
-    });
+    const equalState = {
+      ...currentState,
+      isFetching: false,
+      isLoaded: true,
+      entity: settingsData,
+    };
 
-    it(Types.SAVE_SETTINGS + SUCCESS, () => {
-        const currentState = {
-            ...initialState,
-            isFetching: false,
-        }
+    const nextState = settingsReducer(currentState, saveSettingsSuccess(settingsData));
 
-        const equalState = {
-            ...currentState,
-            isFetching: false,
-            isLoaded: true,
-            entity: settingsData,
-        };
+    expect(nextState).toEqual(equalState);
+  });
 
-        const nextState = settingsReducer(currentState, saveSettingsSuccess(settingsData));
+  it(Types.SAVE_SETTINGS + FAILURE, () => {
+    const currentState = {
+      ...initialState,
+      isFetching: true,
+    };
 
-        expect(nextState).toEqual(equalState);
-    });
+    const error = 'Error message';
 
-    it(Types.SAVE_SETTINGS + FAILURE, () => {
-        const currentState = {
-            ...initialState,
-            isFetching: true,
-        }
+    const equalState = {
+      ...currentState,
+      isFetching: false,
+      error,
+    };
 
-        const error = 'Error message';
+    const nextState = settingsReducer(currentState, saveSettingsFailure(error));
 
-        const equalState = {
-            ...currentState,
-            isFetching: false,
-            error,
-        }
-
-        const nextState = settingsReducer(currentState, saveSettingsFailure(error));
-
-        expect(nextState).toEqual(equalState);
-    });
+    expect(nextState).toEqual(equalState);
+  });
 });

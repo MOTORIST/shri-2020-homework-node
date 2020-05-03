@@ -9,7 +9,7 @@ const DateTimeCn = cn('DateTime');
 
 export interface DateTimeProps {
   dateTime: string;
-  className: string;
+  className?: string;
   icon?: 'calendar' | 'clock' | 'stopwatch';
 }
 

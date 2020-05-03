@@ -13,7 +13,8 @@ const SettingsContainer = (): React.ReactElement<SettingsPageProps> => {
   );
 
   const handleOnSaveSettings = (data: Config): void => {
-    dispatch(saveSettings(data.period));
+    data.period = +data.period;
+    dispatch(saveSettings(data));
   };
 
   useEffect(() => {

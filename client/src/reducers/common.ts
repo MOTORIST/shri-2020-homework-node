@@ -12,7 +12,11 @@ export const initialState: CommonState = {
   isSetSettings: getIsSetSettings(),
 };
 
-export function common(state = initialState, action: CommonActionTypes): CommonState {
+export function common(state = initialState, action: CommonActionTypes | undefined): CommonState {
+  if (!action) {
+    return state;
+  }
+
   const { type, payload } = action;
 
   switch (type) {

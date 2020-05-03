@@ -6,7 +6,7 @@ import './Header-Title.post.css';
 const HeaderCn = cn('Header');
 
 export interface TitleProps {
-  color: 'secondary';
+  color?: 'secondary';
   children?: ReactNode;
 }
 

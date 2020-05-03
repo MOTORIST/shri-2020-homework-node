@@ -2,10 +2,8 @@ export const Types = {
   SET_IS_SET_SETTINGS: 'SET_IS_SET_SETTINGS',
 };
 
-export type CommonConstants = typeof Types;
-
 export interface SetIsSetSettingsAction {
-  type: CommonConstants['SET_IS_SET_SETTINGS'];
+  type: string;
   payload: boolean;
 }
 

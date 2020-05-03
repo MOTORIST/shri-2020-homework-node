@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import { MainPage } from '../MainPage';
 import { withRouterMock } from '../../../../tests/utils/withRouterMock';
 
 describe('MainPage component', () => {
-  let mainPage = null;
+  let mainPage: ReactWrapper | null = null;
   const historyMock = { push: jest.fn() };
 
   beforeEach(() => {
@@ -17,7 +18,7 @@ describe('MainPage component', () => {
   });
 
   it('should forward to /settings if click on open settings button', () => {
-    const buttonSettings = mainPage.find('[data-testid="open-settings-button"]').hostNodes();
+    const buttonSettings = mainPage!.find('[data-testid="open-settings-button"]').hostNodes();
 
     buttonSettings.simulate('click');
     const path = historyMock.push.mock.calls[0][0];
@@ -26,7 +27,7 @@ describe('MainPage component', () => {
   });
 
   it('should forward to /settings if click on open settings icon button', () => {
-    const buttonIconSettings = mainPage
+    const buttonIconSettings = mainPage!
       .find('[data-testid="open-settings-icon-button"]')
       .hostNodes();
 

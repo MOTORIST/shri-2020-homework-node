@@ -1,10 +1,9 @@
 import { call } from 'redux-saga/effects';
 
-//TODO: refactoring
 /**
- * 
- * @param {*} saga 
- * @param  {...any} sagaArgs 
+ *
+ * @param {*} saga
+ * @param  {...any} sagaArgs
  * @example
  * expectSaga(expectErrorSaga(sagaFunction).toThrow())
  *  .provide([
@@ -12,20 +11,22 @@ import { call } from 'redux-saga/effects';
  *  .put(.....)
  *  .run();
  */
-export const expectErrorSaga = (saga, ...sagaArgs) => ({
-    toThrowError: expectedError => {
-        let errorWasThrown = false;
-  
-        return function*() {
-          try {
-            yield call(saga, ...sagaArgs);
-          } catch (e) {
-            errorWasThrown = true;
-            expect(e).toEqual(expectedError);
-          } finally {
-            if (!errorWasThrown)
-              throw new Error('Error was expected, but was not thrown by saga');
-          }
-        };
-    }
+export const expectErrorSaga = (saga: any, ...sagaArgs: any[]) => ({
+  toThrowError: (expectedError: Error) => {
+    let errorWasThrown = false;
+
+    return function* () {
+      try {
+        yield call<any>(saga, ...sagaArgs);
+      } catch (e) {
+        errorWasThrown = true;
+        expect(e).toEqual(expectedError);
+      } finally {
+        if (!errorWasThrown) {
+          // eslint-disable-next-line no-unsafe-finally
+          throw new Error('Error was expected, but was not thrown by saga');
+        }
+      }
+    };
+  },
 });

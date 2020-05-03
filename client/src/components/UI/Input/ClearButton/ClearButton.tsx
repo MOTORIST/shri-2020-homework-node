@@ -1,12 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cn from '../../../../libs/classname';
 import Button from '../../Button';
 import './Input-ClearButton.post.css';
 
 const ClearButtonCn = cn('Input', 'ClearButton');
 
-export const ClearButton = ({ size, onClick, className }) => {
+export interface ClearButtonProps {
+  className?: string;
+  size?: 's' | 'm';
+  onClick?: () => void;
+}
+
+export const ClearButton: React.FC<ClearButtonProps> = ({ size = 'm', onClick, className }) => {
   return (
     <Button
       className={ClearButtonCn(null, [className])}
@@ -18,9 +23,4 @@ export const ClearButton = ({ size, onClick, className }) => {
       onClick={onClick}
     />
   );
-};
-
-ClearButton.propTypes = {
-  className: PropTypes.string,
-  size: PropTypes.oneOf(['s', 'm']),
 };

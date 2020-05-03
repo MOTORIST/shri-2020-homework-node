@@ -4,14 +4,15 @@ import { BuildsPage } from './BuildsPage';
 import { fetchBuilds } from '../../../actions/builds';
 import { fetchSettings } from '../../../actions/settings';
 import { getBuilds } from '../../../reducers/builds';
+import { RootState } from '../../../reducers';
 
-export const BuildsPageContainer = () => {
+export const BuildsPageContainer: React.FC = () => {
   const dispatch = useDispatch();
 
   const {
     isLoaded: isLoadedSettings,
     entity: { repoName },
-  } = useSelector(state => state.settings);
+  } = useSelector((state: RootState) => state.settings);
 
   const {
     isLoaded: isLoadedBuilds,
@@ -19,7 +20,7 @@ export const BuildsPageContainer = () => {
     count: countBuilds,
     isFetching: isFetchingBuilds,
     isMore,
-  } = useSelector(state => state.builds);
+  } = useSelector((state: RootState) => state.builds);
 
   const buildsData = useSelector(getBuilds);
 
@@ -31,7 +32,7 @@ export const BuildsPageContainer = () => {
     !isLoadedBuilds && dispatch(fetchBuilds());
   }, [dispatch, isLoadedBuilds]);
 
-  const handleOnLoadMore = () => {
+  const handleOnLoadMore = (): void => {
     dispatch(fetchBuilds(countBuilds));
   };
 

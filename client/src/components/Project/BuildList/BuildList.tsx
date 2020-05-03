@@ -11,11 +11,11 @@ import './MoreButton/BuildList-MoreButton.post.css';
 const BuildListCn = cn('BuildList');
 
 export interface BuildListProps {
-  buildsData: IBuild[];
-  onLoadMore: () => void;
-  isMore: boolean;
-  onClickBuild: () => void;
-  className: string;
+  buildsData: IBuild[] | null;
+  onLoadMore?: () => void;
+  isMore?: boolean;
+  onClickBuild?: (id: string) => void;
+  className?: string;
 }
 
 export const BuildList: React.FC<BuildListProps> = ({

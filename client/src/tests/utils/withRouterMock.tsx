@@ -1,5 +1,12 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Router } from 'react-router-dom';
+import { History } from 'history';
+
+export interface HistoryMock {
+  push: () => void;
+  location: Record<string, any>;
+  listen: () => void;
+}
 
 /**
  *
@@ -12,8 +19,11 @@ import { Router } from 'react-router-dom';
  * const path = historyMock.push.mock.calls[0][0];
  * expect(path).toBe('/path');
  */
-export const withRouterMock = (Component, historyMock) => {
+export const withRouterMock = (
+  Component: ReactElement,
+  historyMock: Partial<History>,
+): React.ReactElement => {
   historyMock = Object.assign({ push: jest.fn(), location: {}, listen: jest.fn() }, historyMock);
 
-  return <Router history={historyMock}>{Component}</Router>;
+  return <Router history={historyMock as History}>{Component}</Router>;
 };
