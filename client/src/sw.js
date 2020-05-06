@@ -16,7 +16,7 @@ routing.registerRoute(
 );
 
 routing.registerRoute(
-  /\.(?:png|gif|jpg|svg)$/,
+  /\.(?:png|gif|jpg|svg|ico)$/,
   new CacheFirst({
     cacheName: 'images-cache',
   }),
@@ -30,7 +30,7 @@ routing.registerRoute(
 );
 
 routing.registerRoute(
-  /http:\/\/yastatic.net\/*/,
+  /(http|https):\/\/yastatic.net\/*/,
   new CacheFirst({
     cacheName: 'yandex-fonts',
   }),
