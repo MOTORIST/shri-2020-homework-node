@@ -21,6 +21,7 @@ const isLocalhost = Boolean(
 type Config = {
   onSuccess?: (registration: ServiceWorkerRegistration) => void;
   onUpdate?: (registration: ServiceWorkerRegistration) => void;
+  onReady?: (registration: ServiceWorkerRegistration) => void;
 };
 
 export function register(config?: Config): void {
@@ -54,6 +55,12 @@ export function register(config?: Config): void {
         // Is not localhost. Just register service worker
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         registerValidSW(swUrl, config);
+      }
+    });
+
+    navigator.serviceWorker.ready.then((sw: ServiceWorkerRegistration) => {
+      if (config && config.onReady) {
+        config.onReady(sw);
       }
     });
   }
