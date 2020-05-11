@@ -53,9 +53,11 @@ export async function send(req: Request, res: Response, next: NextFunction): Pro
         body: message,
       });
 
-      Object.values(subscriptionsData).forEach((subscriptionData) => {
-        webpush.sendNotification(subscriptionData, payload);
-      });
+      const subscriptionsArr = Object.values(subscriptionsData);
+
+      for (const subscriptionData of subscriptionsArr) {
+        await webpush.sendNotification(subscriptionData, payload);
+      }
     }
 
     res.json({ ok: true });
