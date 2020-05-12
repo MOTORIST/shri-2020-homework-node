@@ -9,7 +9,7 @@ import './Build-Info.post.css';
 const InfoCn = cn('Build', 'Info');
 
 export interface InfoProps {
-  data: Build;
+  data: Omit<Build, 'configurationId'>;
   color: Color;
 }
 

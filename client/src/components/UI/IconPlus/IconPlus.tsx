@@ -8,7 +8,7 @@ const IconPlusCn = cn('IconPlus');
 export interface IconPlusProps {
   children: ReactNode;
   className?: string;
-  distance: 'xs';
+  distance?: 'xs';
 }
 
 export const IconPlus: React.FC<IconPlusProps> = ({ distance, children, className }) => {

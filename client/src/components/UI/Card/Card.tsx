@@ -6,9 +6,9 @@ import './_clickable/Card_clickable.post.css';
 const CardCn = cn('Card');
 
 export interface CardProps {
-  clickable: boolean;
-  onClick: () => void;
-  className: string;
+  clickable?: boolean;
+  onClick?: () => void;
+  className?: string;
   children: ReactNode;
 }
 

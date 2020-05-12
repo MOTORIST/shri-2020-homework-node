@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import { withKnobs, number } from '@storybook/addon-knobs';
 import Stopwatch from '.';

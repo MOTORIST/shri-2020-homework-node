@@ -1,11 +1,11 @@
-import { Build, BuildStatus } from '../../../../types/Build';
+import { Build } from '../../../../types/Build';
 
 export const buildsData: Build[] = [
   {
     id: '1855b36b5-27ea-4da4-bf53-c2d933e036ca',
     configurationId: '2855b36b5-27ea-4da4-bf53-c2d933e036ca',
     commitMessage: 'fix: (client) create Build component',
-    status: BuildStatus.Success,
+    status: 'Success',
     buildNumber: 1,
     authorName: 'MOTORIST',
     branchName: 'test-repo',
@@ -17,7 +17,7 @@ export const buildsData: Build[] = [
     id: '2855b36b5-27ea-4da4-bf53-c2d933e036ca',
     commitMessage: 'fix: (client) create Build component',
     configurationId: '1855b36b5-27ea-4da4-bf53-c2d933e036ca',
-    status: BuildStatus.Fail,
+    status: 'Fail',
     buildNumber: 2,
     authorName: 'MOTORIST',
     branchName: 'test-repo',
@@ -29,7 +29,7 @@ export const buildsData: Build[] = [
     id: '3855b36b5-27ea-4da4-bf53-c2d933e036ca',
     configurationId: '1855b36b5-27ea-4da4-bf53-c2d933e036ca',
     commitMessage: 'fix: (client) create Build component',
-    status: BuildStatus.Waiting,
+    status: 'Waiting',
     buildNumber: 3,
     authorName: 'MOTORIST',
     branchName: 'test-repo',

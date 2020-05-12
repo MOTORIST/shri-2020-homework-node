@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import { withKnobs, select, text } from '@storybook/addon-knobs';
 import Header from './Header';
@@ -10,12 +11,12 @@ export default {
 };
 
 const headerKnobs = () => ({
-  color: select('Color', ['---', 'secondary']),
+  color: select('Color', ['secondary'], undefined),
 });
 
 const title = text(
   'Text',
-  'philip1967/my-awesome-repo-with-long-long-long-repo-name philip1967/my-awesome-repo-with-long-long-long-repo-name'
+  'philip1967/my-awesome-repo-with-long-long-long-repo-name philip1967/my-awesome-repo-with-long-long-long-repo-name',
 );
 
 export const header = () => (

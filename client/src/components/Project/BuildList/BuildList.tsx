@@ -11,7 +11,7 @@ import './MoreButton/BuildList-MoreButton.post.css';
 const BuildListCn = cn('BuildList');
 
 export interface BuildListProps {
-  buildsData: IBuild[] | null;
+  buildsData?: Omit<IBuild, 'configurationId'>[] | null;
   onLoadMore?: () => void;
   isMore?: boolean;
   onClickBuild?: (id: string) => void;

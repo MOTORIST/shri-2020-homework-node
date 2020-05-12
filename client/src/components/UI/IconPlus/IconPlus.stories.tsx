@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import { withKnobs, select } from '@storybook/addon-knobs';
 import IconPlus, { IconPlusContent } from '.';
@@ -9,7 +10,7 @@ export default {
 };
 
 const iconPlusKnobs = () => ({
-  distance: select('Distance', ['---', 'xs']),
+  distance: select('Distance', ['xs'], undefined),
 });
 
 export const iconPlus = () => (

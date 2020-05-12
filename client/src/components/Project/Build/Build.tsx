@@ -4,25 +4,25 @@ import Card from '../../UI/Card';
 import Icon from '../../UI/Icon';
 import { Info } from './Info/Info';
 import { TimeInfo } from './TimeInfo/TimeInfo';
-import { Build as IBuild } from '../../../../../types/Build';
+import { Build as IBuild, BuildStatus } from '../../../../../types/Build';
 import './Build.post.css';
 import './_variant/Build_variant_detail.post.css';
 import './StatusIcon/Build-StatusIcon.post.css';
 
 const BuildCn = cn('Build');
-
 export interface BuildProps {
-  data: IBuild;
+  data: Omit<IBuild, 'configurationId'>;
   onClick?: (id: string) => void;
   variant?: 'detail';
   className?: string;
+  status?: BuildStatus;
 }
 
 export type Color = 'warning' | 'success' | 'error' | 'default';
 type IconName = 'clock' | 'done' | 'fail';
 
-const getIconName = (status: IBuild['status']): IconName => {
-  const iconNames: Record<IBuild['status'], IconName> = {
+const getIconName = (status: BuildStatus): IconName => {
+  const iconNames: Record<BuildStatus, IconName> = {
     Waiting: 'clock',
     InProgress: 'clock',
     Success: 'done',
@@ -33,8 +33,8 @@ const getIconName = (status: IBuild['status']): IconName => {
   return iconNames[status] ? iconNames[status] : 'done';
 };
 
-const getColor = (status: IBuild['status']): Color => {
-  const colors: Record<IBuild['status'], Color> = {
+const getColor = (status: BuildStatus): Color => {
+  const colors: Record<BuildStatus, Color> = {
     Waiting: 'warning',
     InProgress: 'warning',
     Success: 'success',

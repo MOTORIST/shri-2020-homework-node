@@ -11,10 +11,4 @@ export interface Build {
   duration: number;
 }
 
-export enum BuildStatus {
-  Waiting = 'Waiting',
-  InProgress = 'InProgress',
-  Success = 'Success',
-  Fail = 'Fail',
-  Canceled = 'Canceled',
-}
+export type BuildStatus = 'Waiting' | 'InProgress' | 'Success' | 'Fail' | 'Canceled';

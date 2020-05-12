@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import FormGroup, { FormGroupLabel, FormGroupHint, FormGroupError } from '.';
 import Input from '../Input';

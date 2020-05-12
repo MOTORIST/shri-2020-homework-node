@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import { Button } from './Button';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
@@ -11,11 +12,10 @@ const defaultButtonKnobs = () => ({
   color: select('Color', ['default', 'primary'], 'default'),
   disabled: boolean('Disabled', false),
   full: boolean('Full', false),
-  iconVariant: select('Icon variant', ['---', 'clear', 'left', 'only']),
+  iconVariant: select('Icon variant', ['clear', 'left', 'only'], undefined),
   icon: select(
     'Icon',
     [
-      '---',
       'calendar',
       'clear',
       'clock',
@@ -29,12 +29,12 @@ const defaultButtonKnobs = () => ({
       'stopwatch',
       'user',
     ],
-    null
+    undefined,
   ),
   iconColor: select(
     'Icon color',
     ['default', 'error', 'secondary', 'success', 'warning'],
-    'default'
+    'default',
   ),
   size: select('Size', ['s', 'm'], 'm'),
 });
