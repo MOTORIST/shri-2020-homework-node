@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  stories: ['../src/**/*.stories.js'],
+  stories: ['../src/**/*.stories.tsx'],
   addons: [
     '@storybook/preset-create-react-app',
     '@storybook/addon-viewport/register',
@@ -9,7 +9,7 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-knobs',
   ],
-  webpackFinal: config => {
+  webpackFinal: (config) => {
     config.module.rules.push({
       test: /\.css$/,
       use: [

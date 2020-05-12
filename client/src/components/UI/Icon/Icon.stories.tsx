@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import { Icon } from './Icon';
 import { withKnobs, select } from '@storybook/addon-knobs';
@@ -26,7 +27,7 @@ const iconKnobs = () => ({
       'stopwatch',
       'user',
     ],
-    'user'
+    'user',
   ),
 });
 

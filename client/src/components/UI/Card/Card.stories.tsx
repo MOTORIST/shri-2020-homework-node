@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 import Card from '.';

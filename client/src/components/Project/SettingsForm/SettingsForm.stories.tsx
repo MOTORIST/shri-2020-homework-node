@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import { withKnobs, object } from '@storybook/addon-knobs';
 import {} from '@storybook/addon-actions';
@@ -19,7 +20,7 @@ const settingsFormKnobs = () => ({
   defaultValues: object('Default values', defaultValues),
 });
 
-const handleSubmit = data => {
+const handleSubmit = (data: any) => {
   console.log('---', data);
 };
 

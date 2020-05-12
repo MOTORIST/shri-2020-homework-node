@@ -1,17 +1,19 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import { withKnobs, boolean, object } from '@storybook/addon-knobs';
 import BuildList from '.';
+import { Build } from '../../../../../types/Build';
 
 export default {
   title: 'Project/BuildList',
   decorators: [withKnobs],
 };
 
-const buildsData = [
+const buildsData: Omit<Build, 'configurationId'>[] = [
   {
     id: '1855b36b5-27ea-4da4-bf53-c2d933e036ca',
     commitMessage: 'fix: (client) create Build component',
-    status: 'success',
+    status: 'Success',
     buildNumber: 1,
     authorName: 'MOTORIST',
     branchName: 'test-repo',
@@ -22,7 +24,7 @@ const buildsData = [
   {
     id: '2855b36b5-27ea-4da4-bf53-c2d933e036ca',
     commitMessage: 'fix: (client) create Build component',
-    status: 'error',
+    status: 'Fail',
     buildNumber: 2,
     authorName: 'MOTORIST',
     branchName: 'test-repo',
@@ -33,7 +35,7 @@ const buildsData = [
   {
     id: '3855b36b5-27ea-4da4-bf53-c2d933e036ca',
     commitMessage: 'fix: (client) create Build component',
-    status: 'warning',
+    status: 'Waiting',
     buildNumber: 3,
     authorName: 'MOTORIST',
     branchName: 'test-repo',
