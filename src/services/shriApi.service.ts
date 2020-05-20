@@ -100,7 +100,8 @@ export async function buildRequest(buildData: BuildRequestArg): Promise<BuildReq
 export async function getBuildLogs(buildId: string): Promise<string> {
   try {
     const { data: log } = await httpApi.get('/build/log', { params: { buildId } });
-    return log.data;
+
+    return log;
   } catch (err) {
     const message = 'Failed to get build logo (SHRI API: GET /build/log)';
     throw new APIError({ message, appError: SHRI_API, errors: [err] });
