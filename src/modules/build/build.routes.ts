@@ -5,8 +5,6 @@ import { getBuild, addBuild, getBuildLogs as _getBuildLogs } from './build.valid
 
 const router = Router();
 
-export default router;
-
 /**
  * Build model
  *
@@ -61,3 +59,5 @@ router
    *  @returns {string} 200
    */
   .get(validate(_getBuildLogs), getBuildLogs);
+
+export default router;

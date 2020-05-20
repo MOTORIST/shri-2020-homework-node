@@ -4,3 +4,4 @@ storage
 tests/e2e/hermione-reports
 build
 yarn-error.log
+subscriptions-store.json
