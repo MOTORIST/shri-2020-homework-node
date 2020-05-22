@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import cn from '../../../libs/classname';
 import Container from '../../UI/Container';
 import Link from '../Link';
+import LangSwitch from '../LangSwitch';
 
 import './Footer.post.css';
 import './Container/Footer-Container.post.css';
@@ -21,6 +22,11 @@ export const Footer: React.FC = () => {
           </li>
           <li className={FooterCn('MenuItem')}>
             <Link href="#">Learning</Link>
+          </li>
+          <li className={FooterCn('MenuItem')}>
+            <Suspense fallback="...">
+              <LangSwitch />
+            </Suspense>
           </li>
         </ul>
         <div className={FooterCn('Coop')}>© 2020 Your Name</div>
