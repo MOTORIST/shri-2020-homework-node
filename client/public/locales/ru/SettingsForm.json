@@ -9,5 +9,8 @@
   "repoNameInput": "GitHub репозиторий",
   "saveButton": "Сохранить",
   "synchronizeEveryInput": "Синхронизировать каждые",
-  "synchronizeEveryInputHint": "минут"
+  "synchronizeEveryInputHint": "минут",
+  "synchronizeEveryInputHint_0": "минута",
+  "synchronizeEveryInputHint_1": "минуты",
+  "synchronizeEveryInputHint_2": "минут"
 }

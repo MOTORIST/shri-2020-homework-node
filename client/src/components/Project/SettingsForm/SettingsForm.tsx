@@ -30,7 +30,8 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
   className,
 }) => {
   const { t } = useTranslation(['SettingsForm']);
-  const { register, handleSubmit, errors, setValue, reset } = useForm<Config>();
+  const { register, handleSubmit, errors, setValue, reset, watch } = useForm<Config>();
+  const periodValue = watch('period');
 
   useEffect(() => {
     reset(defaultValues);
@@ -116,7 +117,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
             placeholder="10"
             width="2xs"
           />
-          <FormGroupHint>{t('synchronizeEveryInputHint')}</FormGroupHint>
+          <FormGroupHint>{t('synchronizeEveryInputHint', { count: periodValue })}</FormGroupHint>
           {errors.period && <FormGroupError>{errors?.period?.message}</FormGroupError>}
         </FormGroup>
 
