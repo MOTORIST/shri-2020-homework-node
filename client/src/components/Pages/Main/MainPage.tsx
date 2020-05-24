@@ -8,6 +8,8 @@ import Icon from '../../UI/Icon';
 import { useHistory } from 'react-router-dom';
 import cn from '../../../libs/classname';
 import Footer from '../../Project/Footer';
+import { useTranslation } from 'react-i18next';
+
 import './Description/MainPage-Description.post.css';
 import './Logo/MainPage-Logo.post.css';
 
@@ -15,6 +17,7 @@ const MainPageCn = cn('MainPage');
 
 export const MainPage: React.FC = () => {
   const history = useHistory();
+  const { t } = useTranslation(['MainPage']);
 
   const handleToSettings = (): void => {
     history.push('/settings');
@@ -31,14 +34,14 @@ export const MainPage: React.FC = () => {
             size="s"
             onClick={handleToSettings}
           >
-            Settings
+            {t('buttons.settings')}
           </Button>
         </ButtonGroups>
       </Header>
       <PageContent contentPosition="center" arrange="col">
         <Icon className={MainPageCn('Logo')} name="logo" size="7xl" color="secondary" />
         <Typography className={MainPageCn('Description')} variant="body" align="center">
-          Configure repository connection and synchronization settings
+          {t('description')}
         </Typography>
         <Button
           data-testid="open-settings-button"
@@ -46,7 +49,7 @@ export const MainPage: React.FC = () => {
           size="m"
           onClick={handleToSettings}
         >
-          Open settings
+          {t('buttons.openSettings')}
         </Button>
       </PageContent>
       <Footer />

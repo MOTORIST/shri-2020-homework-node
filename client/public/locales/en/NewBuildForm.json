@@ -1,0 +1,8 @@
+{
+  "cancelButton": "Cancel",
+  "commitHashInputPlaceholder": "Commit hash",
+  "description": "Enter the commit hash which you want to build.",
+  "isRequiredValidation": "Field is required",
+  "runBuildButton": "Run build",
+  "title": "New build"
+}

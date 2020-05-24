@@ -1,0 +1,13 @@
+{
+  "buildCommandInput": "Команда при выполнении сборки",
+  "cancelButton": "Отменить",
+  "formDescription": "Настройте соединение с репозиторием и настройки синхронизации.",
+  "formTitle": "Настройки",
+  "isNumberValidation": "Поле должно быть числом и не равно нулю",
+  "isRequiredValidation": "Обязательное поле",
+  "mainBranchInput": "Основная ветка",
+  "repoNameInput": "GitHub репозиторий",
+  "saveButton": "Сохранить",
+  "synchronizeEveryInput": "Синхронизировать каждые",
+  "synchronizeEveryInputHint": "минут"
+}

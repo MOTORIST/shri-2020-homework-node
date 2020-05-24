@@ -13,6 +13,9 @@ import cn from '../../../libs/classname';
 import api from '../../../api';
 import { Config } from '../../../../../types/Config';
 import { Build } from '../../../../../types/Build';
+import { useTranslation } from 'react-i18next';
+
+const BuildsPageCn = cn('BuildsPage');
 
 export interface BuildsPageProps {
   repoName: Config['repoName'];
@@ -31,7 +34,7 @@ export const BuildsPage: React.FC<BuildsPageProps> = ({
   isFetchingBuilds,
   buildsError,
 }) => {
-  const BuildsPageCn = cn('BuildsPage');
+  const { t } = useTranslation(['BuildsPage']);
   const history = useHistory();
   const { openModal, closeModal, isOpen, Modal } = useModal({ background: true });
 
@@ -65,7 +68,7 @@ export const BuildsPage: React.FC<BuildsPageProps> = ({
             size="s"
             onClick={openModal}
           >
-            Run build
+            {t('runBuildButton')}
           </Button>
           <Button
             data-testid="settings-button"
@@ -79,17 +82,17 @@ export const BuildsPage: React.FC<BuildsPageProps> = ({
       <PageContent>
         {isFetchingBuilds && (
           <Typography data-testid="builds-loader" variant="body" color="secondary">
-            Loading builds...
+            {t('loadingBuildsText')}
           </Typography>
         )}
         {!isFetchingBuilds && buildsError && (
           <Typography data-testid="builds-error" variant="body" color="error">
-            Failed loading builds
+            {t('failedLoadingBuildsText')}
           </Typography>
         )}
         {!isFetchingBuilds && buildsData?.length === 0 && (
           <Typography data-testid="not-builds-message" variant="body" color="warning">
-            {'You don\'t have builds. Click "run build" to create new build.'}
+            {t('notBuildsMessage')}
           </Typography>
         )}
         <BuildList

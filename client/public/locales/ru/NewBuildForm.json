@@ -1,0 +1,8 @@
+{
+  "cancelButton": "Отменить",
+  "commitHashInputPlaceholder": "Хеш коммита",
+  "description": "Введите хеш коммита, который вы хотите создать.",
+  "isRequiredValidation": "Обязательное поле",
+  "runBuildButton": "Запустить сборку",
+  "title": "Новая сборка"
+}
