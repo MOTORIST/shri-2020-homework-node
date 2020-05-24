@@ -1,10 +1,11 @@
 import React from 'react';
 import cn from '../../../libs/classname';
-// eslint-disable-next-line import/default
-import ms from 'pretty-ms';
+import ms, { Lang } from '../../../helpers/ms';
 import IconPlus, { IconPlusContent } from '../../UI/IconPlus';
 import Icon from '../../UI/Icon';
+
 import './Stopwatch.post.css';
+import { useTranslation } from 'react-i18next';
 
 const StopwatchCn = cn('Stopwatch');
 
@@ -14,7 +15,9 @@ export interface StopwatchProps {
 }
 
 export const Stopwatch: React.FC<StopwatchProps> = ({ duration, className }) => {
-  const formattedDuration = duration ? ms(duration) : 0;
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language as Lang;
+  const formattedDuration = duration ? ms(duration, currentLang) : 0;
 
   return (
     <IconPlus className={StopwatchCn(null, [className])} distance="xs">
