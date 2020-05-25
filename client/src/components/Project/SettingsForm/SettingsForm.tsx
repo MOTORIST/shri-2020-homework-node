@@ -117,7 +117,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
             placeholder="10"
             width="2xs"
           />
-          <FormGroupHint>{t('synchronizeEveryInputHint', { count: periodValue })}</FormGroupHint>
+          <FormGroupHint>{t('synchronizeEveryInputHint', { count: +periodValue })}</FormGroupHint>
           {errors.period && <FormGroupError>{errors?.period?.message}</FormGroupError>}
         </FormGroup>
 
