@@ -1,0 +1,7 @@
+{
+  "buttons": {
+    "openSettings": "Open settings",
+    "settings": "Settings"
+  },
+  "description": "Configure repository connection and synchronization settings"
+}

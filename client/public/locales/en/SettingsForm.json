@@ -1,0 +1,14 @@
+{
+  "buildCommandInput": "Build command",
+  "cancelButton": "Cancel",
+  "formDescription": "Configure repository connection and synchronization settings.",
+  "formTitle": "Settings",
+  "isNumberValidation": "Field must be number and not equal to zero",
+  "isRequiredValidation": "Field is required",
+  "mainBranchInput": "Main branch",
+  "repoNameInput": "GitHub repository",
+  "saveButton": "Save",
+  "synchronizeEveryInput": "Synchronize every",
+  "synchronizeEveryInputHint": "minute",
+  "synchronizeEveryInputHint_plural": "minutes"
+}

@@ -7,6 +7,7 @@ import Typography from '../../UI/Typography';
 import { Config } from '../../../../../types/Config';
 import Footer from '../../Project/Footer';
 import cn from '../../../libs/classname';
+import { useTranslation } from 'react-i18next';
 
 const SettingsPageCn = cn('SettingsPage');
 
@@ -23,6 +24,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
   isFetching,
   error,
 }) => {
+  const { t } = useTranslation(['SettingsPage']);
   const history = useHistory();
 
   const handleToMainPage = (): void => {
@@ -35,7 +37,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
       <PageContent>
         {error && (
           <Typography variant="body" color="error">
-            {error}
+            {t('failedLoadErrorText')}
           </Typography>
         )}
 

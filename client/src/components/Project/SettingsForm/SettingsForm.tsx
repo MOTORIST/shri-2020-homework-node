@@ -6,6 +6,8 @@ import FormGroup, { FormGroupHint, FormGroupLabel, FormGroupError } from '../../
 import Input from '../../UI/Input';
 import Button from '../../UI/Button';
 import { Config } from '../../../../../types/Config';
+import { useTranslation } from 'react-i18next';
+
 import './SettingsForm.post.css';
 import './SaveButton/SettingsForm-SaveButton.post.css';
 import './CancelButton/SettingsForm-CancelButton.post.css';
@@ -27,16 +29,17 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
   defaultValues,
   className,
 }) => {
-  const { register, handleSubmit, errors, setValue, reset } = useForm<Config>();
+  const { t } = useTranslation(['SettingsForm']);
+  const { register, handleSubmit, errors, setValue, reset, watch } = useForm<Config>();
+  const periodValue = watch('period');
 
   useEffect(() => {
     reset(defaultValues);
   }, [defaultValues, reset]);
 
   const validators = {
-    required: { value: true, message: 'Field is required' },
-    min: { value: 10, message: 'Field must be number and not equal to 0' },
-    pattern: { value: /^[1-9]\d*$/, message: 'Field must be number and not equal to 0' },
+    required: { value: true, message: t('isRequiredValidation') },
+    pattern: { value: /^[1-9]\d*$/, message: t('isNumberValidation') },
   };
 
   const getValidators = (rules: Record<string, any>) =>
@@ -48,15 +51,15 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
 
   return (
     <div className={SettingsFormCn(null, [className])}>
-      <Typography variant="h4">Settings</Typography>
+      <Typography variant="h4">{t('formTitle')}</Typography>
       <Typography variant="body" color="secondary">
-        Configure repository connection and synchronization settings.
+        {t('formDescription')}
       </Typography>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormGroup>
           <FormGroupLabel htmlFor="repoName" required>
-            GitHub repository
+            {t('repoNameInput')}
           </FormGroupLabel>
           <Input
             id="repoName"
@@ -72,7 +75,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
 
         <FormGroup>
           <FormGroupLabel htmlFor="buildCommand" required>
-            Build command
+            {t('buildCommandInput')}
           </FormGroupLabel>
           <Input
             id="buildCommand"
@@ -88,7 +91,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
 
         <FormGroup>
           <FormGroupLabel htmlFor="mainBranch" required>
-            Main branch
+            {t('mainBranchInput')}
           </FormGroupLabel>
           <Input
             id="mainBranch"
@@ -103,7 +106,9 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
         </FormGroup>
 
         <FormGroup row>
-          <FormGroupLabel htmlFor="period">Synchronize every</FormGroupLabel>
+          <FormGroupLabel htmlFor="period" required>
+            {t('synchronizeEveryInput')}
+          </FormGroupLabel>
           <Input
             id="period"
             name="period"
@@ -112,7 +117,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
             placeholder="10"
             width="2xs"
           />
-          <FormGroupHint>minutes</FormGroupHint>
+          <FormGroupHint>{t('synchronizeEveryInputHint', { count: +periodValue })}</FormGroupHint>
           {errors.period && <FormGroupError>{errors?.period?.message}</FormGroupError>}
         </FormGroup>
 
@@ -123,7 +128,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
             disabled={isFetching}
             full
           >
-            Save
+            {t('saveButton')}
           </Button>
           <Button
             className={SettingsFormCn('CancelButton')}
@@ -132,7 +137,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
             disabled={isFetching}
             full
           >
-            Cancel
+            {t('cancelButton')}
           </Button>
         </div>
       </form>

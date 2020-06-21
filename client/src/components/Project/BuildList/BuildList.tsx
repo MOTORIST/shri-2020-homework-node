@@ -4,6 +4,8 @@ import Build from '../Build';
 import Typography from '../../UI/Typography';
 import Button from '../../UI/Button';
 import { Build as IBuild } from '../../../../../types/Build';
+import { useTranslation } from 'react-i18next';
+
 import './BuildList.post.css';
 import './Item/BuildList-Item.post.css';
 import './MoreButton/BuildList-MoreButton.post.css';
@@ -25,6 +27,8 @@ export const BuildList: React.FC<BuildListProps> = ({
   onClickBuild,
   className,
 }) => {
+  const { t } = useTranslation(['BuildList']);
+
   if (!buildsData) {
     return <Typography variant="body">No builds</Typography>;
   }
@@ -41,7 +45,7 @@ export const BuildList: React.FC<BuildListProps> = ({
       ))}
 
       <Button className={BuildListCn('MoreButton')} onClick={onLoadMore} disabled={!isMore} full>
-        Show more
+        {t('showMoreButton')}
       </Button>
     </div>
   );

@@ -1,0 +1,6 @@
+{
+  "failedLoadingBuildsText": "Failed loading builds",
+  "loadingBuildsText": "Loading builds...",
+  "notBuildsMessage": "You don't have builds. Click \"run build\" to create new build.",
+  "runBuildButton": "Run build"
+}

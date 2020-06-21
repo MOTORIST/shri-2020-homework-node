@@ -8,9 +8,11 @@ import Code from '../../UI/Code';
 import cn from '../../../libs/classname';
 import { useHistory } from 'react-router-dom';
 import Footer from '../../Project/Footer';
-import './Detail/BuildPage-Detail.post.css';
 import { Config } from '../../../../../types/Config';
 import { Build as IBuild } from '../../../../../types/Build';
+import { useTranslation } from 'react-i18next';
+
+import './Detail/BuildPage-Detail.post.css';
 
 const BuildPageCn = cn('BuildPage');
 
@@ -28,6 +30,7 @@ export const BuildPage: React.FC<BuildPageProps> = ({
   onRebuild,
 }) => {
   const history = useHistory();
+  const { t } = useTranslation(['BuildPage']);
 
   const handleToSettings = (): void => {
     history.push('/settings');
@@ -42,7 +45,7 @@ export const BuildPage: React.FC<BuildPageProps> = ({
       <Header title={repoName}>
         <ButtonGroups>
           <Button icon="rebuild" iconVariant="left" size="s" onClick={handleRebuild}>
-            Rebuild
+            {t('rebuildButton')}
           </Button>
           <Button icon="settings" iconVariant="only" size="s" onClick={handleToSettings} />
         </ButtonGroups>
